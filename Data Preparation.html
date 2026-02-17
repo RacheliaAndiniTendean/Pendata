@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Markdown Files &#8212; My sample book</title>
+    <title>Penambangan Data (Data Mining) &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data Preparation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Penambangan Data (Data Mining)" href="Modelling.html" />
+    <link rel="prev" title="Penambangan Data (Data Mining)" href="Data%20Understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,12 +179,12 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Penambangan Data (Data Mining)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Penambangan Data (Data Mining)</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Penambangan Data (Data Mining)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Penambangan Data (Data Mining)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Modelling.html">Penambangan Data (Data Mining)</a></li>
 
@@ -263,7 +263,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData Preparation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="_sources/markdown.md" target="_blank"
+      <li><a href="_sources/Data Preparation.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Markdown Files</h1>
+    <h1>Penambangan Data (Data Mining)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,11 +387,33 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Penambangan Data (Data Mining)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-penambangan-data">Pengertian Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-penambangan-data">Penerapan Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penambangan-data">Tujuan Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-data">1. Select Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aktivitas">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-data">2. Clean Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construct-data">3. Construct Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-data">4. Integrate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#format-data">5. Format Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -402,59 +424,133 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="penambangan-data-data-mining">
+<h1>Penambangan Data (Data Mining)<a class="headerlink" href="#penambangan-data-data-mining" title="Link to this heading">#</a></h1>
+<section id="pengertian-penambangan-data">
+<h2>Pengertian Penambangan Data<a class="headerlink" href="#pengertian-penambangan-data" title="Link to this heading">#</a></h2>
+<p>Penambangan data merupakan proses analitik yang bertujuan untuk mengekstraksi pola, hubungan, atau informasi yang bermakna dari kumpulan data berukuran besar. Proses ini memanfaatkan teknik statistika, machine learning, serta metode komputasional untuk mengidentifikasi pengetahuan tersembunyi yang tidak mudah terlihat melalui pengamatan biasa.</p>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <a class="reference internal" href="markdown-notebooks.html"><span class="doc">Notebooks with MyST Markdown</span></a>.</p>
+<section id="penerapan-penambangan-data">
+<h2>Penerapan Penambangan Data<a class="headerlink" href="#penerapan-penambangan-data" title="Link to this heading">#</a></h2>
+<p>Dalam konteks pengolahan data modern, data mining berperan sebagai pendekatan sistematis untuk mengubah data mentah menjadi wawasan yang dapat digunakan dalam pengambilan keputusan. Dengan kata lain, data mining tidak hanya berfokus pada pengolahan data, tetapi juga pada penemuan informasi yang relevan dan bernilai.</p>
+<p>Penambangan data banyak diterapkan di berbagai bidang, seperti bisnis, kesehatan, pendidikan, keuangan, hingga teknologi, karena kemampuannya dalam membantu organisasi memahami data secara lebih mendalam.</p>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HdHPK14</a><span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
+<section id="tujuan-penambangan-data">
+<h2>Tujuan Penambangan Data<a class="headerlink" href="#tujuan-penambangan-data" title="Link to this heading">#</a></h2>
+<p>Secara umum, tujuan utama data mining adalah menemukan pola atau struktur dalam data yang dapat mendukung proses analisis dan pengambilan keputusan. Informasi yang diperoleh dapat digunakan untuk keperluan prediksi, segmentasi, klasifikasi, maupun identifikasi hubungan antar variabel.</p>
+<p>Melalui data mining, organisasi dapat:</p>
+<ul class="simple">
+<li><p>Mengidentifikasi tren atau kecenderungan data</p></li>
+<li><p>Memahami perilaku pengguna atau pelanggan</p></li>
+<li><p>Memprediksi kejadian di masa depan</p></li>
+<li><p>Mendukung strategi bisnis berbasis data</p></li>
+</ul>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+<section id="metodologi-crisp-dm">
+<h2>Metodologi CRISP-DM<a class="headerlink" href="#metodologi-crisp-dm" title="Link to this heading">#</a></h2>
+<p>CRISP-DM (Cross-Industry Standard Process for Data Mining) merupakan kerangka kerja yang banyak digunakan untuk memandu pelaksanaan proyek penambangan data secara sistematis. Model ini menggambarkan alur proses yang terstruktur namun bersifat iteratif, sehingga memungkinkan adanya evaluasi dan penyempurnaan pada setiap tahap. Secara konseptual, CRISP-DM terdiri dari enam fase utama yang saling berkaitan, mulai dari pemahaman bisnis hingga penerapan hasil analisis. Ilustrasi berikut menunjukkan siklus proses CRISP-DM:</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/o6ZUt_FeEaEHTJVxD9MUp3LVu7pcmiFnw4mUMvfhU8c.original.fullsize.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+<h1>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+<p>Tahap <strong>Data Preparation</strong> merupakan fase ketiga dalam model CRISP-DM yang berfokus pada proses pembersihan, transformasi, dan penyusunan data agar siap digunakan dalam tahap modelling. Data yang diperoleh pada tahap sebelumnya umumnya masih berupa data mentah (raw data) yang belum sepenuhnya memenuhi persyaratan kualitas dan struktur untuk analisis.</p>
+<p>Pada tahap ini, praktisi data melakukan berbagai perlakuan terhadap data untuk memastikan bahwa data bersih, konsisten, dan sesuai dengan kebutuhan algoritma. Proses Data Preparation sering kali menjadi fase yang paling memakan waktu karena kualitas model sangat bergantung pada kualitas data yang dipersiapkan.</p>
+<p>Secara umum, tujuan dari Data Preparation adalah menghasilkan dataset final yang siap digunakan dalam proses modelling.</p>
+<section id="select-data">
+<h2>1. Select Data<a class="headerlink" href="#select-data" title="Link to this heading">#</a></h2>
+<p>Proses ini mencakup kegiatan pemilihan data yang relevan dengan tujuan analisis. Tidak semua data yang tersedia perlu digunakan, sehingga diperlukan pertimbangan terhadap variabel maupun record yang akan disertakan.</p>
+<section id="contoh-aktivitas">
+<h3>Contoh aktivitas:<a class="headerlink" href="#contoh-aktivitas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Memilih atribut yang relevan dengan tujuan modelling</p></li>
+<li><p>Mengeliminasi variabel yang tidak signifikan</p></li>
+<li><p>Menentukan subset data yang akan digunakan</p></li>
+<li><p>Mendokumentasikan alasan inklusi dan eksklusi data</p></li>
+</ul>
+<p>Tahap ini memastikan bahwa analisis difokuskan pada data yang benar-benar diperlukan.</p>
+</section>
+</section>
+<section id="clean-data">
+<h2>2. Clean Data<a class="headerlink" href="#clean-data" title="Link to this heading">#</a></h2>
+<p>Tahap ini berfokus pada perbaikan masalah kualitas data yang dapat memengaruhi hasil analisis. Data mentah sering kali mengandung berbagai permasalahan yang perlu ditangani sebelum digunakan.</p>
+<section id="id1">
+<h3>Contoh aktivitas:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mengidentifikasi dan menangani missing values</p></li>
+<li><p>Menghapus data duplikat</p></li>
+<li><p>Memperbaiki inkonsistensi data</p></li>
+<li><p>Mengelola outlier</p></li>
+<li><p>Memeriksa validitas data</p></li>
+</ul>
+<p>Masalah kualitas data yang umum ditemui antara lain:</p>
+<ul class="simple">
+<li><p>Missing values</p></li>
+<li><p>Outlier</p></li>
+<li><p>Noise data</p></li>
+<li><p>Kesalahan input</p></li>
+<li><p>Inkonsistensi nilai</p></li>
+</ul>
+<p>Pembersihan data yang tepat sangat penting untuk menjaga keandalan model.</p>
+</section>
+</section>
+<section id="construct-data">
+<h2>3. Construct Data<a class="headerlink" href="#construct-data" title="Link to this heading">#</a></h2>
+<p>Proses ini mencakup pembangunan variabel turunan (derived attributes) yang dapat memperkaya informasi dalam dataset. Variabel baru sering kali membantu model menangkap pola yang lebih kompleks.</p>
+<section id="id2">
+<h3>Contoh aktivitas:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Feature engineering</p></li>
+<li><p>Transformasi variabel</p></li>
+<li><p>Agregasi data</p></li>
+<li><p>Pembuatan atribut baru</p></li>
+</ul>
+<p>Tahap ini bertujuan meningkatkan kualitas representasi data.</p>
+</section>
+</section>
+<section id="integrate-data">
+<h2>4. Integrate Data<a class="headerlink" href="#integrate-data" title="Link to this heading">#</a></h2>
+<p>Tahap ini melibatkan penggabungan data dari berbagai sumber untuk membentuk dataset yang lebih lengkap dan komprehensif.</p>
+<p>Contoh aktivitas:</p>
+<ul class="simple">
+<li><p>Menggabungkan beberapa dataset</p></li>
+<li><p>Menyelaraskan struktur data</p></li>
+<li><p>Menangani perbedaan format data</p></li>
+<li><p>Mengintegrasikan data dari berbagai sistem</p></li>
+</ul>
+<p>Integrasi data memastikan bahwa seluruh informasi relevan tersedia dalam satu dataset.</p>
+</section>
+<section id="format-data">
+<h2>5. Format Data<a class="headerlink" href="#format-data" title="Link to this heading">#</a></h2>
+<p>Proses ini bertujuan menyesuaikan format dan struktur data agar kompatibel dengan teknik analisis atau algoritma modelling.</p>
+<p>Contoh aktivitas:</p>
+<ul class="simple">
+<li><p>Mengonversi tipe data</p></li>
+<li><p>Normalisasi atau standarisasi data</p></li>
+<li><p>Encoding variabel kategorikal</p></li>
+<li><p>Reformatting dataset</p></li>
+</ul>
+<p>Tahap ini memastikan bahwa data siap diproses oleh model.</p>
+</section>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset merupakan hasil utama dari tahap Data Preparation. Dataset ini merepresentasikan data yang telah melalui proses seleksi, pembersihan, konstruksi, integrasi, serta pemformatan.</p>
+<p>Dataset yang dihasilkan pada tahap ini umumnya memiliki karakteristik berikut:</p>
+<ul class="simple">
+<li><p>Data telah bersih dari kesalahan dan inkonsistensi</p></li>
+<li><p>Missing values telah ditangani</p></li>
+<li><p>Outlier telah dikelola</p></li>
+<li><p>Struktur data telah sesuai kebutuhan model</p></li>
+<li><p>Format data telah kompatibel dengan algoritma</p></li>
+</ul>
+<p>Dataset selanjutnya digunakan dalam tahap modelling, dan dalam praktiknya sering kali dibagi menjadi:</p>
+<ul class="simple">
+<li><p>Training dataset</p></li>
+<li><p>Testing dataset</p></li>
+</ul>
+<p>Kualitas dataset sangat menentukan performa model yang dibangun.</p>
+<hr class="docutils" />
+<p>Secara keseluruhan, tahap Data Preparation bertujuan memastikan bahwa data telah memenuhi persyaratan kualitas, konsistensi, dan struktur sebelum memasuki tahap modelling. Dataset yang dihasilkan pada tahap ini menjadi fondasi utama dalam pembangunan model analitik.</p>
 </section>
 </section>
 
@@ -488,6 +584,24 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Data%20Understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Penambangan Data (Data Mining)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Modelling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Penambangan Data (Data Mining)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -504,11 +618,33 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Penambangan Data (Data Mining)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-penambangan-data">Pengertian Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-penambangan-data">Penerapan Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penambangan-data">Tujuan Penambangan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-data">1. Select Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aktivitas">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-data">2. Clean Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construct-data">3. Construct Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Contoh aktivitas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-data">4. Integrate Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#format-data">5. Format Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
