@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Penambangan Data (Data Mining) &#8212; My sample book</title>
+    <title>Data Preparation &#8212; My sample book</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Data Preparation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Penambangan Data (Data Mining)" href="Modelling.html" />
-    <link rel="prev" title="Penambangan Data (Data Mining)" href="Data%20Understanding.html" />
+    <link rel="next" title="Modelling" href="Modelling.html" />
+    <link rel="prev" title="Data Understanding" href="Data%20Understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,30 +180,12 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1">
-  <a class="reference internal" href="Bussines%20Understanding.html">Business Understanding</a>
-</li>
-
-<li class="toctree-l1">
-  <a class="reference internal" href="Data%20Understanding.html">Data Understanding</a>
-</li>
-
-<li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">Data Preparation</a>
-</li>
-
-<li class="toctree-l1">
-  <a class="reference internal" href="Modelling.html">Modelling</a>
-</li>
-
-<li class="toctree-l1">
-  <a class="reference internal" href="Evaluation.html">Evaluation</a>
-</li>
-
-<li class="toctree-l1">
-  <a class="reference internal" href="Deployment.html">Deployment</a>
-</li>
-
+<li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
 </ul>
 
     </div>
@@ -389,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Penambangan Data (Data Mining)</h1>
+    <h1>Data Preparation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -399,14 +381,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Penambangan Data (Data Mining)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-penambangan-data">Pengertian Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-penambangan-data">Penerapan Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penambangan-data">Tujuan Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-data">1. Select Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aktivitas">Contoh aktivitas:</a></li>
 </ul>
@@ -423,9 +397,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#format-data">5. Format Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -436,35 +407,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="penambangan-data-data-mining">
-<h1>Penambangan Data (Data Mining)<a class="headerlink" href="#penambangan-data-data-mining" title="Link to this heading">#</a></h1>
-<section id="pengertian-penambangan-data">
-<h2>Pengertian Penambangan Data<a class="headerlink" href="#pengertian-penambangan-data" title="Link to this heading">#</a></h2>
-<p>Penambangan data merupakan proses analitik yang bertujuan untuk mengekstraksi pola, hubungan, atau informasi yang bermakna dari kumpulan data berukuran besar. Proses ini memanfaatkan teknik statistika, machine learning, serta metode komputasional untuk mengidentifikasi pengetahuan tersembunyi yang tidak mudah terlihat melalui pengamatan biasa.</p>
-</section>
-<section id="penerapan-penambangan-data">
-<h2>Penerapan Penambangan Data<a class="headerlink" href="#penerapan-penambangan-data" title="Link to this heading">#</a></h2>
-<p>Dalam konteks pengolahan data modern, data mining berperan sebagai pendekatan sistematis untuk mengubah data mentah menjadi wawasan yang dapat digunakan dalam pengambilan keputusan. Dengan kata lain, data mining tidak hanya berfokus pada pengolahan data, tetapi juga pada penemuan informasi yang relevan dan bernilai.</p>
-<p>Penambangan data banyak diterapkan di berbagai bidang, seperti bisnis, kesehatan, pendidikan, keuangan, hingga teknologi, karena kemampuannya dalam membantu organisasi memahami data secara lebih mendalam.</p>
-</section>
-<section id="tujuan-penambangan-data">
-<h2>Tujuan Penambangan Data<a class="headerlink" href="#tujuan-penambangan-data" title="Link to this heading">#</a></h2>
-<p>Secara umum, tujuan utama data mining adalah menemukan pola atau struktur dalam data yang dapat mendukung proses analisis dan pengambilan keputusan. Informasi yang diperoleh dapat digunakan untuk keperluan prediksi, segmentasi, klasifikasi, maupun identifikasi hubungan antar variabel.</p>
-<p>Melalui data mining, organisasi dapat:</p>
-<ul class="simple">
-<li><p>Mengidentifikasi tren atau kecenderungan data</p></li>
-<li><p>Memahami perilaku pengguna atau pelanggan</p></li>
-<li><p>Memprediksi kejadian di masa depan</p></li>
-<li><p>Mendukung strategi bisnis berbasis data</p></li>
-</ul>
-</section>
-<section id="metodologi-crisp-dm">
-<h2>Metodologi CRISP-DM<a class="headerlink" href="#metodologi-crisp-dm" title="Link to this heading">#</a></h2>
-<p>CRISP-DM (Cross-Industry Standard Process for Data Mining) merupakan kerangka kerja yang banyak digunakan untuk memandu pelaksanaan proyek penambangan data secara sistematis. Model ini menggambarkan alur proses yang terstruktur namun bersifat iteratif, sehingga memungkinkan adanya evaluasi dan penyempurnaan pada setiap tahap. Secara konseptual, CRISP-DM terdiri dari enam fase utama yang saling berkaitan, mulai dari pemahaman bisnis hingga penerapan hasil analisis. Ilustrasi berikut menunjukkan siklus proses CRISP-DM:</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/o6ZUt_FeEaEHTJVxD9MUp3LVu7pcmiFnw4mUMvfhU8c.original.fullsize.png" /></p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+  <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
 <h1>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
 <p>Tahap <strong>Data Preparation</strong> merupakan fase ketiga dalam model CRISP-DM yang berfokus pada proses pembersihan, transformasi, dan penyusunan data agar siap digunakan dalam tahap modelling. Data yang diperoleh pada tahap sebelumnya umumnya masih berupa data mentah (raw data) yang belum sepenuhnya memenuhi persyaratan kualitas dan struktur untuk analisis.</p>
 <p>Pada tahap ini, praktisi data melakukan berbagai perlakuan terhadap data untuk memastikan bahwa data bersih, konsisten, dan sesuai dengan kebutuhan algoritma. Proses Data Preparation sering kali menjadi fase yang paling memakan waktu karena kualitas model sangat bergantung pada kualitas data yang dipersiapkan.</p>
@@ -602,7 +545,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Penambangan Data (Data Mining)</p>
+        <p class="prev-next-title">Data Understanding</p>
       </div>
     </a>
     <a class="right-next"
@@ -610,7 +553,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Penambangan Data (Data Mining)</p>
+        <p class="prev-next-title">Modelling</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -630,14 +573,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Penambangan Data (Data Mining)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-penambangan-data">Pengertian Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-penambangan-data">Penerapan Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penambangan-data">Tujuan Penambangan Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-data">1. Select Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aktivitas">Contoh aktivitas:</a></li>
 </ul>
@@ -654,9 +589,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#format-data">5. Format Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
