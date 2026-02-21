@@ -71,3 +71,9 @@ Masalah kualitas data yang sering ditemui antara lain:
 Secara keseluruhan, tahap Data Understanding bertujuan untuk memperoleh pemahaman menyeluruh terhadap data yang digunakan. Ringkasan dan eksplorasi data berperan penting dalam mengonfirmasi apakah data telah sesuai dengan kebutuhan analisis.
 
 Pemahaman data yang kurang mendalam dapat menyebabkan kesalahan interpretasi serta menurunkan performa model pada tahap modelling. Oleh karena itu, praktisi data perlu melakukan eksplorasi dan evaluasi data secara teliti agar insight yang relevan dapat dihasilkan.
+
+## Eksplorasi Iris menggunakan Google Collab (Python)
+
+```{include} Eksplorasi.ipynb
+```
+```
