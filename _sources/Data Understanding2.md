@@ -72,5 +72,5 @@ Secara keseluruhan, tahap Data Understanding bertujuan untuk memperoleh pemahama
 
 Pemahaman data yang kurang mendalam dapat menyebabkan kesalahan interpretasi serta menurunkan performa model pada tahap modelling. Oleh karena itu, praktisi data perlu melakukan eksplorasi dan evaluasi data secara teliti agar insight yang relevan dapat dihasilkan.
 
-## Eksplorasi Iris menggunakan Google Collab (Python)
+## 5. Eksplorasi Iris menggunakan Google Collab (Python)
 
