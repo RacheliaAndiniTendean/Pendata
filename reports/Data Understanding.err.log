@@ -18,22 +18,290 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sqlalchemy import create_engine
+engine = create_engine(
+    "postgresql+psycopg2://postgres:ansdka6272@127.0.0.1:5432/Pendata"
+)
 
-%matplotlib inline
+query = 'SELECT * FROM public."iris";'
+df = pd.read_sql(query, engine)
+
+df.head()
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mModuleNotFoundError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
-[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnp[39;00m
-[32m      3[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmatplotlib[39;00m[34;01m.[39;00m[34;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mplt[39;00m
+[31mOperationalError[39m                          Traceback (most recent call last)
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:143[39m, in [36mConnection.__init__[39m[34m(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)[39m
+[32m    142[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m143[39m     [38;5;28mself[39m._dbapi_connection = [43mengine[49m[43m.[49m[43mraw_connection[49m[43m([49m[43m)[49m
+[32m    144[39m [38;5;28;01mexcept[39;00m dialect.loaded_dbapi.Error [38;5;28;01mas[39;00m err:
 
-[31mModuleNotFoundError[39m: No module named 'pandas'
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:3317[39m, in [36mEngine.raw_connection[39m[34m(self)[39m
+[32m   3296[39m [38;5;250m[39m[33;03m"""Return a "raw" DBAPI connection from the connection pool.[39;00m
+[32m   3297[39m 
+[32m   3298[39m [33;03mThe returned object is a proxied version of the DBAPI[39;00m
+[32m   (...)[39m[32m   3315[39m 
+[32m   3316[39m [33;03m"""[39;00m
+[32m-> [39m[32m3317[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mpool[49m[43m.[49m[43mconnect[49m[43m([49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:448[39m, in [36mPool.connect[39m[34m(self)[39m
+[32m    441[39m [38;5;250m[39m[33;03m"""Return a DBAPI connection from the pool.[39;00m
+[32m    442[39m 
+[32m    443[39m [33;03mThe connection is instrumented such that when its[39;00m
+[32m   (...)[39m[32m    446[39m 
+[32m    447[39m [33;03m"""[39;00m
+[32m--> [39m[32m448[39m [38;5;28;01mreturn[39;00m [43m_ConnectionFairy[49m[43m.[49m[43m_checkout[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:1272[39m, in [36m_ConnectionFairy._checkout[39m[34m(cls, pool, threadconns, fairy)[39m
+[32m   1271[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m fairy:
+[32m-> [39m[32m1272[39m     fairy = [43m_ConnectionRecord[49m[43m.[49m[43mcheckout[49m[43m([49m[43mpool[49m[43m)[49m
+[32m   1274[39m     [38;5;28;01mif[39;00m threadconns [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:712[39m, in [36m_ConnectionRecord.checkout[39m[34m(cls, pool)[39m
+[32m    711[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m712[39m     rec = [43mpool[49m[43m.[49m[43m_do_get[49m[43m([49m[43m)[49m
+[32m    714[39m [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/impl.py:177[39m, in [36mQueuePool._do_get[39m[34m(self)[39m
+[32m    176[39m [38;5;28;01mexcept[39;00m:
+[32m--> [39m[32m177[39m [43m    [49m[38;5;28;43;01mwith[39;49;00m[43m [49m[43mutil[49m[43m.[49m[43msafe_reraise[49m[43m([49m[43m)[49m[43m:[49m
+[32m    178[39m [43m        [49m[38;5;28;43mself[39;49m[43m.[49m[43m_dec_overflow[49m[43m([49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:121[39m, in [36msafe_reraise.__exit__[39m[34m(self, type_, value, traceback)[39m
+[32m    120[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+[32m--> [39m[32m121[39m     [38;5;28;01mraise[39;00m exc_value.with_traceback(exc_tb)
+[32m    122[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/impl.py:175[39m, in [36mQueuePool._do_get[39m[34m(self)[39m
+[32m    174[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m175[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_create_connection[49m[43m([49m[43m)[49m
+[32m    176[39m [38;5;28;01mexcept[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:389[39m, in [36mPool._create_connection[39m[34m(self)[39m
+[32m    387[39m [38;5;250m[39m[33;03m"""Called by subclasses to create a new ConnectionRecord."""[39;00m
+[32m--> [39m[32m389[39m [38;5;28;01mreturn[39;00m [43m_ConnectionRecord[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:674[39m, in [36m_ConnectionRecord.__init__[39m[34m(self, pool, connect)[39m
+[32m    673[39m [38;5;28;01mif[39;00m connect:
+[32m--> [39m[32m674[39m     [38;5;28;43mself[39;49m[43m.[49m[43m__connect[49m[43m([49m[43m)[49m
+[32m    675[39m [38;5;28mself[39m.finalize_callback = deque()
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:900[39m, in [36m_ConnectionRecord.__connect[39m[34m(self)[39m
+[32m    899[39m [38;5;28;01mexcept[39;00m [38;5;167;01mBaseException[39;00m [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m900[39m [43m    [49m[38;5;28;43;01mwith[39;49;00m[43m [49m[43mutil[49m[43m.[49m[43msafe_reraise[49m[43m([49m[43m)[49m[43m:[49m
+[32m    901[39m [43m        [49m[43mpool[49m[43m.[49m[43mlogger[49m[43m.[49m[43mdebug[49m[43m([49m[33;43m"[39;49m[33;43mError on connect(): [39;49m[38;5;132;43;01m%s[39;49;00m[33;43m"[39;49m[43m,[49m[43m [49m[43me[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:121[39m, in [36msafe_reraise.__exit__[39m[34m(self, type_, value, traceback)[39m
+[32m    120[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+[32m--> [39m[32m121[39m     [38;5;28;01mraise[39;00m exc_value.with_traceback(exc_tb)
+[32m    122[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:896[39m, in [36m_ConnectionRecord.__connect[39m[34m(self)[39m
+[32m    895[39m [38;5;28mself[39m.starttime = time.time()
+[32m--> [39m[32m896[39m [38;5;28mself[39m.dbapi_connection = connection = [43mpool[49m[43m.[49m[43m_invoke_creator[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+[32m    897[39m pool.logger.debug([33m"[39m[33mCreated new connection [39m[38;5;132;01m%r[39;00m[33m"[39m, connection)
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/create.py:661[39m, in [36mcreate_engine.<locals>.connect[39m[34m(connection_record)[39m
+[32m    659[39m             [38;5;28;01mreturn[39;00m connection
+[32m--> [39m[32m661[39m [38;5;28;01mreturn[39;00m [43mdialect[49m[43m.[49m[43mconnect[49m[43m([49m[43m*[49m[43mcargs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mcparams[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/default.py:630[39m, in [36mDefaultDialect.connect[39m[34m(self, *cargs, **cparams)[39m
+[32m    628[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mconnect[39m([38;5;28mself[39m, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+[32m    629[39m     [38;5;66;03m# inherits the docstring from interfaces.Dialect.connect[39;00m
+[32m--> [39m[32m630[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mloaded_dbapi[49m[43m.[49m[43mconnect[49m[43m([49m[43m*[49m[43mcargs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mcparams[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/psycopg2/__init__.py:122[39m, in [36mconnect[39m[34m(dsn, connection_factory, cursor_factory, **kwargs)[39m
+[32m    121[39m dsn = _ext.make_dsn(dsn, **kwargs)
+[32m--> [39m[32m122[39m conn = [43m_connect[49m[43m([49m[43mdsn[49m[43m,[49m[43m [49m[43mconnection_factory[49m[43m=[49m[43mconnection_factory[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwasync[49m[43m)[49m
+[32m    123[39m [38;5;28;01mif[39;00m cursor_factory [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[31mOperationalError[39m: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+[31mOperationalError[39m                          Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 6[39m
+[32m      1[39m engine = create_engine(
+[32m      2[39m     [33m"[39m[33mpostgresql+psycopg2://postgres:ansdka6272@127.0.0.1:5432/Pendata[39m[33m"[39m
+[32m      3[39m )
+[32m      5[39m query = [33m'[39m[33mSELECT * FROM public.[39m[33m"[39m[33miris[39m[33m"[39m[33m;[39m[33m'[39m
+[32m----> [39m[32m6[39m df = [43mpd[49m[43m.[49m[43mread_sql[49m[43m([49m[43mquery[49m[43m,[49m[43m [49m[43mengine[49m[43m)[49m
+[32m      8[39m df.head()
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/sql.py:700[39m, in [36mread_sql[39m[34m(sql, con, index_col, coerce_float, params, parse_dates, columns, chunksize, dtype_backend, dtype)[39m
+[32m    697[39m     dtype_backend = [33m"[39m[33mnumpy[39m[33m"[39m  [38;5;66;03m# type: ignore[assignment][39;00m
+[32m    698[39m [38;5;28;01massert[39;00m dtype_backend [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m lib.no_default
+[32m--> [39m[32m700[39m [38;5;28;01mwith[39;00m [43mpandasSQL_builder[49m[43m([49m[43mcon[49m[43m)[49m [38;5;28;01mas[39;00m pandas_sql:
+[32m    701[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(pandas_sql, SQLiteDatabase):
+[32m    702[39m         [38;5;28;01mreturn[39;00m pandas_sql.read_query(
+[32m    703[39m             sql,
+[32m    704[39m             index_col=index_col,
+[32m   (...)[39m[32m    710[39m             dtype=dtype,
+[32m    711[39m         )
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/sql.py:908[39m, in [36mpandasSQL_builder[39m[34m(con, schema, need_transaction)[39m
+[32m    902[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m    903[39m         [33mf[39m[33m"[39m[33mUsing URI string without version [39m[33m'[39m[38;5;132;01m{[39;00mVERSIONS[[33m'[39m[33msqlalchemy[39m[33m'[39m][38;5;132;01m}[39;00m[33m'[39m[33m or newer [39m[33m"[39m
+[32m    904[39m         [33m"[39m[33mof [39m[33m'[39m[33msqlalchemy[39m[33m'[39m[33m installed.[39m[33m"[39m
+[32m    905[39m     )
+[32m    907[39m [38;5;28;01mif[39;00m sqlalchemy [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;28misinstance[39m(con, ([38;5;28mstr[39m, sqlalchemy.engine.Connectable)):
+[32m--> [39m[32m908[39m     [38;5;28;01mreturn[39;00m [43mSQLDatabase[49m[43m([49m[43mcon[49m[43m,[49m[43m [49m[43mschema[49m[43m,[49m[43m [49m[43mneed_transaction[49m[43m)[49m
+[32m    910[39m adbc = import_optional_dependency([33m"[39m[33madbc_driver_manager.dbapi[39m[33m"[39m, errors=[33m"[39m[33mignore[39m[33m"[39m)
+[32m    911[39m [38;5;28;01mif[39;00m adbc [38;5;129;01mand[39;00m [38;5;28misinstance[39m(con, adbc.Connection):
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/sql.py:1649[39m, in [36mSQLDatabase.__init__[39m[34m(self, con, schema, need_transaction)[39m
+[32m   1647[39m     [38;5;28mself[39m.exit_stack.callback(con.dispose)
+[32m   1648[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(con, Engine):
+[32m-> [39m[32m1649[39m     con = [38;5;28mself[39m.exit_stack.enter_context([43mcon[49m[43m.[49m[43mconnect[49m[43m([49m[43m)[49m)
+[32m   1650[39m [38;5;28;01mif[39;00m need_transaction [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m con.in_transaction():
+[32m   1651[39m     [38;5;28mself[39m.exit_stack.enter_context(con.begin())
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:3293[39m, in [36mEngine.connect[39m[34m(self)[39m
+[32m   3270[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mconnect[39m([38;5;28mself[39m) -> Connection:
+[32m   3271[39m [38;5;250m    [39m[33;03m"""Return a new :class:`_engine.Connection` object.[39;00m
+[32m   3272[39m 
+[32m   3273[39m [33;03m    The :class:`_engine.Connection` acts as a Python context manager, so[39;00m
+[32m   (...)[39m[32m   3290[39m 
+[32m   3291[39m [33;03m    """[39;00m
+[32m-> [39m[32m3293[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_connection_cls[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:145[39m, in [36mConnection.__init__[39m[34m(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)[39m
+[32m    143[39m         [38;5;28mself[39m._dbapi_connection = engine.raw_connection()
+[32m    144[39m     [38;5;28;01mexcept[39;00m dialect.loaded_dbapi.Error [38;5;28;01mas[39;00m err:
+[32m--> [39m[32m145[39m         [43mConnection[49m[43m.[49m[43m_handle_dbapi_exception_noconnection[49m[43m([49m
+[32m    146[39m [43m            [49m[43merr[49m[43m,[49m[43m [49m[43mdialect[49m[43m,[49m[43m [49m[43mengine[49m
+[32m    147[39m [43m        [49m[43m)[49m
+[32m    148[39m         [38;5;28;01mraise[39;00m
+[32m    149[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:2448[39m, in [36mConnection._handle_dbapi_exception_noconnection[39m[34m(cls, e, dialect, engine, is_disconnect, invalidate_pool_on_disconnect, is_pre_ping)[39m
+[32m   2446[39m [38;5;28;01melif[39;00m should_wrap:
+[32m   2447[39m     [38;5;28;01massert[39;00m sqlalchemy_exception [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m-> [39m[32m2448[39m     [38;5;28;01mraise[39;00m sqlalchemy_exception.with_traceback(exc_info[[32m2[39m]) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2449[39m [38;5;28;01melse[39;00m:
+[32m   2450[39m     [38;5;28;01massert[39;00m exc_info[[32m1[39m] [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:143[39m, in [36mConnection.__init__[39m[34m(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)[39m
+[32m    141[39m [38;5;28;01mif[39;00m connection [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    142[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m143[39m         [38;5;28mself[39m._dbapi_connection = [43mengine[49m[43m.[49m[43mraw_connection[49m[43m([49m[43m)[49m
+[32m    144[39m     [38;5;28;01mexcept[39;00m dialect.loaded_dbapi.Error [38;5;28;01mas[39;00m err:
+[32m    145[39m         Connection._handle_dbapi_exception_noconnection(
+[32m    146[39m             err, dialect, engine
+[32m    147[39m         )
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/base.py:3317[39m, in [36mEngine.raw_connection[39m[34m(self)[39m
+[32m   3295[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mraw_connection[39m([38;5;28mself[39m) -> PoolProxiedConnection:
+[32m   3296[39m [38;5;250m    [39m[33;03m"""Return a "raw" DBAPI connection from the connection pool.[39;00m
+[32m   3297[39m 
+[32m   3298[39m [33;03m    The returned object is a proxied version of the DBAPI[39;00m
+[32m   (...)[39m[32m   3315[39m 
+[32m   3316[39m [33;03m    """[39;00m
+[32m-> [39m[32m3317[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mpool[49m[43m.[49m[43mconnect[49m[43m([49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:448[39m, in [36mPool.connect[39m[34m(self)[39m
+[32m    440[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mconnect[39m([38;5;28mself[39m) -> PoolProxiedConnection:
+[32m    441[39m [38;5;250m    [39m[33;03m"""Return a DBAPI connection from the pool.[39;00m
+[32m    442[39m 
+[32m    443[39m [33;03m    The connection is instrumented such that when its[39;00m
+[32m   (...)[39m[32m    446[39m 
+[32m    447[39m [33;03m    """[39;00m
+[32m--> [39m[32m448[39m     [38;5;28;01mreturn[39;00m [43m_ConnectionFairy[49m[43m.[49m[43m_checkout[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:1272[39m, in [36m_ConnectionFairy._checkout[39m[34m(cls, pool, threadconns, fairy)[39m
+[32m   1264[39m [38;5;129m@classmethod[39m
+[32m   1265[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_checkout[39m(
+[32m   1266[39m     [38;5;28mcls[39m,
+[32m   (...)[39m[32m   1269[39m     fairy: Optional[_ConnectionFairy] = [38;5;28;01mNone[39;00m,
+[32m   1270[39m ) -> _ConnectionFairy:
+[32m   1271[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m fairy:
+[32m-> [39m[32m1272[39m         fairy = [43m_ConnectionRecord[49m[43m.[49m[43mcheckout[49m[43m([49m[43mpool[49m[43m)[49m
+[32m   1274[39m         [38;5;28;01mif[39;00m threadconns [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1275[39m             threadconns.current = weakref.ref(fairy)
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:712[39m, in [36m_ConnectionRecord.checkout[39m[34m(cls, pool)[39m
+[32m    710[39m     rec = cast(_ConnectionRecord, pool._do_get())
+[32m    711[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m712[39m     rec = [43mpool[49m[43m.[49m[43m_do_get[49m[43m([49m[43m)[49m
+[32m    714[39m [38;5;28;01mtry[39;00m:
+[32m    715[39m     dbapi_connection = rec.get_connection()
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/impl.py:177[39m, in [36mQueuePool._do_get[39m[34m(self)[39m
+[32m    175[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._create_connection()
+[32m    176[39m [38;5;28;01mexcept[39;00m:
+[32m--> [39m[32m177[39m [43m    [49m[38;5;28;43;01mwith[39;49;00m[43m [49m[43mutil[49m[43m.[49m[43msafe_reraise[49m[43m([49m[43m)[49m[43m:[49m
+[32m    178[39m [43m        [49m[38;5;28;43mself[39;49m[43m.[49m[43m_dec_overflow[49m[43m([49m[43m)[49m
+[32m    179[39m     [38;5;28;01mraise[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:121[39m, in [36msafe_reraise.__exit__[39m[34m(self, type_, value, traceback)[39m
+[32m    119[39m     [38;5;28;01massert[39;00m exc_value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m    120[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+[32m--> [39m[32m121[39m     [38;5;28;01mraise[39;00m exc_value.with_traceback(exc_tb)
+[32m    122[39m [38;5;28;01melse[39;00m:
+[32m    123[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/impl.py:175[39m, in [36mQueuePool._do_get[39m[34m(self)[39m
+[32m    173[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._inc_overflow():
+[32m    174[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m175[39m         [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_create_connection[49m[43m([49m[43m)[49m
+[32m    176[39m     [38;5;28;01mexcept[39;00m:
+[32m    177[39m         [38;5;28;01mwith[39;00m util.safe_reraise():
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:389[39m, in [36mPool._create_connection[39m[34m(self)[39m
+[32m    386[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_create_connection[39m([38;5;28mself[39m) -> ConnectionPoolEntry:
+[32m    387[39m [38;5;250m    [39m[33;03m"""Called by subclasses to create a new ConnectionRecord."""[39;00m
+[32m--> [39m[32m389[39m     [38;5;28;01mreturn[39;00m [43m_ConnectionRecord[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:674[39m, in [36m_ConnectionRecord.__init__[39m[34m(self, pool, connect)[39m
+[32m    672[39m [38;5;28mself[39m.__pool = pool
+[32m    673[39m [38;5;28;01mif[39;00m connect:
+[32m--> [39m[32m674[39m     [38;5;28;43mself[39;49m[43m.[49m[43m__connect[49m[43m([49m[43m)[49m
+[32m    675[39m [38;5;28mself[39m.finalize_callback = deque()
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:900[39m, in [36m_ConnectionRecord.__connect[39m[34m(self)[39m
+[32m    898[39m     [38;5;28mself[39m.fresh = [38;5;28;01mTrue[39;00m
+[32m    899[39m [38;5;28;01mexcept[39;00m [38;5;167;01mBaseException[39;00m [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m900[39m [43m    [49m[38;5;28;43;01mwith[39;49;00m[43m [49m[43mutil[49m[43m.[49m[43msafe_reraise[49m[43m([49m[43m)[49m[43m:[49m
+[32m    901[39m [43m        [49m[43mpool[49m[43m.[49m[43mlogger[49m[43m.[49m[43mdebug[49m[43m([49m[33;43m"[39;49m[33;43mError on connect(): [39;49m[38;5;132;43;01m%s[39;49;00m[33;43m"[39;49m[43m,[49m[43m [49m[43me[49m[43m)[49m
+[32m    902[39m [38;5;28;01melse[39;00m:
+[32m    903[39m     [38;5;66;03m# in SQLAlchemy 1.4 the first_connect event is not used by[39;00m
+[32m    904[39m     [38;5;66;03m# the engine, so this will usually not be set[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:121[39m, in [36msafe_reraise.__exit__[39m[34m(self, type_, value, traceback)[39m
+[32m    119[39m     [38;5;28;01massert[39;00m exc_value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m    120[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+[32m--> [39m[32m121[39m     [38;5;28;01mraise[39;00m exc_value.with_traceback(exc_tb)
+[32m    122[39m [38;5;28;01melse[39;00m:
+[32m    123[39m     [38;5;28mself[39m._exc_info = [38;5;28;01mNone[39;00m  [38;5;66;03m# remove potential circular references[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/pool/base.py:896[39m, in [36m_ConnectionRecord.__connect[39m[34m(self)[39m
+[32m    894[39m [38;5;28;01mtry[39;00m:
+[32m    895[39m     [38;5;28mself[39m.starttime = time.time()
+[32m--> [39m[32m896[39m     [38;5;28mself[39m.dbapi_connection = connection = [43mpool[49m[43m.[49m[43m_invoke_creator[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+[32m    897[39m     pool.logger.debug([33m"[39m[33mCreated new connection [39m[38;5;132;01m%r[39;00m[33m"[39m, connection)
+[32m    898[39m     [38;5;28mself[39m.fresh = [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/create.py:661[39m, in [36mcreate_engine.<locals>.connect[39m[34m(connection_record)[39m
+[32m    658[39m         [38;5;28;01mif[39;00m connection [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    659[39m             [38;5;28;01mreturn[39;00m connection
+[32m--> [39m[32m661[39m [38;5;28;01mreturn[39;00m [43mdialect[49m[43m.[49m[43mconnect[49m[43m([49m[43m*[49m[43mcargs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mcparams[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/sqlalchemy/engine/default.py:630[39m, in [36mDefaultDialect.connect[39m[34m(self, *cargs, **cparams)[39m
+[32m    628[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mconnect[39m([38;5;28mself[39m, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+[32m    629[39m     [38;5;66;03m# inherits the docstring from interfaces.Dialect.connect[39;00m
+[32m--> [39m[32m630[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mloaded_dbapi[49m[43m.[49m[43mconnect[49m[43m([49m[43m*[49m[43mcargs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mcparams[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/python/3.12.1/lib/python3.12/site-packages/psycopg2/__init__.py:122[39m, in [36mconnect[39m[34m(dsn, connection_factory, cursor_factory, **kwargs)[39m
+[32m    119[39m     kwasync[[33m'[39m[33masync_[39m[33m'[39m] = kwargs.pop([33m'[39m[33masync_[39m[33m'[39m)
+[32m    121[39m dsn = _ext.make_dsn(dsn, **kwargs)
+[32m--> [39m[32m122[39m conn = [43m_connect[49m[43m([49m[43mdsn[49m[43m,[49m[43m [49m[43mconnection_factory[49m[43m=[49m[43mconnection_factory[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwasync[49m[43m)[49m
+[32m    123[39m [38;5;28;01mif[39;00m cursor_factory [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    124[39m     conn.cursor_factory = cursor_factory
+
+[31mOperationalError[39m: (psycopg2.OperationalError) connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
 
