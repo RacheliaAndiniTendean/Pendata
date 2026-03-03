@@ -431,7 +431,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">14. Korelasi Antar Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">6. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">7. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-code-python">1. Menghitung Jarak Iris Menggunakan Code (Python)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-orange">2. Menghitung Jarak Iris Menggunakan Orange</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">1. Distance</a></li>
@@ -612,8 +612,6 @@ Widget ini membantu dalam analisis agregasi data.</p>
 <ul class="simple">
 <li><p>pandas (pd) dipakai untuk manipulasi data tabel (DataFrame).</p></li>
 <li><p>numpy (np) dipakai untuk operasi numerik dan seleksi kolom numerik.</p></li>
-<li><p>matplotlib.pyplot (plt) dipakai untuk membuat grafik dasar.</p></li>
-<li><p>seaborn (sns) dipakai untuk grafik statistik yang lebih informatif.</p></li>
 <li><p>create_engine dipakai untuk membuat koneksi ke PostgreSQL melalui SQLAlchemy.</p></li>
 <li></li>
 </ul>
@@ -798,7 +796,6 @@ memory usage: 6.0 KB
 <p><strong>Penjelasan :</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://df.info">df.info</a>() menampilkan nama kolom, tipe data, serta jumlah nilai yang tidak kosong.</p></li>
-<li><p>(df.isnull().sum()) digunakan untuk menghitung jumlah nilai kosong pada setiap kolom.</p></li>
 </ul>
 </section>
 <section id="jumlah-class-dan-distribusi">
@@ -1198,14 +1195,12 @@ Persentase duplikat  : 2.00%
 </section>
 </section>
 <section id="menghitung-jarak-iris">
-<h2>6. Menghitung Jarak Iris<a class="headerlink" href="#menghitung-jarak-iris" title="Link to this heading">#</a></h2>
+<h2>7. Menghitung Jarak Iris<a class="headerlink" href="#menghitung-jarak-iris" title="Link to this heading">#</a></h2>
 <section id="menghitung-jarak-iris-menggunakan-code-python">
 <h3>1. Menghitung Jarak Iris Menggunakan Code (Python)<a class="headerlink" href="#menghitung-jarak-iris-menggunakan-code-python" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># fitur numerik</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fitur numerik</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="n">data_1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1228,6 +1223,18 @@ Manhattan Distance : 0.7000
 </div>
 </div>
 </div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p>X = df[[“sepal_length”, “sepal_width”, “petal_length”, “petal_width”]].values mengambil fitur numerik dari DataFrame df, lalu mengubahnya menjadi array NumPy.</p></li>
+<li><p>data_1 = X[0] mengambil data baris pertama dari dataset.</p></li>
+<li><p>data_2 = X[1] mengambil data baris kedua dari dataset.</p></li>
+<li><p>(data_1 - data_2) ** 2 menghitung selisih setiap fitur lalu mengkuadratkannya (rumus dasar Euclidean).</p></li>
+<li><p>np.sum(…) menjumlahkan seluruh hasil kuadrat selisih.</p></li>
+<li><p>np.sqrt(…) menghitung akar dari jumlah tersebut untuk mendapatkan Euclidean Distance.</p></li>
+<li><p>np.abs(data_1 - data_2) menghitung nilai mutlak selisih setiap fitur (rumus dasar Manhattan).</p></li>
+<li><p>np.sum(…) menjumlahkan seluruh nilai mutlak untuk mendapatkan Manhattan Distance.</p></li>
+<li><p>print() digunakan untuk menampilkan hasil perhitungan jarak ke layar.:.4f membatasi tampilan angka menjadi 4 angka di belakang koma agar lebih rapi.</p></li>
+</ul>
 </section>
 <section id="menghitung-jarak-iris-menggunakan-orange">
 <h3>2. Menghitung Jarak Iris Menggunakan Orange<a class="headerlink" href="#menghitung-jarak-iris-menggunakan-orange" title="Link to this heading">#</a></h3>
@@ -1376,7 +1383,7 @@ Semakin kecil nilai jarak, semakin mirip kedua data tersebut.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">14. Korelasi Antar Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">6. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">7. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-code-python">1. Menghitung Jarak Iris Menggunakan Code (Python)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-orange">2. Menghitung Jarak Iris Menggunakan Orange</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">1. Distance</a></li>
