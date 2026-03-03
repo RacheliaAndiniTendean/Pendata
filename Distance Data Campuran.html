@@ -865,18 +865,14 @@ memory usage: 1.4 MB
 <span class="n">jumlah_jarak</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># Σ(δ * d)</span>
 <span class="n">jumlah_delta</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># Σδ</span>
 
-<span class="c1"># =====================</span>
 <span class="c1"># NOMINAL</span>
-<span class="c1"># =====================</span>
 <span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_nominal</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
         <span class="n">jarak</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span> <span class="o">==</span> <span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
         <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
         <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c1"># =====================</span>
-<span class="c1"># BINARY ASIMETRIS (00 tidak dihitung)</span>
-<span class="c1"># =====================</span>
+<span class="c1"># BINARY ASIMETRIS</span>
 <span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_binary_asimetris</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
         <span class="n">nilai_1</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span> <span class="k">else</span> <span class="mi">0</span>
@@ -887,9 +883,7 @@ memory usage: 1.4 MB
             <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
             <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c1"># =====================</span>
 <span class="c1"># ORDINAL</span>
-<span class="c1"># =====================</span>
 <span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_ordinal</span><span class="p">:</span>
     <span class="n">peringkat_1</span> <span class="o">=</span> <span class="n">ranking_education</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
     <span class="n">peringkat_2</span> <span class="o">=</span> <span class="n">ranking_education</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
@@ -902,9 +896,7 @@ memory usage: 1.4 MB
         <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
         <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c1"># =====================</span>
-<span class="c1"># NUMERIK (|x-y|/range)</span>
-<span class="c1"># =====================</span>
+<span class="c1"># NUMERIK </span>
 <span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_numerik</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
         <span class="n">rentang</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -913,9 +905,7 @@ memory usage: 1.4 MB
             <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
             <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c1"># =====================</span>
-<span class="c1"># TOTAL SESUAI RUMUS PPT</span>
-<span class="c1"># =====================</span>
+<span class="c1"># HASIL</span>
 <span class="n">jarak_campuran</span> <span class="o">=</span> <span class="n">jumlah_jarak</span> <span class="o">/</span> <span class="n">jumlah_delta</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total nilai jarak (delta dikali jarak) =&quot;</span><span class="p">,</span> <span class="n">jumlah_jarak</span><span class="p">)</span>
