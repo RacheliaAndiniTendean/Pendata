@@ -183,6 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance%20Data%20Campuran.html">Mengukur Jarak Antar Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
@@ -434,8 +435,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">7. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-code-python">1. Menghitung Jarak Iris Menggunakan Code (Python)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-orange">2. Menghitung Jarak Iris Menggunakan Orange</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">1. Distance</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-matrix">2. Distance Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuize">1. Continuize</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">2. Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-matrix">3. Distance Matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -529,7 +531,7 @@ document.write(`
 <section id="alur-analisis-data-menggunakan-orange">
 <h3>Alur Analisis Data Menggunakan Orange<a class="headerlink" href="#alur-analisis-data-menggunakan-orange" title="Link to this heading">#</a></h3>
 <p>Pada tahap ini dilakukan eksplorasi data menggunakan beberapa widget pada Orange untuk memahami karakteristik dataset IRIS.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/VNQnh9tUlxWyTbw7lW6t8M1UsqBkxHxlocsezx2nHi4.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/LUfmkzsVS8W2S1XiG8gaInpXgOrVH08igkj2MEqC7Vo.original.fullsize.png" /></p>
 <section id="sql-table">
 <h4>1. SQL Table<a class="headerlink" href="#sql-table" title="Link to this heading">#</a></h4>
 <p>Widget SQL Table digunakan untuk mengimpor atau mengambil dataset langsung dari database relasional seperti PostgreSQL ke dalam Orange.</p>
@@ -1200,25 +1202,35 @@ Persentase duplikat  : 2.00%
 <h3>1. Menghitung Jarak Iris Menggunakan Code (Python)<a class="headerlink" href="#menghitung-jarak-iris-menggunakan-code-python" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fitur numerik</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># fitur numerik</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="n">data_1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">data_2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># NORMALISASI MIN-MAX</span>
+<span class="n">nilai_min</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">nilai_max</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
+<span class="n">X_normalisasi</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">nilai_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nilai_max</span> <span class="o">-</span> <span class="n">nilai_min</span><span class="p">)</span>
+
+<span class="n">data_1</span> <span class="o">=</span> <span class="n">X_normalisasi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data_2</span> <span class="o">=</span> <span class="n">X_normalisasi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># HITUNG JARAK</span>
 <span class="n">euclidean_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data_1</span> <span class="o">-</span> <span class="n">data_2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">manhattan_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data_1</span> <span class="o">-</span> <span class="n">data_2</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil Pehitungan jarak antar dua data :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil Perhitungan Jarak Antar Dua Data (Setelah Normalisasi):&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Euclidean Distance : </span><span class="si">{</span><span class="n">euclidean_distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Manhattan Distance : </span><span class="si">{</span><span class="n">manhattan_distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil Pehitungan jarak antar dua data :
-Euclidean Distance : 0.5385
-Manhattan Distance : 0.7000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil Perhitungan Jarak Antar Dua Data (Setelah Normalisasi):
+Euclidean Distance : 0.2156
+Manhattan Distance : 0.2639
 </pre></div>
 </div>
 </div>
@@ -1238,23 +1250,49 @@ Manhattan Distance : 0.7000
 </section>
 <section id="menghitung-jarak-iris-menggunakan-orange">
 <h3>2. Menghitung Jarak Iris Menggunakan Orange<a class="headerlink" href="#menghitung-jarak-iris-menggunakan-orange" title="Link to this heading">#</a></h3>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/VNQnh9tUlxWyTbw7lW6t8M1UsqBkxHxlocsezx2nHi4.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/s1D8qKRV9p2fF_o44mmzZbKLOPW1YBFweuRfAGR5in8.original.fullsize.png" /></p>
+<section id="continuize">
+<h4>1. Continuize<a class="headerlink" href="#continuize" title="Link to this heading">#</a></h4>
+<p>Widget Continuize digunakan untuk mengubah dan menyesuaikan tipe variabel sebelum dilakukan perhitungan jarak atau analisis lanjutan.
+Normalisasi dilakukan dengan rumus:</p>
+<p><strong>(x−min)/(max−min)</strong></p>
+<p>Tujuannya adalah:</p>
+<ul class="simple">
+<li><p>Mengubah seluruh fitur numerik ke rentang 0 sampai 1.</p></li>
+<li><p>Menghindari dominasi fitur yang memiliki skala lebih besar.</p></li>
+<li><p>Membuat kontribusi setiap fitur menjadi seimbang saat menghitung jarak.</p></li>
+</ul>
+<p>Pada dataset Iris, keempat fitur numerik:</p>
+<ul class="simple">
+<li><p>sepal_length</p></li>
+<li><p>sepal_width</p></li>
+<li><p>petal_length</p></li>
+<li><p>petal_width</p></li>
+</ul>
+<p>dinormalisasi ke interval [0,1] sebelum dihitung jaraknya.</p>
+<p>Variabel kategorikal seperti species dihapus (Remove) agar tidak ikut dalam perhitungan jarak, karena analisis ini hanya fokus pada fitur numerik.</p>
+<p>Widget ini sangat penting karena tanpa normalisasi, nilai jarak dapat bias terhadap fitur dengan rentang nilai yang lebih besar.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/rcggWo5QxqDYdXrC7hfhgosViAcohp3NRyoZixdjTKM.original.fullsize.png" /></p>
+</section>
 <section id="distance">
-<h4>1. Distance<a class="headerlink" href="#distance" title="Link to this heading">#</a></h4>
+<h4>2. Distance<a class="headerlink" href="#distance" title="Link to this heading">#</a></h4>
 <p>Widget Distances digunakan untuk menghitung jarak antar data berdasarkan fitur numerik dalam dataset.</p>
 <p>Widget ini mendukung beberapa metode perhitungan jarak, seperti:</p>
 <ul class="simple">
 <li><p>Euclidean Distance</p></li>
-<li><p>Manhattan Distance
-8 Cosine Distance</p></li>
+<li><p>Manhattan Distance</p></li>
+<li><p>dll</p></li>
 </ul>
 <p>Pada dataset Iris, jarak dihitung berdasarkan empat fitur numerik (sepal dan petal).
 Semakin kecil nilai jarak, semakin mirip kedua data tersebut.</p>
 <p>Widget ini biasanya digunakan untuk analisis kemiripan dan clustering.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/fc4G0fPBpOjqUfOpNnyNmZvhOLXEEUaAFnVithwF_Ko.original.fullsize.png" /></p>
+<p><strong>1. Manhattan Distance</strong></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/QNik6vafWHw6TgE2JItiNhfuexfp4Pk-ew_VPogc0RA.original.fullsize.png" /></p>
+<p><strong>2. Euclidean Distance</strong></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/itxA-EuVP4434dUvwtpTH5AJeOpuU36CZJl9-0jzrAw.original.fullsize.png" /></p>
 </section>
 <section id="distance-matrix">
-<h4>2. Distance Matrix<a class="headerlink" href="#distance-matrix" title="Link to this heading">#</a></h4>
+<h4>3. Distance Matrix<a class="headerlink" href="#distance-matrix" title="Link to this heading">#</a></h4>
 <p>Widget Distance Matrix digunakan untuk menampilkan hasil perhitungan jarak dalam bentuk matriks (tabel).</p>
 <p>Matriks ini menunjukkan:</p>
 <ul class="simple">
@@ -1263,7 +1301,10 @@ Semakin kecil nilai jarak, semakin mirip kedua data tersebut.</p>
 </ul>
 <p>Nilai diagonal selalu 0 karena jarak data dengan dirinya sendiri adalah nol.</p>
 <p>Widget ini membantu melihat hubungan kemiripan antar data secara detail.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/Jd6tuqIXooA0itLFJobAZTEBECHKucIbT11gv6Wu334.original.fullsize.png" /></p>
+<p><strong>1. Manhattan Distance</strong></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/dlyKNVz-kKxNR5txhkRMLKFKtAfAl21kk2evAb33D1E.original.fullsize.png" /></p>
+<p><strong>2. Euclidean Distance</strong></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/SSB0D6J693B8B9D3ngLYzrfHOqnafiFqFvWmqVDfhzk.original.fullsize.png" /></p>
 </section>
 </section>
 </section>
@@ -1386,8 +1427,9 @@ Semakin kecil nilai jarak, semakin mirip kedua data tersebut.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris">7. Menghitung Jarak Iris</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-code-python">1. Menghitung Jarak Iris Menggunakan Code (Python)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-iris-menggunakan-orange">2. Menghitung Jarak Iris Menggunakan Orange</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">1. Distance</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-matrix">2. Distance Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuize">1. Continuize</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">2. Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-matrix">3. Distance Matrix</a></li>
 </ul>
 </li>
 </ul>

@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mengukur Jarak Antar Data &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Distance Data Campuran';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modelling" href="Modelling.html" />
+    <link rel="prev" title="Data Preparation" href="Data%20Preparation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Penambangan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mengukur Jarak Antar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDistance Data Campuran.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Distance Data Campuran.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mengukur Jarak Antar Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-code-python">1. Mengukur Jarak Antar Data Campuran dengan menggunakan code (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-dan-menampilkan-dataset-iris-dari-database-postgresql">2. Mengakses dan menampilkan Dataset Iris dari database PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-informasi-database">3. Menampilkan Informasi Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensi-dataset">4. Dimensi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-tipe-data">5. Struktur dan Tipe Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-antar-data">5. Menghitung jarak antar data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-orange">2. Mengukur Jarak Antar Data Campuran dengan menggunakan Orange</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mengukur-jarak-antar-data">
+<h1>Mengukur Jarak Antar Data<a class="headerlink" href="#mengukur-jarak-antar-data" title="Link to this heading">#</a></h1>
+<p>Mengukur jarak antar data adalah proses menghitung tingkat perbedaan (dissimilarity) atau kemiripan (similarity) antara dua objek dalam suatu dataset.</p>
+<ul class="simple">
+<li><p>Jika jarak = 0 maka kedua objek sama.</p></li>
+<li><p>Semakin kecil jarak maka semakin mirip.</p></li>
+<li><p>Semakin besar jarak maka semakin berbeda.</p></li>
+</ul>
+<p>Metode yang digunakan tergantung pada tipe datanya:</p>
+<ul class="simple">
+<li><p>Nominal &amp; Binary Simetris = Simple Matching</p></li>
+<li><p>Binary Asimetris = Jaccard</p></li>
+<li><p>Numerik = Euclidean atau Manhattan (Minkowski)</p></li>
+<li><p>Ordinal = Ranking lalu dihitung seperti numerik</p></li>
+<li><p>Data Campuran = Gower Distance</p></li>
+</ul>
+<p>Pengukuran jarak ini penting dalam proses seperti clustering, KNN, dan analisis data lainnya.</p>
+<section id="mengukur-jarak-antar-data-campuran-dengan-menggunakan-code-python">
+<h2>1. Mengukur Jarak Antar Data Campuran dengan menggunakan code (Python)<a class="headerlink" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-code-python" title="Link to this heading">#</a></h2>
+<section id="import-library">
+<h3>1. Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h3>
+<p>Kode di bawah ini berfungsi untuk Memanggil library yang dipakai untuk mengambil data dari PostgreSQL, mengolah data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan</strong>:</p>
+<ul class="simple">
+<li><p>pandas (pd) dipakai untuk manipulasi data tabel (DataFrame).</p></li>
+<li><p>numpy (np) dipakai untuk operasi numerik dan seleksi kolom numerik.</p></li>
+<li><p>create_engine dipakai untuk membuat koneksi ke PostgreSQL melalui SQLAlchemy.</p></li>
+</ul>
+</section>
+<section id="mengakses-dan-menampilkan-dataset-iris-dari-database-postgresql">
+<h3>2. Mengakses dan menampilkan Dataset Iris dari database PostgreSQL<a class="headerlink" href="#mengakses-dan-menampilkan-dataset-iris-dari-database-postgresql" title="Link to this heading">#</a></h3>
+<p>Mengambil dataset langsung dari database PostgreSQL agar sumber datanya jelas dan sesuai instruksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+    <span class="s2">&quot;postgresql+psycopg2://postgres:ansdka6272@localhost:5432/Pendata&quot;</span>
+<span class="p">)</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM public.&quot;bank&quot;;&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM public.&quot;bank&quot; ORDER BY id;&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>job</th>
+      <th>marital</th>
+      <th>education</th>
+      <th>default_</th>
+      <th>balance</th>
+      <th>housing</th>
+      <th>loan</th>
+      <th>contact</th>
+      <th>day</th>
+      <th>month</th>
+      <th>duration</th>
+      <th>campaign</th>
+      <th>pdays</th>
+      <th>previous</th>
+      <th>poutcome</th>
+      <th>deposit</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>51</td>
+      <td>entrepreneur</td>
+      <td>married</td>
+      <td>2</td>
+      <td>no</td>
+      <td>-799</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>cellular</td>
+      <td>15</td>
+      <td>jul</td>
+      <td>1001</td>
+      <td>3</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46</td>
+      <td>admin.</td>
+      <td>married</td>
+      <td>2</td>
+      <td>no</td>
+      <td>-522</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>cellular</td>
+      <td>27</td>
+      <td>mar</td>
+      <td>243</td>
+      <td>3</td>
+      <td>239</td>
+      <td>13</td>
+      <td>other</td>
+      <td>yes</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>42</td>
+      <td>admin.</td>
+      <td>single</td>
+      <td>2</td>
+      <td>no</td>
+      <td>684</td>
+      <td>no</td>
+      <td>no</td>
+      <td>cellular</td>
+      <td>4</td>
+      <td>jun</td>
+      <td>207</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27</td>
+      <td>student</td>
+      <td>single</td>
+      <td>2</td>
+      <td>no</td>
+      <td>6036</td>
+      <td>no</td>
+      <td>no</td>
+      <td>cellular</td>
+      <td>31</td>
+      <td>mar</td>
+      <td>175</td>
+      <td>1</td>
+      <td>181</td>
+      <td>1</td>
+      <td>failure</td>
+      <td>yes</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>31</td>
+      <td>admin.</td>
+      <td>single</td>
+      <td>2</td>
+      <td>no</td>
+      <td>410</td>
+      <td>no</td>
+      <td>no</td>
+      <td>cellular</td>
+      <td>23</td>
+      <td>apr</td>
+      <td>342</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>39</td>
+      <td>management</td>
+      <td>married</td>
+      <td>3</td>
+      <td>no</td>
+      <td>-190</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>unknown</td>
+      <td>11</td>
+      <td>jun</td>
+      <td>893</td>
+      <td>8</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>57</td>
+      <td>housemaid</td>
+      <td>married</td>
+      <td>1</td>
+      <td>no</td>
+      <td>625</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>unknown</td>
+      <td>11</td>
+      <td>jun</td>
+      <td>867</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>52</td>
+      <td>retired</td>
+      <td>married</td>
+      <td>0</td>
+      <td>no</td>
+      <td>293</td>
+      <td>no</td>
+      <td>no</td>
+      <td>unknown</td>
+      <td>11</td>
+      <td>jun</td>
+      <td>706</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>59</td>
+      <td>retired</td>
+      <td>married</td>
+      <td>0</td>
+      <td>no</td>
+      <td>1033</td>
+      <td>no</td>
+      <td>no</td>
+      <td>unknown</td>
+      <td>11</td>
+      <td>jun</td>
+      <td>1199</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>56</td>
+      <td>blue-collar</td>
+      <td>married</td>
+      <td>2</td>
+      <td>no</td>
+      <td>1210</td>
+      <td>no</td>
+      <td>no</td>
+      <td>unknown</td>
+      <td>11</td>
+      <td>jun</td>
+      <td>935</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>unknown</td>
+      <td>yes</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 18 columns</p>
+</div></div></div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p>create_engine(…) membuat objek koneksi database.</p></li>
+<li><p>Format koneksi: postgresql+psycopg2://user:password&#64;host:port/nama_database.</p></li>
+<li><p>query berisi perintah SQL untuk mengambil semua data dari tabel bank.</p></li>
+<li><p>pd.read_sql() mengeksekusi query dan hasilnya masuk ke DataFrame df.</p></li>
+<li><p>df.head() menampilkan 5 baris pertama untuk memastikan data terbaca.</p></li>
+</ul>
+</section>
+<section id="menampilkan-informasi-database">
+<h3>3. Menampilkan Informasi Database<a class="headerlink" href="#menampilkan-informasi-database" title="Link to this heading">#</a></h3>
+<p>Menunjukkan bahwa data benar-benar berasal dari database PostgreSQL</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Host:&quot;</span><span class="p">,</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Port:&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Database:&quot;</span><span class="p">,</span> <span class="s2">&quot;Pendata&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Table:&quot;</span><span class="p">,</span> <span class="s1">&#39;public.&quot;bank&quot;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query:&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Host: 127.0.0.1
+Port: 5432
+Database: Pendata
+Table: public.&quot;bank&quot;
+Query: SELECT * FROM public.&quot;bank&quot;;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p>print() dipakai untuk menuliskan informasi koneksi sebagai dokumentasi laporan.</p></li>
+<li><p>Variabel query dicetak agar pembaca tahu data diambil dengan SQL.</p></li>
+</ul>
+</section>
+<section id="dimensi-dataset">
+<h3>4. Dimensi Dataset<a class="headerlink" href="#dimensi-dataset" title="Link to this heading">#</a></h3>
+<p>Mengetahui ukuran dataset untuk memahami skala analisis yang akan dilakukan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah baris:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah kolom:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah baris: 10969
+Jumlah kolom: 17
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p>df.shape menghasilkan tuple (jumlah_baris, jumlah_kolom).</p></li>
+<li><p>shape[0] untuk jumlah data.</p></li>
+<li><p>shape[1] untuk jumlah fitur.</p></li>
+</ul>
+</section>
+<section id="struktur-dan-tipe-data">
+<h3>5. Struktur dan Tipe Data<a class="headerlink" href="#struktur-dan-tipe-data" title="Link to this heading">#</a></h3>
+<p>Mengidentifikasi tipe data setiap kolom serta memastikan tidak terdapat nilai kosong yang tidak terdeteksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipe Data setiap kolom:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipe Data setiap kolom:
+&lt;class &#39;pandas.DataFrame&#39;&gt;
+RangeIndex: 10969 entries, 0 to 10968
+Data columns (total 17 columns):
+ #   Column     Non-Null Count  Dtype
+---  ------     --------------  -----
+ 0   age        10969 non-null  int64
+ 1   job        10969 non-null  str  
+ 2   marital    10969 non-null  str  
+ 3   education  10969 non-null  str  
+ 4   default_   10969 non-null  str  
+ 5   balance    10969 non-null  int64
+ 6   housing    10969 non-null  str  
+ 7   loan       10969 non-null  str  
+ 8   contact    10969 non-null  str  
+ 9   day        10969 non-null  int64
+ 10  month      10969 non-null  str  
+ 11  duration   10969 non-null  int64
+ 12  campaign   10969 non-null  int64
+ 13  pdays      10969 non-null  int64
+ 14  previous   10969 non-null  int64
+ 15  poutcome   10969 non-null  str  
+ 16  deposit    10969 non-null  str  
+dtypes: int64(7), str(10)
+memory usage: 1.4 MB
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://df.info">df.info</a>() menampilkan nama kolom, tipe data, serta jumlah nilai yang tidak kosong.</p></li>
+</ul>
+</section>
+<section id="menghitung-jarak-antar-data">
+<h3>5. Menghitung jarak antar data<a class="headerlink" href="#menghitung-jarak-antar-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Ambil 2 data berdasarkan id</span>
+<span class="n">data_1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data_2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Kelompok kolom berdasarkan tipe data</span>
+<span class="n">kolom_numerik</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="s1">&#39;balance&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span><span class="s1">&#39;campaign&#39;</span><span class="p">,</span><span class="s1">&#39;pdays&#39;</span><span class="p">,</span><span class="s1">&#39;previous&#39;</span><span class="p">]</span>
+<span class="n">kolom_nominal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;job&#39;</span><span class="p">,</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span><span class="s1">&#39;contact&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;poutcome&#39;</span><span class="p">]</span>
+<span class="n">kolom_binary_asimetris</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;default_&#39;</span><span class="p">,</span><span class="s1">&#39;housing&#39;</span><span class="p">,</span><span class="s1">&#39;loan&#39;</span><span class="p">,</span><span class="s1">&#39;deposit&#39;</span><span class="p">]</span>
+<span class="n">kolom_ordinal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span>
+
+<span class="c1"># Ranking untuk ordinal</span>
+<span class="n">ranking_education</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;primary&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;secondary&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;tertiary&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">jumlah_kategori_ordinal</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Variabel utama rumus</span>
+<span class="n">jumlah_jarak</span> <span class="o">=</span> <span class="mf">0.0</span>        <span class="c1"># Σ(δ * d)</span>
+<span class="n">jumlah_delta</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># Σδ</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># NOMINAL</span>
+<span class="c1"># =====================</span>
+<span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_nominal</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
+        <span class="n">jarak</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span> <span class="o">==</span> <span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
+        <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># BINARY ASIMETRIS (00 tidak dihitung)</span>
+<span class="c1"># =====================</span>
+<span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_binary_asimetris</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
+        <span class="n">nilai_1</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">nilai_2</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">nilai_1</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nilai_2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># δ = 0 jika 00</span>
+            <span class="n">jarak</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">nilai_1</span> <span class="o">==</span> <span class="n">nilai_2</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
+            <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># ORDINAL</span>
+<span class="c1"># =====================</span>
+<span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_ordinal</span><span class="p">:</span>
+    <span class="n">peringkat_1</span> <span class="o">=</span> <span class="n">ranking_education</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">peringkat_2</span> <span class="o">=</span> <span class="n">ranking_education</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">peringkat_1</span> <span class="ow">and</span> <span class="n">peringkat_2</span><span class="p">:</span>
+        <span class="n">z1</span> <span class="o">=</span> <span class="p">(</span><span class="n">peringkat_1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">jumlah_kategori_ordinal</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="n">peringkat_2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">jumlah_kategori_ordinal</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">jarak</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span> <span class="o">-</span> <span class="n">z2</span><span class="p">)</span>
+
+        <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
+        <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># NUMERIK (|x-y|/range)</span>
+<span class="c1"># =====================</span>
+<span class="k">for</span> <span class="n">kolom</span> <span class="ow">in</span> <span class="n">kolom_numerik</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">]):</span>
+        <span class="n">rentang</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">rentang</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">jarak</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data_1</span><span class="p">[</span><span class="n">kolom</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_2</span><span class="p">[</span><span class="n">kolom</span><span class="p">])</span> <span class="o">/</span> <span class="n">rentang</span>
+            <span class="n">jumlah_jarak</span> <span class="o">+=</span> <span class="n">jarak</span>
+            <span class="n">jumlah_delta</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># TOTAL SESUAI RUMUS PPT</span>
+<span class="c1"># =====================</span>
+<span class="n">jarak_campuran</span> <span class="o">=</span> <span class="n">jumlah_jarak</span> <span class="o">/</span> <span class="n">jumlah_delta</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total nilai jarak (delta dikali jarak) =&quot;</span><span class="p">,</span> <span class="n">jumlah_jarak</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah atribut yang dihitung (delta) =&quot;</span><span class="p">,</span> <span class="n">jumlah_delta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nilai jarak campuran akhir =&quot;</span><span class="p">,</span> <span class="n">jarak_campuran</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Σ(δ*d) = 6.168331842884463
+Σδ = 15
+Jarak Campuran = 0.4112221228589642
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<ul class="simple">
+<li><p>data_1 = df.loc[df[“id”] == 1].iloc[0] mengambil satu baris data dari DataFrame berdasarkan nilai id = 1 untuk dijadikan objek pertama yang akan dibandingkan.</p></li>
+<li><p>data_2 = df.loc[df[“id”] == 2].iloc[0] mengambil satu baris data dari DataFrame berdasarkan nilai id = 2 untuk dijadikan objek kedua yang akan dibandingkan.</p></li>
+<li><p>kolom_numerik, kolom_nominal, kolom_binary_asimetris, dan kolom_ordinal mendefinisikan kelompok atribut berdasarkan tipe datanya agar perhitungan jarak dilakukan sesuai jenis masing-masing.</p></li>
+<li><p>ranking_education digunakan untuk mengubah data ordinal (education) menjadi nilai peringkat numerik sebelum dinormalisasi.</p></li>
+<li><p>jumlah_jarak menyimpan total kontribusi jarak dari seluruh atribut yang dihitung.</p></li>
+<li><p>jumlah_delta menyimpan jumlah atribut yang valid dan benar-benar digunakan dalam perhitungan jarak.</p></li>
+<li><p>Pada bagian Nominal, perhitungan dilakukan dengan membandingkan nilai dua atribut:</p>
+<ol class="arabic simple">
+<li><p>Jika sama → jarak = 0</p></li>
+<li><p>Jika berbeda → jarak = 1</p></li>
+</ol>
+</li>
+</ul>
+<p>Nilai ini langsung ditambahkan ke jumlah_jarak, dan jumlah_delta ditambah 1 karena atribut dihitung.</p>
+<ul class="simple">
+<li><p>Pada bagian Binary Asimetris, nilai kategori diubah menjadi 1 (yes) dan 0 (no):</p>
+<ol class="arabic simple">
+<li><p>Jika keduanya 0 (00) = atribut tidak dihitung.</p></li>
+<li><p>Jika salah satu 1 maka dihitung sesuai konsep Jaccard.</p></li>
+</ol>
+</li>
+</ul>
+<p>Hal ini sesuai dengan konsep binary asimetris pada rumus campuran.</p>
+<ul class="simple">
+<li><p>Pada bagian Ordinal, nilai kategori diubah menjadi peringkat (1–3), lalu dinormalisasi ke rentang 0–1 menggunakan rumus:
+<strong>(r−1)/(M−1</strong> Setelah itu dihitung selisih absolut antar dua data.</p></li>
+<li><p>Pada bagian Numerik, digunakan rumus normalisasi:
+<strong>∣x−y∣/(max−min)</strong> agar setiap atribut numerik berada pada skala 0–1 sebelum dijumlahkan.</p></li>
+<li><p>jarak_campuran = jumlah_jarak / jumlah_delta menghitung nilai akhir jarak dengan membagi total kontribusi jarak dengan jumlah atribut yang dihitung, sesuai rumus rata-rata berbobot.</p></li>
+<li><p>print() digunakan untuk menampilkan total kontribusi jarak, jumlah atribut yang dihitung, dan hasil akhir jarak campuran sebagai dokumentasi hasil perhitungan dalam laporan.</p></li>
+</ul>
+</section>
+</section>
+<section id="mengukur-jarak-antar-data-campuran-dengan-menggunakan-orange">
+<h2>2. Mengukur Jarak Antar Data Campuran dengan menggunakan Orange<a class="headerlink" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-orange" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Data%20Preparation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Preparation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Modelling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modelling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-code-python">1. Mengukur Jarak Antar Data Campuran dengan menggunakan code (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-dan-menampilkan-dataset-iris-dari-database-postgresql">2. Mengakses dan menampilkan Dataset Iris dari database PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-informasi-database">3. Menampilkan Informasi Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensi-dataset">4. Dimensi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-tipe-data">5. Struktur dan Tipe Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-antar-data">5. Menghitung jarak antar data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-antar-data-campuran-dengan-menggunakan-orange">2. Mengukur Jarak Antar Data Campuran dengan menggunakan Orange</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rachelia Andini Tendean
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
