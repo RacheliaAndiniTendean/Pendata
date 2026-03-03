@@ -783,7 +783,7 @@ Query: SELECT * FROM public.&quot;bank&quot;;
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah baris: 10969
-Jumlah kolom: 17
+Jumlah kolom: 18
 </pre></div>
 </div>
 </div>
@@ -807,30 +807,31 @@ Jumlah kolom: 17
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipe Data setiap kolom:
-&lt;class &#39;pandas.DataFrame&#39;&gt;
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 10969 entries, 0 to 10968
-Data columns (total 17 columns):
- #   Column     Non-Null Count  Dtype
----  ------     --------------  -----
- 0   age        10969 non-null  int64
- 1   job        10969 non-null  str  
- 2   marital    10969 non-null  str  
- 3   education  10969 non-null  str  
- 4   default_   10969 non-null  str  
- 5   balance    10969 non-null  int64
- 6   housing    10969 non-null  str  
- 7   loan       10969 non-null  str  
- 8   contact    10969 non-null  str  
- 9   day        10969 non-null  int64
- 10  month      10969 non-null  str  
- 11  duration   10969 non-null  int64
- 12  campaign   10969 non-null  int64
- 13  pdays      10969 non-null  int64
- 14  previous   10969 non-null  int64
- 15  poutcome   10969 non-null  str  
- 16  deposit    10969 non-null  str  
-dtypes: int64(7), str(10)
-memory usage: 1.4 MB
+Data columns (total 18 columns):
+ #   Column     Non-Null Count  Dtype 
+---  ------     --------------  ----- 
+ 0   age        10969 non-null  int64 
+ 1   job        10969 non-null  object
+ 2   marital    10969 non-null  object
+ 3   education  10969 non-null  object
+ 4   default_   10969 non-null  object
+ 5   balance    10969 non-null  int64 
+ 6   housing    10969 non-null  object
+ 7   loan       10969 non-null  object
+ 8   contact    10969 non-null  object
+ 9   day        10969 non-null  int64 
+ 10  month      10969 non-null  object
+ 11  duration   10969 non-null  int64 
+ 12  campaign   10969 non-null  int64 
+ 13  pdays      10969 non-null  int64 
+ 14  previous   10969 non-null  int64 
+ 15  poutcome   10969 non-null  object
+ 16  deposit    10969 non-null  object
+ 17  id         10969 non-null  int64 
+dtypes: int64(8), object(10)
+memory usage: 1.5+ MB
 </pre></div>
 </div>
 </div>
@@ -915,9 +916,9 @@ memory usage: 1.4 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Σ(δ*d) = 6.168331842884463
-Σδ = 15
-Jarak Campuran = 0.4112221228589642
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total nilai jarak (delta dikali jarak) = 6.168331842884463
+Jumlah atribut yang dihitung (delta) = 15
+Nilai jarak campuran akhir = 0.4112221228589642
 </pre></div>
 </div>
 </div>
