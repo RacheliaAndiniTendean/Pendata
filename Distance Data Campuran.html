@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mengukur Jarak Antar Data &#8212; Penambangan Data</title>
+    <title>Mengukur Jarak Antar Data Campuran &#8212; Penambangan Data</title>
   
   
   
@@ -182,7 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mengukur Jarak Antar Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mengukur Jarak Antar Data Campuran</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
@@ -372,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Mengukur Jarak Antar Data</h1>
+    <h1>Mengukur Jarak Antar Data Campuran</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,8 +402,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mengukur-jarak-antar-data">
-<h1>Mengukur Jarak Antar Data<a class="headerlink" href="#mengukur-jarak-antar-data" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mengukur-jarak-antar-data-campuran">
+<h1>Mengukur Jarak Antar Data Campuran<a class="headerlink" href="#mengukur-jarak-antar-data-campuran" title="Link to this heading">#</a></h1>
 <p>Mengukur jarak antar data adalah proses menghitung tingkat perbedaan (dissimilarity) atau kemiripan (similarity) antara dua objek dalam suatu dataset.</p>
 <ul class="simple">
 <li><p>Jika jarak = 0 maka kedua objek sama.</p></li>
@@ -1092,7 +1092,7 @@ memory usage: 1.5+ MB
 </div></div></div>
 </div>
 <p><strong>Penjelasan :</strong></p>
-<ul class="simple">
+<ul>
 <li><p>df_copy = df.head(10).copy() mengambil 10 data pertama dari DataFrame df agar perhitungan jarak lebih cepat dan menghasilkan matrix jarak 10 × 10.</p></li>
 <li><p>kolom_numerik, kolom_nominal, kolom_binary, dan kolom_ordinal digunakan untuk mengelompokkan atribut berdasarkan tipe datanya sehingga setiap atribut dapat dihitung dengan metode jarak yang sesuai.</p></li>
 <li><p>ranking_education = {‘primary’: 1, ‘secondary’: 2, ‘tertiary’: 3} digunakan untuk mengubah atribut ordinal education menjadi peringkat numerik.</p></li>
@@ -1109,19 +1109,17 @@ c. tertiary = 3</p></li>
 <li><p>for i in range(n) dan for j in range(n) digunakan untuk membandingkan setiap data dengan semua data lainnya, sehingga semua pasangan data dapat dihitung jaraknya.</p></li>
 <li><p>data_i = df_copy.iloc[i] mengambil data pada baris ke-i sebagai objek pertama.</p></li>
 <li><p>data_j = df_copy.iloc[j] mengambil data pada baris ke-j sebagai objek kedua.</p></li>
-<li><p>Pada bagian Nominal, jarak dihitung dengan metode simple matching:</p></li>
-</ul>
+<li><p>Pada bagian Nominal, jarak dihitung dengan metode simple matching:</p>
 <p>a. jika nilai atribut sama maka jarak = 0</p>
 <p>b. jika nilai atribut berbeda maka jarak = 1</p>
-<ul class="simple">
-<li><p>Pada bagian Binary Asimetris, nilai atribut diubah menjadi:</p></li>
-</ul>
+</li>
+<li><p>Pada bagian Binary Asimetris, nilai atribut diubah menjadi:</p>
 <p>a. yes = 1</p>
 <p>b. selain yes = 0</p>
 <p>Kemudian:</p>
 <p>a. jika pasangan bernilai 00 → atribut tidak dihitung</p>
 <p>b. jika tidak 00 → dihitung menggunakan konsep Jaccard</p>
-<ul class="simple">
+</li>
 <li><p>Pada bagian Numerik + Ordinal, jarak dihitung menggunakan rumus normalisasi: <strong>∣x−y∣/(max−min)</strong>
 agar semua atribut berada pada skala 0–1 sebelum dijumlahkan.</p></li>
 <li><p>jumlah_jarak += jarak digunakan untuk menambahkan kontribusi jarak dari setiap atribut.</p></li>
