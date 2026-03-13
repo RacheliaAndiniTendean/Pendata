@@ -186,8 +186,6 @@
 <li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Distance%20Data%20Campuran.html">Mengukur Jarak Antar Data Campuran</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Normalisasi Data</a></li>
-
-
 <li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
@@ -387,35 +385,31 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Normalisasi Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-normalisasi-data">1. Pengertian Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-normalisasi-data">2. Macam-Macam Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-min-max-normalization">Contoh Min-Max Normalization</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-normalisasi-data">2. Macam-Macam Normalisasi Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-min-max-normalization">Contoh Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-mean">Rumus Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-standar-deviasi">Rumus Standar Deviasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-z-score">Contoh Z-score</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-mean">Rumus Mean</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-standar-deviasi">Rumus Standar Deviasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-z-score">Contoh Z-score</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-decimal-scaling">Contoh Decimal Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-decimal-scaling">Contoh Decimal Scaling</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-normalisasi-menggunakan-python">3. Implementasi Normalisasi Menggunakan Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-menggunakan-library-sklearn">1. Min-Max Normalization Menggunakan Library sklearn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization-menggunakan-library-sklearn">2. Z-Score Normalization Menggunakan Library sklearn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization-menggunakan-function">3. Decimal Scaling Normalization Menggunakan Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-normalisasi-menggunakan-python">3. Implementasi Normalisasi Menggunakan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-menggunakan-library-sklearn">1. Min-Max Normalization Menggunakan Library sklearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization-menggunakan-library-sklearn">2. Z-Score Normalization Menggunakan Library sklearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization-menggunakan-function">3. Decimal Scaling Normalization Menggunakan Function</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -435,11 +429,10 @@ document.write(`
 <p>Normalisasi merupakan salah satu teknik transformasi data yang <strong>tidak menghasilkan atribut baru</strong>, tetapi hanya <strong>mengubah skala nilai dari atribut yang sudah ada</strong> sehingga berada pada rentang tertentu.</p>
 <p>Normalisasi sangat penting terutama pada algoritma yang sensitif terhadap perbedaan skala data, seperti algoritma berbasis jarak.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="macam-macam-normalisasi-data">
-<h1>2. Macam-Macam Normalisasi Data<a class="headerlink" href="#macam-macam-normalisasi-data" title="Link to this heading">#</a></h1>
+<section id="macam-macam-normalisasi-data">
+<h2>2. Macam-Macam Normalisasi Data<a class="headerlink" href="#macam-macam-normalisasi-data" title="Link to this heading">#</a></h2>
 <section id="min-max-normalization">
-<h2>1. Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Link to this heading">#</a></h2>
+<h3>1. Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Link to this heading">#</a></h3>
 <p>Min-Max Normalization adalah metode normalisasi yang digunakan untuk mengubah nilai atribut numerik ke dalam <strong>rentang tertentu</strong>, biasanya <strong>[0,1]</strong> atau <strong>[-1,1]</strong>.</p>
 <p>Metode ini bekerja dengan memetakan nilai asli ke dalam rentang baru berdasarkan nilai minimum dan maksimum dari atribut tersebut.</p>
 <p>Rumus Min-Max Normalization:</p>
@@ -458,7 +451,7 @@ v' = \frac{v - min(A)}{max(A) - min(A)} \times (new\_max - new\_min) + new\_min
 </ul>
 <p>Metode ini sering digunakan pada algoritma berbasis jarak seperti <strong>K-Nearest Neighbor (KNN)</strong> dan <strong>Clustering</strong>, karena dapat mencegah atribut dengan nilai besar mendominasi perhitungan jarak.</p>
 <section id="contoh-min-max-normalization">
-<h3>Contoh Min-Max Normalization<a class="headerlink" href="#contoh-min-max-normalization" title="Link to this heading">#</a></h3>
+<h4>Contoh Min-Max Normalization<a class="headerlink" href="#contoh-min-max-normalization" title="Link to this heading">#</a></h4>
 <p>Data awal:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -500,7 +493,7 @@ Nilai maksimum = 40</p>
 </section>
 </section>
 <section id="z-score-normalization">
-<h2>2. Z-Score Normalization<a class="headerlink" href="#z-score-normalization" title="Link to this heading">#</a></h2>
+<h3>2. Z-Score Normalization<a class="headerlink" href="#z-score-normalization" title="Link to this heading">#</a></h3>
 <p>Z-score normalization atau <strong>standardization</strong> digunakan ketika metode Min-Max kurang efektif, terutama jika terdapat <strong>outlier</strong> atau nilai minimum dan maksimum tidak diketahui.</p>
 <p>Metode ini menormalkan data berdasarkan <strong>rata-rata (mean)</strong> dan <strong>standar deviasi</strong>.</p>
 <p>Rumus Z-score Normalization:</p>
@@ -521,21 +514,21 @@ v' = \frac{v - \mu}{\sigma}
 <li><p>standar deviasi menjadi <strong>1</strong></p></li>
 </ul>
 <section id="rumus-mean">
-<h3>Rumus Mean<a class="headerlink" href="#rumus-mean" title="Link to this heading">#</a></h3>
+<h4>Rumus Mean<a class="headerlink" href="#rumus-mean" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 \mu = \frac{1}{n}\sum_{i=1}^{n} v_i
 \]</div>
 </section>
 <section id="rumus-standar-deviasi">
-<h3>Rumus Standar Deviasi<a class="headerlink" href="#rumus-standar-deviasi" title="Link to this heading">#</a></h3>
+<h4>Rumus Standar Deviasi<a class="headerlink" href="#rumus-standar-deviasi" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 \sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i - \mu)^2}
 \]</div>
 </section>
 <section id="contoh-z-score">
-<h3>Contoh Z-score<a class="headerlink" href="#contoh-z-score" title="Link to this heading">#</a></h3>
+<h4>Contoh Z-score<a class="headerlink" href="#contoh-z-score" title="Link to this heading">#</a></h4>
 <p>Data awal:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -576,7 +569,7 @@ v' = \frac{v - \mu}{\sigma}
 </section>
 </section>
 <section id="decimal-scaling-normalization">
-<h2>3. Decimal Scaling Normalization<a class="headerlink" href="#decimal-scaling-normalization" title="Link to this heading">#</a></h2>
+<h3>3. Decimal Scaling Normalization<a class="headerlink" href="#decimal-scaling-normalization" title="Link to this heading">#</a></h3>
 <p>Decimal Scaling Normalization adalah metode sederhana yang dilakukan dengan <strong>menggeser titik desimal nilai data</strong> menggunakan pembagian dengan pangkat 10.</p>
 <p>Rumus Decimal Scaling:</p>
 <div class="math notranslate nohighlight">
@@ -590,7 +583,7 @@ v' = \frac{v}{10^j}
 <li><p>(j) = bilangan bulat terkecil sehingga nilai maksimum setelah normalisasi &lt; 1 (jumlah digit nilai maksimum pada data)</p></li>
 </ul>
 <section id="contoh-decimal-scaling">
-<h3>Contoh Decimal Scaling<a class="headerlink" href="#contoh-decimal-scaling" title="Link to this heading">#</a></h3>
+<h4>Contoh Decimal Scaling<a class="headerlink" href="#contoh-decimal-scaling" title="Link to this heading">#</a></h4>
 <p>Data awal:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -632,10 +625,10 @@ v' = \frac{v}{10^j}
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementasi-normalisasi-menggunakan-python">
-<h1>3. Implementasi Normalisasi Menggunakan Python<a class="headerlink" href="#implementasi-normalisasi-menggunakan-python" title="Link to this heading">#</a></h1>
+<section id="implementasi-normalisasi-menggunakan-python">
+<h2>3. Implementasi Normalisasi Menggunakan Python<a class="headerlink" href="#implementasi-normalisasi-menggunakan-python" title="Link to this heading">#</a></h2>
 <section id="min-max-normalization-menggunakan-library-sklearn">
-<h2>1. Min-Max Normalization Menggunakan Library sklearn<a class="headerlink" href="#min-max-normalization-menggunakan-library-sklearn" title="Link to this heading">#</a></h2>
+<h3>1. Min-Max Normalization Menggunakan Library sklearn<a class="headerlink" href="#min-max-normalization-menggunakan-library-sklearn" title="Link to this heading">#</a></h3>
 <p>Contoh Min-Max Normalization menggunakan library <strong>sklearn</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -665,7 +658,7 @@ v' = \frac{v}{10^j}
 </div>
 </section>
 <section id="z-score-normalization-menggunakan-library-sklearn">
-<h2>2. Z-Score Normalization Menggunakan Library sklearn<a class="headerlink" href="#z-score-normalization-menggunakan-library-sklearn" title="Link to this heading">#</a></h2>
+<h3>2. Z-Score Normalization Menggunakan Library sklearn<a class="headerlink" href="#z-score-normalization-menggunakan-library-sklearn" title="Link to this heading">#</a></h3>
 <p>Contoh Z-Score Normalization menggunakan library <strong>sklearn</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -692,7 +685,7 @@ v' = \frac{v}{10^j}
 </div>
 </section>
 <section id="decimal-scaling-normalization-menggunakan-function">
-<h2>3. Decimal Scaling Normalization Menggunakan Function<a class="headerlink" href="#decimal-scaling-normalization-menggunakan-function" title="Link to this heading">#</a></h2>
+<h3>3. Decimal Scaling Normalization Menggunakan Function<a class="headerlink" href="#decimal-scaling-normalization-menggunakan-function" title="Link to this heading">#</a></h3>
 <p>Contoh Decimal Scaling Normalization menggunakan Function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,6 +713,7 @@ dtype: float64
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -787,35 +781,31 @@ dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Normalisasi Data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-normalisasi-data">1. Pengertian Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-normalisasi-data">2. Macam-Macam Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-min-max-normalization">Contoh Min-Max Normalization</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-normalisasi-data">2. Macam-Macam Normalisasi Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-min-max-normalization">Contoh Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-mean">Rumus Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-standar-deviasi">Rumus Standar Deviasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-z-score">Contoh Z-score</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-mean">Rumus Mean</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-standar-deviasi">Rumus Standar Deviasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-z-score">Contoh Z-score</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-decimal-scaling">Contoh Decimal Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-decimal-scaling">Contoh Decimal Scaling</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-normalisasi-menggunakan-python">3. Implementasi Normalisasi Menggunakan Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-menggunakan-library-sklearn">1. Min-Max Normalization Menggunakan Library sklearn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization-menggunakan-library-sklearn">2. Z-Score Normalization Menggunakan Library sklearn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization-menggunakan-function">3. Decimal Scaling Normalization Menggunakan Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-normalisasi-menggunakan-python">3. Implementasi Normalisasi Menggunakan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization-menggunakan-library-sklearn">1. Min-Max Normalization Menggunakan Library sklearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization-menggunakan-library-sklearn">2. Z-Score Normalization Menggunakan Library sklearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization-menggunakan-function">3. Decimal Scaling Normalization Menggunakan Function</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
