@@ -1,0 +1,1453 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proyek Missing Values Inputation + Materi Normalisasi data &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'missing_dan_normalisasi';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Preparation" href="Data%20Preparation.html" />
+    <link rel="prev" title="Mengukur Jarak Antar Data Campuran" href="Distance%20Data%20Campuran.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Penambangan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance%20Data%20Campuran.html">Mengukur Jarak Antar Data Campuran</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyek Missing Values Inputation + Materi Normalisasi data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmissing_dan_normalisasi.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/missing_dan_normalisasi.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyek Missing Values Inputation + Materi Normalisasi data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value-imputation">1. Missing Value Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-weighted-k-nearest-neighbor-wknn">2. Metode Weighted K-Nearest Neighbor (WKNN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-microsoft-excel">3. Perhitungan Menggunakan Microsoft Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-python">4. Perhitungan Menggunakan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-import-library-dan-membuat-dataset">A. Import Library dan Membuat Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menghitung-jarak-menggunakan-euclidean-distance">B. Menghitung Jarak Menggunakan Euclidean Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menentukan-data-target-yang-akan-diimputasi">C. Menentukan Data Target yang Akan Diimputasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-menghitung-jarak-antar-data">D. Menghitung Jarak Antar Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-menghitung-bobot-wknn">E. Menghitung Bobot WKNN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-melakukan-perankingan-dan-mengambil-3-tetangga-terbesar">F. Melakukan Perankingan dan Mengambil 3 Tetangga Terbesar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-menghitung-nilai-imputasi-humidity">G. Menghitung Nilai Imputasi Humidity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h-mengisi-nilai-humidity-ke-dataset">H. Mengisi Nilai Humidity ke Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-mengimputasi-data-kategorikal-dengan-modus">I. Mengimputasi Data Kategorikal dengan Modus</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#j-menampilkan-dataset-akhir">J. Menampilkan Dataset Akhir</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">2. Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-macam-macam-normalisasi-data">A. Macam-Macam Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a-contoh-perhitungan">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#b-implementasi-python">b. Implementasi Python</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Implementasi Python</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">b. Implementasi Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyek-missing-values-inputation-materi-normalisasi-data">
+<h1>Proyek Missing Values Inputation + Materi Normalisasi data<a class="headerlink" href="#proyek-missing-values-inputation-materi-normalisasi-data" title="Link to this heading">#</a></h1>
+<section id="missing-value-imputation">
+<h2>1. Missing Value Imputation<a class="headerlink" href="#missing-value-imputation" title="Link to this heading">#</a></h2>
+<p>Missing value merupakan kondisi ketika suatu atribut pada dataset tidak memiliki nilai atau terdapat data yang hilang. Kondisi ini dapat terjadi karena berbagai faktor, seperti kesalahan saat proses pengumpulan data, data yang tidak tercatat, maupun kesalahan dalam proses penyimpanan data.</p>
+<p>Apabila missing value tidak ditangani dengan baik, hal tersebut dapat mempengaruhi hasil analisis serta menurunkan kualitas model yang digunakan. Oleh karena itu diperlukan metode imputasi untuk mengisi nilai yang hilang sehingga dataset dapat digunakan secara lebih optimal.</p>
+<p>Pada analisis ini, proses penanganan missing value dilakukan menggunakan metode <strong>Weighted K-Nearest Neighbor (WKNN)</strong>.</p>
+<section id="metode-weighted-k-nearest-neighbor-wknn">
+<h3>2. Metode Weighted K-Nearest Neighbor (WKNN)<a class="headerlink" href="#metode-weighted-k-nearest-neighbor-wknn" title="Link to this heading">#</a></h3>
+<p>Weighted K-Nearest Neighbor (WKNN) merupakan pengembangan dari metode <strong>K-Nearest Neighbor (KNN)</strong> yang memberikan bobot pada setiap data tetangga terdekat.</p>
+<p>Pada metode ini, data yang memiliki jarak lebih dekat terhadap data yang memiliki missing value akan memiliki pengaruh yang lebih besar dibandingkan dengan data yang jaraknya lebih jauh.</p>
+<p>Tahapan metode WKNN secara umum adalah sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p>Menghitung jarak antara data yang memiliki missing value dengan data lainnya.</p></li>
+<li><p>Mengurutkan data berdasarkan jarak terkecil.</p></li>
+<li><p>Menghitung bobot setiap tetangga menggunakan rumus bobot.</p></li>
+<li><p>Menghitung nilai imputasi menggunakan rata-rata berbobot.</p></li>
+</ol>
+</section>
+<section id="perhitungan-menggunakan-microsoft-excel">
+<h3>3. Perhitungan Menggunakan Microsoft Excel<a class="headerlink" href="#perhitungan-menggunakan-microsoft-excel" title="Link to this heading">#</a></h3>
+<p>Proses imputasi missing value pada analisis ini juga dilakukan secara manual menggunakan Microsoft Excel dengan langkah-langkah berikut:</p>
+<ol class="arabic simple">
+<li><p>Menghitung jarak antar data menggunakan rumus <strong>Euclidean Distance</strong>.</p></li>
+<li><p>Menghitung bobot menggunakan rumus ( w = \frac{1}{d} ).</p></li>
+<li><p>Mengalikan bobot dengan nilai atribut dari setiap tetangga.</p></li>
+<li><p>Menjumlahkan nilai bobot dan hasil perkalian bobot dengan atribut.</p></li>
+<li><p>Menghitung nilai imputasi menggunakan rata-rata berbobot.</p></li>
+</ol>
+<p>Hasil perhitungan manual menggunakan Microsoft Excel ditunjukkan pada gambar berikut.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/WR3XOt-AK5jWK01eQo8dIij_mr51erHfP9iF0aJadnc.original.fullsize.png" /></p>
+</section>
+<section id="perhitungan-menggunakan-python">
+<h3>4. Perhitungan Menggunakan Python<a class="headerlink" href="#perhitungan-menggunakan-python" title="Link to this heading">#</a></h3>
+<section id="a-import-library-dan-membuat-dataset">
+<h4>A. Import Library dan Membuat Dataset<a class="headerlink" href="#a-import-library-dan-membuat-dataset" title="Link to this heading">#</a></h4>
+<p>Langkah pertama adalah menyiapkan library yang dibutuhkan serta membuat dataset yang akan digunakan dalam proses perhitungan.</p>
+<p>Dataset yang digunakan terdiri dari beberapa variabel numerik, yaitu:</p>
+<ul class="simple">
+<li><p>temperature</p></li>
+<li><p>humidity</p></li>
+<li><p>wind</p></li>
+<li><p>precip</p></li>
+</ul>
+<p>serta satu variabel kategorikal yaitu:</p>
+<ul class="simple">
+<li><p>weather</p></li>
+</ul>
+<p>Pada dataset ini terdapat dua nilai yang hilang, yaitu:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">humidity</span></code> pada data ke-8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weather</span></code> pada data ke-4</p></li>
+</ul>
+<p>Nilai yang hilang tersebut akan diisi menggunakan metode imputasi yang telah dijelaskan sebelumnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+    <span class="s2">&quot;temperature&quot;</span><span class="p">:[</span><span class="mf">0.390</span><span class="p">,</span><span class="mf">1.000</span><span class="p">,</span><span class="mf">0.780</span><span class="p">,</span><span class="mf">0.976</span><span class="p">,</span><span class="mf">0.707</span><span class="p">,</span><span class="mf">0.829</span><span class="p">,</span><span class="mf">0.000</span><span class="p">,</span><span class="mf">0.122</span><span class="p">,</span><span class="mf">0.122</span><span class="p">,</span><span class="mf">0.732</span><span class="p">],</span>
+    <span class="s2">&quot;humidity&quot;</span><span class="p">:[</span><span class="mf">0.429</span><span class="p">,</span><span class="mf">0.976</span><span class="p">,</span><span class="mf">0.214</span><span class="p">,</span><span class="mf">0.667</span><span class="p">,</span><span class="mf">0.452</span><span class="p">,</span><span class="mf">0.000</span><span class="p">,</span><span class="mf">1.000</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mf">0.667</span><span class="p">,</span><span class="mf">0.452</span><span class="p">],</span>
+    <span class="s2">&quot;wind&quot;</span><span class="p">:[</span><span class="mf">0.516</span><span class="p">,</span><span class="mf">0.452</span><span class="p">,</span><span class="mf">0.355</span><span class="p">,</span><span class="mf">0.000</span><span class="p">,</span><span class="mf">1.000</span><span class="p">,</span><span class="mf">0.129</span><span class="p">,</span><span class="mf">0.419</span><span class="p">,</span><span class="mf">0.290</span><span class="p">,</span><span class="mf">0.290</span><span class="p">,</span><span class="mf">0.452</span><span class="p">],</span>
+    <span class="s2">&quot;precip&quot;</span><span class="p">:[</span><span class="mf">0.725</span><span class="p">,</span><span class="mf">0.604</span><span class="p">,</span><span class="mf">0.000</span><span class="p">,</span><span class="mf">0.725</span><span class="p">,</span><span class="mf">0.549</span><span class="p">,</span><span class="mf">0.110</span><span class="p">,</span><span class="mf">0.769</span><span class="p">,</span><span class="mf">0.879</span><span class="p">,</span><span class="mf">0.549</span><span class="p">,</span><span class="mf">1.000</span><span class="p">],</span>
+    <span class="s2">&quot;weather&quot;</span><span class="p">:[</span><span class="s2">&quot;Rainy&quot;</span><span class="p">,</span><span class="s2">&quot;Cloudy&quot;</span><span class="p">,</span><span class="s2">&quot;Sunny&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="s2">&quot;Rainy&quot;</span><span class="p">,</span><span class="s2">&quot;Cloudy&quot;</span><span class="p">,</span><span class="s2">&quot;Snowy&quot;</span><span class="p">,</span><span class="s2">&quot;Snowy&quot;</span><span class="p">,</span><span class="s2">&quot;Snowy&quot;</span><span class="p">,</span><span class="s2">&quot;Sunny&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id  temperature  humidity   wind  precip weather
+0   1        0.390     0.429  0.516   0.725   Rainy
+1   2        1.000     0.976  0.452   0.604  Cloudy
+2   3        0.780     0.214  0.355   0.000   Sunny
+3   4        0.976     0.667  0.000   0.725     NaN
+4   5        0.707     0.452  1.000   0.549   Rainy
+5   6        0.829     0.000  0.129   0.110  Cloudy
+6   7        0.000     1.000  0.419   0.769   Snowy
+7   8        0.122       NaN  0.290   0.879   Snowy
+8   9        0.122     0.667  0.290   0.549   Snowy
+9  10        0.732     0.452  0.452   1.000   Sunny
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code> digunakan untuk memanggil library pandas yang berguna untuk mengolah data dalam bentuk tabel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> digunakan untuk memanggil library numpy yang membantu dalam melakukan perhitungan numerik.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">{...}</span></code> digunakan untuk menyimpan dataset dalam bentuk dictionary sebelum diubah menjadi tabel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.nan</span></code> digunakan untuk menandai bahwa suatu data memiliki nilai kosong atau missing value.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(data)</span></code> digunakan untuk mengubah data dictionary menjadi DataFrame agar lebih mudah diolah.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(df)</span></code> digunakan untuk menampilkan dataset awal sehingga kita bisa melihat kondisi data sebelum dilakukan imputasi.</p>
+</section>
+<section id="b-menghitung-jarak-menggunakan-euclidean-distance">
+<h4>B. Menghitung Jarak Menggunakan Euclidean Distance<a class="headerlink" href="#b-menghitung-jarak-menggunakan-euclidean-distance" title="Link to this heading">#</a></h4>
+<p>Untuk mengetahui tingkat kemiripan antara dua data digunakan <strong>Euclidean Distance</strong>.</p>
+<p>Rumus Euclidean Distance dituliskan sebagai berikut:</p>
+<div class="math notranslate nohighlight">
+\[
+d(x,y) = \sqrt{\sum_{i=1}^{n}(x_i - y_i)^2}
+\]</div>
+<p>Pada kasus ini jarak dihitung menggunakan tiga fitur numerik yaitu:</p>
+<ul class="simple">
+<li><p>temperature</p></li>
+<li><p>wind</p></li>
+<li><p>precip</p></li>
+</ul>
+<p>Sehingga bentuk rumusnya menjadi:</p>
+<div class="math notranslate nohighlight">
+\[
+d = \sqrt{(temperature_i - temperature_t)^2 + (wind_i - wind_t)^2 + (precip_i - precip_t)^2}
+\]</div>
+<p>Semakin kecil nilai jarak yang diperoleh, maka kedua data tersebut dianggap semakin mirip.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">euclidean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">euclidean(a,</span> <span class="pre">b):</span></code> digunakan untuk membuat fungsi bernama euclidean yang menerima dua input berupa data numerik.</p>
+<p><code class="docutils literal notranslate"><span class="pre">(a</span> <span class="pre">-</span> <span class="pre">b)</span></code> digunakan untuk menghitung selisih nilai antara dua data yang dibandingkan.</p>
+<p><code class="docutils literal notranslate"><span class="pre">**2</span></code> digunakan untuk mengkuadratkan selisih tersebut sehingga semua nilai menjadi positif.</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.sum((a</span> <span class="pre">-</span> <span class="pre">b)</span> <span class="pre">**</span> <span class="pre">2)</span></code> digunakan untuk menjumlahkan seluruh hasil kuadrat dari selisih fitur.</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.sqrt(...)</span></code> digunakan untuk menghitung akar kuadrat dari jumlah kuadrat tersebut sehingga diperoleh nilai jarak Euclidean.</p>
+<p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">...</span></code> digunakan untuk mengembalikan hasil perhitungan jarak agar dapat digunakan pada proses berikutnya.</p>
+</section>
+<section id="c-menentukan-data-target-yang-akan-diimputasi">
+<h4>C. Menentukan Data Target yang Akan Diimputasi<a class="headerlink" href="#c-menentukan-data-target-yang-akan-diimputasi" title="Link to this heading">#</a></h4>
+<p>Nilai yang akan diimputasi terlebih dahulu adalah <code class="docutils literal notranslate"><span class="pre">humidity</span></code> pada data ke-8.</p>
+<p>Karena Python menggunakan index mulai dari 0, maka data ke-8 berada pada:</p>
+<div class="math notranslate nohighlight">
+\[
+index = 7
+\]</div>
+<p>Untuk menghitung jarak, digunakan tiga fitur numerik sebagai pembanding, yaitu:</p>
+<div class="math notranslate nohighlight">
+\[
+X = \{temperature,\ wind,\ precip\}
+\]</div>
+<p>Ketiga fitur ini dipakai karena nilainya tersedia pada data target dan pada data lain yang akan dijadikan pembanding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_index</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;wind&quot;</span><span class="p">,</span> <span class="s2">&quot;precip&quot;</span><span class="p">]</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_index</span><span class="p">,</span> <span class="n">features</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temperature    0.122
+wind            0.29
+precip         0.879
+Name: 7, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">target_index</span> <span class="pre">=</span> <span class="pre">7</span></code> digunakan untuk menentukan posisi data yang akan diimputasi, yaitu data ke-8.</p>
+<p><code class="docutils literal notranslate"><span class="pre">features</span> <span class="pre">=</span> <span class="pre">[&quot;temperature&quot;,</span> <span class="pre">&quot;wind&quot;,</span> <span class="pre">&quot;precip&quot;]</span></code> digunakan untuk memilih fitur-fitur yang akan dipakai dalam menghitung jarak.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[target_index,</span> <span class="pre">features]</span></code> digunakan untuk mengambil nilai fitur dari data target.</p>
+<p><code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk menyimpan data target agar dapat dibandingkan dengan data lain.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(target)</span></code> digunakan untuk menampilkan nilai fitur dari data target yang akan diproses.</p>
+</section>
+<section id="d-menghitung-jarak-antar-data">
+<h4>D. Menghitung Jarak Antar Data<a class="headerlink" href="#d-menghitung-jarak-antar-data" title="Link to this heading">#</a></h4>
+<p>Setelah data target ditentukan, langkah berikutnya adalah menghitung jarak antara data target dengan data lain yang memiliki nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code>.</p>
+<p>Rumus yang digunakan yaitu:</p>
+<div class="math notranslate nohighlight">
+\[
+d = \sqrt{(temperature_i - temperature_t)^2 + (wind_i - wind_t)^2 + (precip_i - precip_t)^2}
+\]</div>
+<p>Dalam proses ini:</p>
+<ul class="simple">
+<li><p>data target tidak dibandingkan dengan dirinya sendiri</p></li>
+<li><p>data yang nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code>-nya kosong tidak ikut dihitung</p></li>
+<li><p>hasil perhitungan disimpan dalam satu kolom <code class="docutils literal notranslate"><span class="pre">jarak</span></code></p></li>
+</ul>
+<p>Semakin kecil hasil jaraknya, maka data tersebut semakin dekat dengan data target.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">target_index</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">]):</span>
+        <span class="k">continue</span>
+
+    <span class="n">neighbor</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">features</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">neighbor</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">],</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">],</span>
+        <span class="n">d</span>
+    <span class="p">])</span>
+
+<span class="n">jarak_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">,</span> <span class="s2">&quot;jarak&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jarak_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id  humidity  jarak
+0   1     0.429  0.383
+1   2     0.976  0.934
+2   3     0.214  1.100
+3   4     0.667  0.915
+4   5     0.452  0.977
+5   6     0.000  1.057
+6   7     1.000  0.209
+7   9     0.667  0.330
+8  10     0.452  0.643
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">rows</span> <span class="pre">=</span> <span class="pre">[]</span></code> digunakan untuk menyiapkan list kosong sebagai tempat menyimpan hasil perhitungan jarak.</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">df.index:</span></code> digunakan untuk melakukan perulangan pada seluruh baris data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">i</span> <span class="pre">==</span> <span class="pre">target_index:</span> <span class="pre">continue</span></code> digunakan untuk melewati data target agar tidak dibandingkan dengan dirinya sendiri.</p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">pd.isna(df.loc[i,</span> <span class="pre">&quot;humidity&quot;]):</span> <span class="pre">continue</span></code> digunakan untuk melewati data yang nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code>-nya kosong.</p>
+<p><code class="docutils literal notranslate"><span class="pre">neighbor</span> <span class="pre">=</span> <span class="pre">df.loc[i,</span> <span class="pre">features]</span></code> digunakan untuk mengambil nilai fitur dari data pembanding.</p>
+<p><code class="docutils literal notranslate"><span class="pre">euclidean(target.values,</span> <span class="pre">neighbor.values)</span></code> digunakan untuk menghitung jarak Euclidean antara data target dan data pembanding.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rows.append([...])</span></code> digunakan untuk menyimpan hasil berupa id data, nilai humidity, dan nilai jarak.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pd.DataFrame(rows,</span> <span class="pre">columns=[&quot;id&quot;,</span> <span class="pre">&quot;humidity&quot;,</span> <span class="pre">&quot;jarak&quot;])</span></code> digunakan untuk mengubah hasil perhitungan menjadi tabel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(jarak_df.round(3))</span></code> digunakan untuk menampilkan hasil jarak dengan pembulatan 3 angka di belakang koma agar lebih rapi.</p>
+</section>
+<section id="e-menghitung-bobot-wknn">
+<h4>E. Menghitung Bobot WKNN<a class="headerlink" href="#e-menghitung-bobot-wknn" title="Link to this heading">#</a></h4>
+<p>Pada metode <strong>Weighted K-Nearest Neighbor</strong>, setiap tetangga diberi bobot berdasarkan nilai jaraknya terhadap data target.</p>
+<p>Rumus bobot yang digunakan adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{1}{d_i}
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span> = bobot data ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> = jarak data ke-<span class="math notranslate nohighlight">\(i\)</span> terhadap data target</p></li>
+</ul>
+<p>Artinya, data yang jaraknya lebih kecil akan memiliki bobot lebih besar.
+Dengan begitu, data yang lebih dekat akan memberi pengaruh lebih besar saat menghitung nilai imputasi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jarak_df</span><span class="p">[</span><span class="s2">&quot;bobot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">jarak_df</span><span class="p">[</span><span class="s2">&quot;jarak&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jarak_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id  humidity  jarak  bobot
+0   1     0.429  0.383  2.612
+1   2     0.976  0.934  1.070
+2   3     0.214  1.100  0.909
+3   4     0.667  0.915  1.093
+4   5     0.452  0.977  1.023
+5   6     0.000  1.057  0.946
+6   7     1.000  0.209  4.788
+7   9     0.667  0.330  3.030
+8  10     0.452  0.643  1.556
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">jarak_df[&quot;bobot&quot;]</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">jarak_df[&quot;jarak&quot;]</span></code> digunakan untuk menambahkan kolom baru bernama <code class="docutils literal notranslate"><span class="pre">bobot</span></code>, yang dihitung dari hasil pembagian 1 dengan nilai jarak.</p>
+<p>Rumus <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">jarak</span></code> digunakan karena dalam WKNN, data yang lebih dekat harus memiliki pengaruh yang lebih besar.</p>
+<p><code class="docutils literal notranslate"><span class="pre">jarak_df[&quot;bobot&quot;]</span></code> digunakan untuk mengakses atau membuat kolom <code class="docutils literal notranslate"><span class="pre">bobot</span></code> pada DataFrame hasil perhitungan.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(jarak_df.round(3))</span></code> digunakan untuk menampilkan tabel yang sudah dilengkapi dengan nilai bobot.</p>
+</section>
+<section id="f-melakukan-perankingan-dan-mengambil-3-tetangga-terbesar">
+<h4>F. Melakukan Perankingan dan Mengambil 3 Tetangga Terbesar<a class="headerlink" href="#f-melakukan-perankingan-dan-mengambil-3-tetangga-terbesar" title="Link to this heading">#</a></h4>
+<p>Setelah bobot dihitung, data diurutkan berdasarkan bobot dari yang terbesar ke yang terkecil.</p>
+<p>Karena:</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{1}{d_i}
+\]</div>
+<p>maka hubungan antara jarak dan bobot adalah:</p>
+<ul class="simple">
+<li><p>jarak kecil <span class="math notranslate nohighlight">\(\rightarrow\)</span> bobot besar</p></li>
+<li><p>jarak besar <span class="math notranslate nohighlight">\(\rightarrow\)</span> bobot kecil</p></li>
+</ul>
+<p>Dalam analisis ini digunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+k = 3
+\]</div>
+<p>Artinya, hanya 3 data dengan bobot terbesar yang akan dipakai untuk menghitung nilai imputasi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ranking_df</span> <span class="o">=</span> <span class="n">jarak_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;bobot&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ranking_df</span><span class="p">[</span><span class="s2">&quot;ranking&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ranking_df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">top3</span> <span class="o">=</span> <span class="n">ranking_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3 ranking terbesar:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">top3</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 ranking terbesar:
+   id  humidity  jarak  bobot  ranking
+0   7     1.000  0.209  4.788        1
+1   9     0.667  0.330  3.030        2
+2   1     0.429  0.383  2.612        3
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">jarak_df.sort_values(by=&quot;bobot&quot;,</span> <span class="pre">ascending=False)</span></code> digunakan untuk mengurutkan data berdasarkan nilai bobot dari yang terbesar ke yang terkecil.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ascending=False</span></code> berarti pengurutan dilakukan secara menurun.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.reset_index(drop=True)</span></code> digunakan untuk merapikan kembali nomor index setelah data diurutkan.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ranking_df[&quot;ranking&quot;]</span> <span class="pre">=</span> <span class="pre">ranking_df.index</span> <span class="pre">+</span> <span class="pre">1</span></code> digunakan untuk membuat kolom <code class="docutils literal notranslate"><span class="pre">ranking</span></code> agar tiap data memiliki peringkat.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">3</span></code> digunakan untuk menentukan jumlah tetangga terdekat yang dipakai dalam proses imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ranking_df.head(k)</span></code> digunakan untuk mengambil 3 data teratas berdasarkan hasil pengurutan.</p>
+<p><code class="docutils literal notranslate"><span class="pre">top3</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk menyimpan 3 tetangga dengan bobot terbesar.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(top3.round(3))</span></code> digunakan untuk menampilkan hasil 3 ranking terbesar.</p>
+</section>
+<section id="g-menghitung-nilai-imputasi-humidity">
+<h4>G. Menghitung Nilai Imputasi Humidity<a class="headerlink" href="#g-menghitung-nilai-imputasi-humidity" title="Link to this heading">#</a></h4>
+<p>Setelah diperoleh 3 tetangga dengan bobot terbesar, langkah berikutnya adalah menghitung nilai imputasi untuk <code class="docutils literal notranslate"><span class="pre">humidity</span></code>.</p>
+<p>Rumus imputasi numerik pada metode WKNN adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{x} = \frac{\sum_{i=1}^{k}(w_i \cdot x_i)}{\sum_{i=1}^{k} w_i}
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}\)</span> = nilai imputasi</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span> = bobot tetangga ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code> pada tetangga ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> = jumlah tetangga terdekat</p></li>
+</ul>
+<p>Prosesnya dilakukan dengan langkah berikut:</p>
+<ol class="arabic simple">
+<li><p>Mengalikan bobot dengan nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code></p></li>
+<li><p>Menjumlahkan seluruh hasil perkalian tersebut</p></li>
+<li><p>Menjumlahkan seluruh bobot</p></li>
+<li><p>Membagi jumlah nilai imputasi dengan jumlah bobot</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">top3</span> <span class="o">=</span> <span class="n">top3</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">top3</span><span class="p">[</span><span class="s2">&quot;nilai_imputasi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">top3</span><span class="p">[</span><span class="s2">&quot;bobot&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">top3</span><span class="p">[</span><span class="s2">&quot;humidity&quot;</span><span class="p">]</span>
+
+<span class="n">jumlah_nilai_imputasi</span> <span class="o">=</span> <span class="n">top3</span><span class="p">[</span><span class="s2">&quot;nilai_imputasi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">jumlah_bobot</span> <span class="o">=</span> <span class="n">top3</span><span class="p">[</span><span class="s2">&quot;bobot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">humidity_impute</span> <span class="o">=</span> <span class="n">jumlah_nilai_imputasi</span> <span class="o">/</span> <span class="n">jumlah_bobot</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">top3</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai imputasi = </span><span class="si">{</span><span class="n">jumlah_nilai_imputasi</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah bobot = </span><span class="si">{</span><span class="n">jumlah_bobot</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nilai imputasi humidity data ke-8 = </span><span class="si">{</span><span class="n">humidity_impute</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id  humidity  jarak  bobot  ranking  nilai_imputasi
+0   7     1.000  0.209  4.788        1           4.788
+1   9     0.667  0.330  3.030        2           2.021
+2   1     0.429  0.383  2.612        3           1.120
+Jumlah nilai imputasi = 7.929
+Jumlah bobot = 10.430
+Nilai imputasi humidity data ke-8 = 0.760
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">top3</span> <span class="pre">=</span> <span class="pre">top3.copy()</span></code> digunakan untuk membuat salinan data agar perubahan yang dilakukan tidak memengaruhi DataFrame sebelumnya.</p>
+<p><code class="docutils literal notranslate"><span class="pre">top3[&quot;nilai_imputasi&quot;]</span> <span class="pre">=</span> <span class="pre">top3[&quot;bobot&quot;]</span> <span class="pre">*</span> <span class="pre">top3[&quot;humidity&quot;]</span></code> digunakan untuk menghitung kontribusi masing-masing tetangga terhadap nilai imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">top3[&quot;nilai_imputasi&quot;].sum()</span></code> digunakan untuk menjumlahkan seluruh nilai imputasi dari 3 tetangga terpilih.</p>
+<p><code class="docutils literal notranslate"><span class="pre">top3[&quot;bobot&quot;].sum()</span></code> digunakan untuk menjumlahkan seluruh bobot dari 3 tetangga terpilih.</p>
+<p><code class="docutils literal notranslate"><span class="pre">humidity_impute</span> <span class="pre">=</span> <span class="pre">jumlah_nilai_imputasi</span> <span class="pre">/</span> <span class="pre">jumlah_bobot</span></code> digunakan untuk menghitung nilai imputasi akhir sesuai rumus WKNN.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(top3.round(3))</span></code> digunakan untuk menampilkan tabel top 3 yang sudah memuat kolom <code class="docutils literal notranslate"><span class="pre">nilai_imputasi</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(f&quot;...{jumlah_nilai_imputasi:.3f}&quot;)</span></code> digunakan untuk menampilkan jumlah nilai imputasi dengan 3 angka di belakang koma.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(f&quot;...{jumlah_bobot:.3f}&quot;)</span></code> digunakan untuk menampilkan jumlah bobot dengan 3 angka di belakang koma.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(f&quot;...{humidity_impute:.3f}&quot;)</span></code> digunakan untuk menampilkan hasil akhir imputasi humidity.</p>
+</section>
+<section id="h-mengisi-nilai-humidity-ke-dataset">
+<h4>H. Mengisi Nilai Humidity ke Dataset<a class="headerlink" href="#h-mengisi-nilai-humidity-ke-dataset" title="Link to this heading">#</a></h4>
+<p>Nilai imputasi yang sudah diperoleh kemudian dimasukkan ke dalam dataset untuk menggantikan missing value pada <code class="docutils literal notranslate"><span class="pre">humidity</span></code> data ke-8.</p>
+<p>Jika nilai imputasi dinyatakan dengan:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{x}
+\]</div>
+<p>maka nilai baru untuk <code class="docutils literal notranslate"><span class="pre">humidity</span></code> pada data target adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+humidity_{baru} = \hat{x}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_index</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">humidity_impute</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_index</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                 8
+temperature    0.122
+humidity        0.76
+wind            0.29
+precip         0.879
+weather        Snowy
+Name: 7, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[target_index,</span> <span class="pre">&quot;humidity&quot;]</span></code> digunakan untuk mengakses sel pada baris target dan kolom <code class="docutils literal notranslate"><span class="pre">humidity</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">round(humidity_impute,</span> <span class="pre">3)</span></code> digunakan untuk membulatkan hasil imputasi menjadi 3 angka di belakang koma sebelum dimasukkan ke dataset.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[target_index,</span> <span class="pre">&quot;humidity&quot;]</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk mengganti nilai kosong pada <code class="docutils literal notranslate"><span class="pre">humidity</span></code> dengan hasil imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(df.loc[target_index])</span></code> digunakan untuk menampilkan data target setelah nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code> berhasil diisi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weather_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frekuensi setiap kategori weather:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">weather_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Frekuensi setiap kategori weather:
+weather
+Snowy     3
+Rainy     2
+Cloudy    2
+Sunny     2
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[target_index,</span> <span class="pre">&quot;humidity&quot;]</span></code> digunakan untuk mengakses sel pada baris target dan kolom <code class="docutils literal notranslate"><span class="pre">humidity</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">round(humidity_impute,</span> <span class="pre">3)</span></code> digunakan untuk membulatkan hasil imputasi menjadi 3 angka di belakang koma sebelum dimasukkan ke dataset.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[target_index,</span> <span class="pre">&quot;humidity&quot;]</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk mengganti nilai kosong pada <code class="docutils literal notranslate"><span class="pre">humidity</span></code> dengan hasil imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(df.loc[target_index])</span></code> digunakan untuk menampilkan data target setelah nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code> berhasil diisi.</p>
+</section>
+<section id="i-mengimputasi-data-kategorikal-dengan-modus">
+<h4>I. Mengimputasi Data Kategorikal dengan Modus<a class="headerlink" href="#i-mengimputasi-data-kategorikal-dengan-modus" title="Link to this heading">#</a></h4>
+<p>Selain data numerik, dataset ini juga memiliki missing value pada data kategorikal, yaitu kolom <code class="docutils literal notranslate"><span class="pre">weather</span></code> pada data ke-4.</p>
+<p>Untuk data kategorikal, metode yang digunakan adalah <strong>modus</strong>, yaitu memilih kategori yang paling sering muncul.</p>
+<p>Secara sederhana, modus dapat dituliskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+mode(X) = \text{nilai dengan frekuensi paling banyak}
+\]</div>
+<p>Kategori yang paling sering muncul inilah yang digunakan untuk mengisi nilai <code class="docutils literal notranslate"><span class="pre">weather</span></code> yang kosong.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weather_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">weather_impute</span> <span class="o">=</span> <span class="n">weather_counts</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">weather_counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nilai imputasi weather = </span><span class="si">{</span><span class="n">weather_impute</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="s2">&quot;weather&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weather_impute</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weather
+Snowy     3
+Rainy     2
+Cloudy    2
+Sunny     2
+Name: count, dtype: int64
+Nilai imputasi weather = Snowy
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">df[&quot;weather&quot;].value_counts()</span></code> digunakan untuk menghitung berapa kali setiap kategori muncul pada kolom <code class="docutils literal notranslate"><span class="pre">weather</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">weather_counts</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk menyimpan hasil frekuensi tersebut.</p>
+<p><code class="docutils literal notranslate"><span class="pre">weather_counts.idxmax()</span></code> digunakan untuk mengambil nama kategori dengan frekuensi paling tinggi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">weather_impute</span> <span class="pre">=</span> <span class="pre">...</span></code> digunakan untuk menyimpan kategori yang akan dipakai sebagai hasil imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(weather_counts)</span></code> digunakan untuk menampilkan jumlah kemunculan masing-masing kategori.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(f&quot;Nilai</span> <span class="pre">imputasi</span> <span class="pre">weather</span> <span class="pre">=</span> <span class="pre">{weather_impute}&quot;)</span></code> digunakan untuk menampilkan kategori yang terpilih sebagai nilai imputasi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df[&quot;weather&quot;].isna()</span></code> digunakan untuk mencari baris yang memiliki nilai kosong pada kolom <code class="docutils literal notranslate"><span class="pre">weather</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df.loc[df[&quot;weather&quot;].isna(),</span> <span class="pre">&quot;weather&quot;]</span> <span class="pre">=</span> <span class="pre">weather_impute</span></code> digunakan untuk mengisi nilai kosong tersebut dengan kategori yang paling sering muncul.</p>
+</section>
+<section id="j-menampilkan-dataset-akhir">
+<h4>J. Menampilkan Dataset Akhir<a class="headerlink" href="#j-menampilkan-dataset-akhir" title="Link to this heading">#</a></h4>
+<p>Tahap terakhir adalah menampilkan dataset setelah seluruh proses imputasi selesai dilakukan.</p>
+<p>Pada hasil akhir:</p>
+<ul class="simple">
+<li><p>nilai <code class="docutils literal notranslate"><span class="pre">humidity</span></code> pada data ke-8 sudah terisi menggunakan metode WKNN</p></li>
+<li><p>nilai <code class="docutils literal notranslate"><span class="pre">weather</span></code> pada data ke-4 sudah terisi menggunakan metode modus</p></li>
+</ul>
+<p>Dengan demikian, dataset sudah tidak memiliki missing value lagi pada dua kolom tersebut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id  temperature  humidity   wind  precip weather
+0   1        0.390     0.429  0.516   0.725   Rainy
+1   2        1.000     0.976  0.452   0.604  Cloudy
+2   3        0.780     0.214  0.355   0.000   Sunny
+3   4        0.976     0.667  0.000   0.725   Snowy
+4   5        0.707     0.452  1.000   0.549   Rainy
+5   6        0.829     0.000  0.129   0.110  Cloudy
+6   7        0.000     1.000  0.419   0.769   Snowy
+7   8        0.122     0.760  0.290   0.879   Snowy
+8   9        0.122     0.667  0.290   0.549   Snowy
+9  10        0.732     0.452  0.452   1.000   Sunny
+</pre></div>
+</div>
+</div>
+</div>
+<p>Penjelasan :</p>
+<p><code class="docutils literal notranslate"><span class="pre">df.round(3)</span></code> digunakan untuk membulatkan seluruh angka numerik menjadi 3 angka di belakang koma agar tampilannya lebih rapi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(df.round(3))</span></code> digunakan untuk menampilkan dataset akhir setelah proses imputasi numerik dan kategorikal selesai dilakukan.</p>
+<p>Kode yang digunakan pada analisis ini bertujuan untuk mengisi nilai yang hilang (missing value) pada dataset dengan memanfaatkan informasi dari data lain yang memiliki karakteristik paling mirip. Proses ini dilakukan dengan mencari beberapa data yang paling dekat dengan data target, kemudian menggunakan nilai dari tetangga tersebut untuk memperkirakan nilai yang hilang secara otomatis.</p>
+</section>
+</section>
+<section id="kesimpulan">
+<h3>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h3>
+<p>Metode <strong>Weighted K-Nearest Neighbor (WKNN)</strong> dapat digunakan sebagai salah satu pendekatan untuk menangani missing value pada dataset. Metode ini bekerja dengan mencari sejumlah data yang paling mirip dengan data yang memiliki nilai kosong, kemudian menggunakan data tersebut sebagai dasar perhitungan.</p>
+<p>Pada WKNN, setiap tetangga diberi bobot berdasarkan jaraknya terhadap data target. Data yang memiliki jarak lebih dekat akan mendapatkan bobot yang lebih besar, sehingga pengaruhnya terhadap hasil imputasi juga lebih tinggi. Dengan pendekatan ini, nilai yang dihasilkan cenderung lebih representatif karena lebih dipengaruhi oleh data yang benar-benar mirip.</p>
+</section>
+</section>
+<section id="normalisasi-data">
+<h2>2. Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Link to this heading">#</a></h2>
+<p>Normalisasi data merupakan proses mengubah skala nilai pada atribut numerik agar berada dalam rentang tertentu tanpa mengubah informasi utama dari data tersebut. Normalisasi termasuk tahap <strong>data preprocessing</strong> dalam data mining dan machine learning.</p>
+<p>Dalam dataset, nilai antar atribut sering memiliki skala yang berbeda. Misalnya satu atribut bernilai ratusan sedangkan atribut lain bernilai desimal. Perbedaan skala ini dapat mempengaruhi hasil perhitungan, terutama pada algoritma yang berbasis jarak seperti <strong>K-Nearest Neighbor (KNN), Weighted KNN, dan Clustering</strong>.</p>
+<p>Dengan melakukan normalisasi, setiap atribut akan berada pada skala yang sama sehingga tidak ada atribut yang mendominasi proses perhitungan.</p>
+<section id="a-macam-macam-normalisasi-data">
+<h3>A. Macam-Macam Normalisasi Data<a class="headerlink" href="#a-macam-macam-normalisasi-data" title="Link to this heading">#</a></h3>
+<p>Dataset contoh yang digunakan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>227</p></td>
+</tr>
+<tr class="row-odd"><td><p>119</p></td>
+</tr>
+<tr class="row-even"><td><p>214</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai minimum = 119<br />
+Nilai maksimum = 227</p>
+<section id="min-max-normalization">
+<h4>1. Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Link to this heading">#</a></h4>
+<p>Min-Max Normalization merupakan metode normalisasi yang mengubah nilai atribut numerik ke dalam rentang tertentu. Rentang yang paling sering digunakan adalah <strong>0 sampai 1</strong>, namun metode ini juga dapat digunakan untuk rentang lain seperti <strong>[-1,1]</strong>.</p>
+<p>Rumus umum Min-Max Normalization:</p>
+<div class="math notranslate nohighlight">
+\[
+v' = \frac{v - \min(A)}{\max(A) - \min(A)} \times (new_{max} - new_{min}) + new_{min}
+\]</div>
+<p>Penjelasan rumus:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> adalah nilai asli data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\min(A)\)</span> adalah nilai minimum dari seluruh data pada atribut tersebut.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\max(A)\)</span> adalah nilai maksimum dari seluruh data pada atribut tersebut.</p></li>
+<li><p><span class="math notranslate nohighlight">\(new_{min}\)</span> adalah batas minimum dari rentang baru.</p></li>
+<li><p><span class="math notranslate nohighlight">\(new_{max}\)</span> adalah batas maksimum dari rentang baru.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v'\)</span> adalah nilai hasil normalisasi.</p></li>
+</ul>
+<p>Rumus ini bekerja dengan cara menyesuaikan nilai data dari rentang lama ke rentang baru yang diinginkan.</p>
+<p>Jika rentang normalisasi yang digunakan adalah <strong>0 sampai 1</strong>, maka rumusnya dapat disederhanakan menjadi:</p>
+<div class="math notranslate nohighlight">
+\[
+v' = \frac{v - \min(A)}{\max(A) - \min(A)}
+\]</div>
+<p>Artinya nilai minimum akan menjadi <strong>0</strong> dan nilai maksimum akan menjadi <strong>1</strong>.</p>
+<section id="a-contoh-perhitungan">
+<h5>a. Contoh Perhitungan<a class="headerlink" href="#a-contoh-perhitungan" title="Link to this heading">#</a></h5>
+<p>Untuk nilai <strong>227</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{227 - 119}{227 - 119} = \frac{108}{108} = 1
+\]</div>
+<p>Untuk nilai <strong>119</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{119 - 119}{227 - 119} = \frac{0}{108} = 0
+\]</div>
+<p>Untuk nilai <strong>214</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{214 - 119}{227 - 119} = \frac{95}{108} \approx 0.88
+\]</div>
+<p>Hasil normalisasi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nilai</p></th>
+<th class="head"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>227</p></td>
+<td><p>1.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>119</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td><p>214</p></td>
+<td><p>0.88</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="b-implementasi-python">
+<h5>b. Implementasi Python<a class="headerlink" href="#b-implementasi-python" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nilai&#39;</span><span class="p">:[</span><span class="mi">227</span><span class="p">,</span><span class="mi">119</span><span class="p">,</span><span class="mi">214</span><span class="p">]}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.        ]
+ [0.        ]
+ [0.87962963]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sklearn.preprocessing</span> <span class="pre">import</span> <span class="pre">MinMaxScaler</span></code> digunakan untuk mengimpor class <strong>MinMaxScaler</strong> dari library sklearn yang berfungsi melakukan normalisasi menggunakan metode Min-Max.</p>
+<p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code> digunakan untuk mengimpor library pandas yang digunakan untuk mengelola data dalam bentuk tabel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">{'nilai':[227,119,214]}</span></code> digunakan untuk membuat dataset contoh yang berisi nilai numerik.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(data)</span></code> digunakan untuk mengubah dictionary menjadi DataFrame agar data dapat diproses menggunakan pandas.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scaler</span> <span class="pre">=</span> <span class="pre">MinMaxScaler()</span></code> digunakan untuk membuat objek normalisasi menggunakan metode Min-Max.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hasil</span> <span class="pre">=</span> <span class="pre">scaler.fit_transform(df)</span></code> digunakan untuk menghitung nilai minimum dan maksimum dari data kemudian mengubah nilainya ke rentang <strong>0 sampai 1</strong>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(hasil)</span></code> digunakan untuk menampilkan hasil normalisasi data.</p>
+</section>
+</section>
+<section id="z-score-normalization">
+<h4>2. Z-Score Normalization<a class="headerlink" href="#z-score-normalization" title="Link to this heading">#</a></h4>
+<p>Z-Score Normalization merupakan metode normalisasi yang mengubah nilai data berdasarkan <strong>rata-rata (mean)</strong> dan <strong>standar deviasi</strong>.</p>
+<p>Rumus Z-Score:</p>
+<div class="math notranslate nohighlight">
+\[
+v' = \frac{v - \mu}{\sigma}
+\]</div>
+<p>Penjelasan rumus:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> adalah nilai asli data</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> adalah rata-rata data</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> adalah standar deviasi data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v'\)</span> adalah nilai hasil normalisasi</p></li>
+</ul>
+<p>Rumus Mean:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu = \frac{1}{n}\sum_{i=1}^{n} v_i
+\]</div>
+<p>Rumus Standar Deviasi:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i - \mu)^2}
+\]</div>
+<section id="id1">
+<h5>a. Contoh Perhitungan<a class="headerlink" href="#id1" title="Link to this heading">#</a></h5>
+<p>Mean:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu = \frac{227 + 119 + 214}{3} = 186.67
+\]</div>
+<p>Standar deviasi:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma \approx 48.27
+\]</div>
+<p>Hasil Z-Score:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nilai</p></th>
+<th class="head"><p>Z-Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>227</p></td>
+<td><p>0.84</p></td>
+</tr>
+<tr class="row-odd"><td><p>119</p></td>
+<td><p>-1.40</p></td>
+</tr>
+<tr class="row-even"><td><p>214</p></td>
+<td><p>0.57</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id2">
+<h5>b. Implementasi Python<a class="headerlink" href="#id2" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nilai&#39;</span><span class="p">:[</span><span class="mi">227</span><span class="p">,</span><span class="mi">119</span><span class="p">,</span><span class="mi">214</span><span class="p">]}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.83781675]
+ [-1.40559339]
+ [ 0.56777664]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sklearn.preprocessing</span> <span class="pre">import</span> <span class="pre">StandardScaler</span></code> digunakan untuk mengimpor class <strong>StandardScaler</strong> dari library sklearn yang digunakan untuk melakukan normalisasi menggunakan metode Z-score.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">{'nilai':[227,119,214]}</span></code> digunakan untuk membuat dataset contoh.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(data)</span></code> digunakan untuk mengubah dictionary menjadi DataFrame.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scaler</span> <span class="pre">=</span> <span class="pre">StandardScaler()</span></code> digunakan untuk membuat objek normalisasi menggunakan metode Z-score.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hasil</span> <span class="pre">=</span> <span class="pre">scaler.fit_transform(df)</span></code> digunakan untuk menghitung nilai mean dan standar deviasi kemudian menormalkan data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(hasil)</span></code> digunakan untuk menampilkan hasil normalisasi data.</p>
+</section>
+</section>
+<section id="decimal-scaling-normalization">
+<h4>3. Decimal Scaling Normalization<a class="headerlink" href="#decimal-scaling-normalization" title="Link to this heading">#</a></h4>
+<p>Decimal Scaling Normalization merupakan metode normalisasi sederhana yang dilakukan dengan menggeser titik desimal nilai data.</p>
+<p>Rumus Decimal Scaling:</p>
+<div class="math notranslate nohighlight">
+\[
+v' = \frac{v}{10^j}
+\]</div>
+<p>Penjelasan rumus:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> adalah nilai asli data</p></li>
+<li><p><span class="math notranslate nohighlight">\(j\)</span> adalah jumlah digit dari nilai maksimum data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v'\)</span> adalah nilai hasil normalisasi</p></li>
+</ul>
+<section id="id3">
+<h5>a. Contoh Perhitungan<a class="headerlink" href="#id3" title="Link to this heading">#</a></h5>
+<p>Nilai maksimum = 227</p>
+<p>Karena memiliki <strong>3 digit</strong>, maka</p>
+<div class="math notranslate nohighlight">
+\[
+j = 3
+\]</div>
+<p>Perhitungan:</p>
+<p>227 / 1000 = 0.227<br />
+119 / 1000 = 0.119<br />
+214 / 1000 = 0.214</p>
+<p>Hasil normalisasi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nilai</p></th>
+<th class="head"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>227</p></td>
+<td><p>0.227</p></td>
+</tr>
+<tr class="row-odd"><td><p>119</p></td>
+<td><p>0.119</p></td>
+</tr>
+<tr class="row-even"><td><p>214</p></td>
+<td><p>0.214</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id4">
+<h5>b. Implementasi Python<a class="headerlink" href="#id4" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nilai&#39;</span><span class="p">:[</span><span class="mi">227</span><span class="p">,</span><span class="mi">119</span><span class="p">,</span><span class="mi">214</span><span class="p">]}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">max_val</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;nilai&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">max_val</span><span class="p">))</span>
+
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;nilai&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">j</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.227
+1    0.119
+2    0.214
+Name: nilai, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Penjelasan :</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code> digunakan untuk mengimpor library pandas yang digunakan untuk mengelola data dalam bentuk tabel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">{'nilai':[227,119,214]}</span></code> digunakan untuk membuat dataset contoh.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame(data)</span></code> digunakan untuk mengubah dictionary menjadi DataFrame.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_val</span> <span class="pre">=</span> <span class="pre">df['nilai'].max()</span></code> digunakan untuk mencari nilai maksimum pada dataset.</p>
+<p><code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">=</span> <span class="pre">len(str(max_val))</span></code> digunakan untuk menghitung jumlah digit dari nilai maksimum.</p>
+<p><code class="docutils literal notranslate"><span class="pre">10**j</span></code> digunakan sebagai pembagi dalam proses decimal scaling.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hasil</span> <span class="pre">=</span> <span class="pre">df['nilai']</span> <span class="pre">/</span> <span class="pre">(10**j)</span></code> digunakan untuk melakukan normalisasi data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(hasil)</span></code> digunakan untuk menampilkan hasil normalisasi.</p>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Distance%20Data%20Campuran.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mengukur Jarak Antar Data Campuran</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Data%20Preparation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Preparation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value-imputation">1. Missing Value Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-weighted-k-nearest-neighbor-wknn">2. Metode Weighted K-Nearest Neighbor (WKNN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-microsoft-excel">3. Perhitungan Menggunakan Microsoft Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-python">4. Perhitungan Menggunakan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-import-library-dan-membuat-dataset">A. Import Library dan Membuat Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menghitung-jarak-menggunakan-euclidean-distance">B. Menghitung Jarak Menggunakan Euclidean Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menentukan-data-target-yang-akan-diimputasi">C. Menentukan Data Target yang Akan Diimputasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-menghitung-jarak-antar-data">D. Menghitung Jarak Antar Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-menghitung-bobot-wknn">E. Menghitung Bobot WKNN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-melakukan-perankingan-dan-mengambil-3-tetangga-terbesar">F. Melakukan Perankingan dan Mengambil 3 Tetangga Terbesar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-menghitung-nilai-imputasi-humidity">G. Menghitung Nilai Imputasi Humidity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h-mengisi-nilai-humidity-ke-dataset">H. Mengisi Nilai Humidity ke Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-mengimputasi-data-kategorikal-dengan-modus">I. Mengimputasi Data Kategorikal dengan Modus</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#j-menampilkan-dataset-akhir">J. Menampilkan Dataset Akhir</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">2. Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-macam-macam-normalisasi-data">A. Macam-Macam Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a-contoh-perhitungan">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#b-implementasi-python">b. Implementasi Python</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Implementasi Python</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling-normalization">3. Decimal Scaling Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">a. Contoh Perhitungan</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">b. Implementasi Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rachelia Andini Tendean
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
