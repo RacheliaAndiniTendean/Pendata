@@ -378,18 +378,20 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">4. Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">5. Preprocessing Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">5.1 Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi">5.2 Normalisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">5.2 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-to-many-encoding">5.3 One to Many (Encoding)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi">5.4 Normalisasi</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">6. Workflow KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node">7. Penjelasan Node</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-csv-reader">a. CSV Reader</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-missing-value">b. Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-color-manager">c. Color Manager</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-number-to-string">d. Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-number-to-string">c. Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-one-to-many">d. One to Many</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-normalizer">e. Normalizer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-python-script">f. Python Script</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode">Penjelasan Kode</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode"><strong>Penjelasan Kode</strong></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-scorer">g. Scorer</a></li>
@@ -433,18 +435,29 @@
 <p><span class="math notranslate nohighlight">\(P(C|X) = P(C) \cdot P(X|C)\)</span></p>
 <p>Jika fitur lebih dari satu, maka dihitung:</p>
 <p><span class="math notranslate nohighlight">\(P(C|X) = P(C) \cdot P(x_1|C) \cdot P(x_2|C) \cdot ... \cdot P(x_n|C)\)</span></p>
+<p>Model akan menghitung peluang:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((P(Churn=0|X))\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((P(Churn=1|X))\)</span></p></li>
+</ul>
+<p>Kemudian memilih nilai yang paling besar sebagai hasil prediksi.</p>
 </section>
 <section id="asumsi-naive-bayes">
 <h2>3. Asumsi Naive Bayes<a class="headerlink" href="#asumsi-naive-bayes" title="Link to this heading">#</a></h2>
-<p>Naive Bayes memiliki asumsi bahwa setiap fitur tidak saling bergantung. Artinya, setiap variabel dianggap memiliki pengaruh sendiri terhadap hasil, tanpa dipengaruhi oleh variabel lain.</p>
-<p>Sebagai contoh, model menganggap bahwa umur tidak berhubungan dengan total pengeluaran, atau lama berlangganan tidak berhubungan dengan frekuensi penggunaan. Walaupun dalam kenyataannya bisa saja ada hubungan, asumsi ini tetap digunakan agar proses perhitungan menjadi lebih sederhana.</p>
+<p>Naive Bayes menganggap setiap fitur tidak saling bergantung.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Age dianggap tidak bergantung pada Tenure</p></li>
+<li><p>Tenure dianggap tidak bergantung pada Total Spend</p></li>
+</ul>
+<p>Walaupun dalam kenyataannya fitur bisa saja saling berkaitan, asumsi ini tetap digunakan agar perhitungan menjadi lebih sederhana.</p>
 </section>
 <section id="gaussian-naive-bayes">
 <h2>4. Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Link to this heading">#</a></h2>
 <p>Karena sebagian besar data berbentuk numerik, maka digunakan Gaussian Naive Bayes. Metode ini mengasumsikan bahwa data mengikuti distribusi normal.</p>
 <p>Rumus distribusi Gaussian:</p>
 <p><span class="math notranslate nohighlight">\(P(x_i|C) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span></p>
-<p>Dengan pendekatan ini, model menghitung seberapa dekat nilai suatu fitur terhadap rata-rata kelas tertentu.</p>
+<p>Model menghitung rata-rata dan standar deviasi dari setiap fitur untuk masing-masing kelas.</p>
 </section>
 <section id="preprocessing-data">
 <h2>5. Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
@@ -464,8 +477,49 @@ Mean = \frac{\sum x}{n}
 <p>Dengan cara ini, data tetap bisa digunakan tanpa harus banyak menghapus baris.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/91p-rm5yQDZfQKuyZrQ5KFH6koir3BI0NUBaHbeyIpQ.original.fullsize.png" /></p>
 </section>
+<section id="number-to-string">
+<h3>5.2 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h3>
+<p>Node Number to String digunakan untuk mengubah kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code> dari numerik menjadi string.</p>
+<p>Tujuan:</p>
+<ul class="simple">
+<li><p>Agar kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code> dikenali sebagai label kategori pada tahap evaluasi (Scorer)</p></li>
+</ul>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/OMm36wHFurC8N0NJTUXdsXmHlWXXG3iqA9Gc-j8kdXg.original.fullsize.png" /></p>
+</section>
+<section id="one-to-many-encoding">
+<h3>5.3 One to Many (Encoding)<a class="headerlink" href="#one-to-many-encoding" title="Link to this heading">#</a></h3>
+<p>Node One to Many digunakan untuk mengubah data kategorikal menjadi numerik menggunakan teknik one-hot encoding.</p>
+<p>Contoh:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gender</p></th>
+<th class="head"><p>→</p></th>
+<th class="head"><p>Gender_Male</p></th>
+<th class="head"><p>Gender_Female</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Male</p></td>
+<td><p>→</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Female</p></td>
+<td><p>→</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tujuan:</p>
+<ul class="simple">
+<li><p>Agar fitur kategorikal dapat digunakan oleh model</p></li>
+</ul>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/nmyJFA8f6CvX_8n7vbCLxGfS89_hqjz9MHlGaAHJiNQ.original.fullsize.png" /></p>
+</section>
 <section id="normalisasi">
-<h3>5.2 Normalisasi<a class="headerlink" href="#normalisasi" title="Link to this heading">#</a></h3>
+<h3>5.4 Normalisasi<a class="headerlink" href="#normalisasi" title="Link to this heading">#</a></h3>
 <p>Normalisasi dilakukan untuk menyamakan skala antar fitur. Hal ini penting karena setiap fitur memiliki rentang nilai yang berbeda.</p>
 <p>Rumus Min-Max Normalization:</p>
 <p><span class="math notranslate nohighlight">\(
@@ -478,10 +532,10 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 <section id="workflow-knime">
 <h2>6. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
 <p>Alur proses yang digunakan adalah:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV Reader =&gt; Missing Value =&gt; Color Manager =&gt; Number to String =&gt; Normalizer =&gt; Python Script =&gt; Scorer
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV Reader =&gt; Missing Value =&gt; Number to String =&gt; One to Many =&gt; Normalizer  =&gt; Python Script =&gt; Scorer
 </pre></div>
 </div>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/bXQhfYsEvma0Xa0Xp9GSbxso82AES3wRnSlhp05gZeA.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/h0QRfmULcuMFJwVUFo3xtQSFaOK14wP29NtdALyHuP8.original.fullsize.png" /></p>
 </section>
 <section id="penjelasan-node">
 <h2>7. Penjelasan Node<a class="headerlink" href="#penjelasan-node" title="Link to this heading">#</a></h2>
@@ -492,18 +546,57 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </section>
 <section id="b-missing-value">
 <h3>b. Missing Value<a class="headerlink" href="#b-missing-value" title="Link to this heading">#</a></h3>
-<p>Digunakan untuk menangani data kosong. Nilai kosong diisi agar tidak mengganggu proses modeling.</p>
+<p>Node <strong>Missing Value</strong> digunakan untuk menangani data kosong. Nilai kosong perlu ditangani karena dapat menyebabkan error pada proses berikutnya, terutama saat normalisasi dan modeling.</p>
+<p>Pada node ini:</p>
+<ul class="simple">
+<li><p>Kolom numerik diisi menggunakan <strong>Mean</strong></p></li>
+<li><p>Kolom kategori diisi menggunakan <strong>Most Frequent Value</strong></p></li>
+<li><p>Kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code> tidak diubah sembarangan karena merupakan target</p></li>
+</ul>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/91p-rm5yQDZfQKuyZrQ5KFH6koir3BI0NUBaHbeyIpQ.original.fullsize.png" /></p>
 </section>
-<section id="c-color-manager">
-<h3>c. Color Manager<a class="headerlink" href="#c-color-manager" title="Link to this heading">#</a></h3>
-<p>Digunakan untuk memberi warna pada data berdasarkan kolom Churn. Fungsinya hanya untuk visualisasi.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/mQUefdvf2mYLagaTFwar7iDTb7GsqHA1h3xJfm2-zMw.original.fullsize.png" /></p>
-</section>
-<section id="d-number-to-string">
-<h3>d. Number to String<a class="headerlink" href="#d-number-to-string" title="Link to this heading">#</a></h3>
-<p>Mengubah kolom Churn menjadi tipe string agar dikenali sebagai kategori.</p>
+<section id="c-number-to-string">
+<h3>c. Number to String<a class="headerlink" href="#c-number-to-string" title="Link to this heading">#</a></h3>
+<p>Node <strong>Number to String</strong> digunakan untuk mengubah kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code> dari angka menjadi string. Hal ini dilakukan agar nilai target lebih mudah dikenali sebagai kelas kategori pada tahap evaluasi menggunakan node Scorer.</p>
+<p>Pada tugas ini, kolom yang diubah adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Churn
+</pre></div>
+</div>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/P6NZQR6DY5yfmBc6LysR0FQXIjUDasp2mtKsw-j5jR4.original.fullsize.png" /></p>
+</section>
+<section id="d-one-to-many">
+<h3>d. One to Many<a class="headerlink" href="#d-one-to-many" title="Link to this heading">#</a></h3>
+<p>Node <strong>One to Many</strong> digunakan untuk mengubah data kategorikal menjadi data numerik. Proses ini disebut <strong>one-hot encoding</strong>.</p>
+<p>Contohnya, kolom <code class="docutils literal notranslate"><span class="pre">Gender</span></code> yang berisi nilai <code class="docutils literal notranslate"><span class="pre">Male</span></code> dan <code class="docutils literal notranslate"><span class="pre">Female</span></code> akan diubah menjadi beberapa kolom baru seperti:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Gender_Male</p></th>
+<th class="head text-right"><p>Gender_Female</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Node ini diperlukan karena model Gaussian Naive Bayes pada Python membutuhkan input fitur dalam bentuk numerik.</p>
+<p>Kolom yang diubah pada One to Many misalnya:</p>
+<ul class="simple">
+<li><p>Gender</p></li>
+<li><p>Subscription Type</p></li>
+<li><p>Contract Length</p></li>
+</ul>
+<p>Kolom yang tidak ikut:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Churn</span></code>, karena merupakan target</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CustomerID</span></code>, karena hanya identitas data</p></li>
+</ul>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/12kPV-EvCxDHak3uRuhkDU1iTsDdI5Hp6CxjPdEofJs.original.fullsize.png" /></p>
 </section>
 <section id="e-normalizer">
 <h3>e. Normalizer<a class="headerlink" href="#e-normalizer" title="Link to this heading">#</a></h3>
@@ -512,8 +605,8 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </section>
 <section id="f-python-script">
 <h3>f. Python Script<a class="headerlink" href="#f-python-script" title="Link to this heading">#</a></h3>
-<p>Node <strong>Python Script</strong> digunakan untuk membuat model <strong>Gaussian Naive Bayes</strong> menggunakan library <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Pada node ini, data dari KNIME diambil lalu diproses menggunakan Python. Proses yang dilakukan meliputi pemilihan fitur, pemisahan target, pembagian data training dan testing, pembuatan model, prediksi, serta perhitungan probabilitas.</p>
-<p>Kode yang digunakan pada node Python Script adalah sebagai berikut:</p>
+<p>Node <strong>Python Script</strong> digunakan untuk membuat model <strong>Gaussian Naive Bayes</strong> menggunakan library <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Pada tahap ini, data dari KNIME diambil ke Python, kemudian diproses untuk training model, prediksi, dan menghasilkan probabilitas.</p>
+<p>Kode yang digunakan:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
@@ -521,15 +614,8 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 
-<span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;Age&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Tenure&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Usage Frequency&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Support Calls&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Payment Delay&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Total Spend&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Last Interaction&quot;</span>
-<span class="p">]</span>
+<span class="c1"># ambil semua fitur kecuali target dan ID</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="s2">&quot;CustomerID&quot;</span><span class="p">]]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">])</span>
 
@@ -551,8 +637,8 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 <span class="n">probability</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="p">,</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="s2">&quot;Prob_0&quot;</span><span class="p">:</span> <span class="n">probability</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="s2">&quot;Prob_1&quot;</span><span class="p">:</span> <span class="n">probability</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">})</span>
@@ -561,40 +647,40 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </pre></div>
 </div>
 <section id="penjelasan-kode">
-<h4>Penjelasan Kode<a class="headerlink" href="#penjelasan-kode" title="Link to this heading">#</a></h4>
-<p>Bagian pertama digunakan untuk memanggil library yang dibutuhkan.</p>
+<h4><strong>Penjelasan Kode</strong><a class="headerlink" href="#penjelasan-kode" title="Link to this heading">#</a></h4>
+<p>Bagian pertama digunakan untuk memanggil library yang diperlukan.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">knime.scripting.io</span></code> digunakan agar Python dapat mengambil data dari KNIME dan mengirim hasilnya kembali ke KNIME. Library <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk mengolah data dalam bentuk tabel. <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> digunakan untuk membagi data menjadi data latih dan data uji. <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> digunakan untuk membuat model Gaussian Naive Bayes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">knime.scripting.io</span></code> digunakan untuk mengambil data dari KNIME dan mengirim hasil kembali ke KNIME. <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk mengolah data berbentuk tabel. <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> digunakan untuk membagi data menjadi data training dan testing. <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> digunakan untuk membuat model Gaussian Naive Bayes.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Kode ini mengambil data dari input Python Script di KNIME. Data tersebut kemudian diubah menjadi DataFrame pandas agar lebih mudah diproses di Python.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;Age&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Tenure&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Usage Frequency&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Support Calls&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Payment Delay&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Total Spend&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Last Interaction&quot;</span>
-<span class="p">]</span>
+<p>Kode ini mengambil data dari input Python Script di KNIME, lalu mengubahnya menjadi DataFrame pandas agar dapat diproses dengan Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="s2">&quot;CustomerID&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<p>Bagian ini menentukan fitur yang digunakan untuk memprediksi churn. Fitur yang dipakai adalah data numerik yang dianggap berpengaruh terhadap kemungkinan pelanggan churn.</p>
+<p>Bagian ini digunakan untuk mengambil semua kolom sebagai fitur, kecuali <code class="docutils literal notranslate"><span class="pre">Churn</span></code> dan <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Churn</span></code> tidak digunakan sebagai fitur karena merupakan target yang ingin diprediksi. Sedangkan <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code> tidak digunakan karena hanya berfungsi sebagai identitas pelanggan dan tidak memiliki nilai prediktif.</p>
+<p>Cara ini digunakan karena setelah node One to Many, jumlah kolom bertambah. Jika kolom dipilih manual satu per satu, prosesnya kurang praktis dan rawan ada fitur yang terlewat.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Kode ini digunakan untuk menghapus baris yang masih memiliki nilai kosong pada fitur atau target. Walaupun missing value sudah ditangani di KNIME, baris ini tetap digunakan sebagai pengaman agar model tidak error.</p>
+<p>Kode ini digunakan untuk menghapus baris yang masih memiliki nilai kosong pada fitur atau target. Walaupun missing value sudah ditangani pada node KNIME, bagian ini tetap digunakan sebagai pengaman agar model tidak error.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">X</span></code> berisi fitur yang digunakan sebagai input model, sedangkan <code class="docutils literal notranslate"><span class="pre">y</span></code> berisi target yang akan diprediksi, yaitu kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">X</span></code> berisi fitur yang digunakan untuk perhitungan model.<br />
+<code class="docutils literal notranslate"><span class="pre">y</span></code> berisi target, yaitu kolom <code class="docutils literal notranslate"><span class="pre">Churn</span></code>.</p>
+<p>Dalam Naive Bayes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> = data input atau fitur</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> / <code class="docutils literal notranslate"><span class="pre">C</span></code> = kelas atau target yang diprediksi</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="n">X</span><span class="p">,</span>
     <span class="n">y</span><span class="p">,</span>
@@ -604,12 +690,18 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Kode ini membagi data menjadi data training dan testing. Data training digunakan untuk melatih model, sedangkan data testing digunakan untuk menguji hasil prediksi. Nilai <code class="docutils literal notranslate"><span class="pre">test_size=0.3</span></code> berarti 30% data digunakan sebagai data testing dan 70% sebagai data training. <code class="docutils literal notranslate"><span class="pre">random_state=42</span></code> digunakan agar hasil pembagian data tetap sama setiap kali dijalankan. <code class="docutils literal notranslate"><span class="pre">stratify=y</span></code> digunakan agar proporsi kelas <code class="docutils literal notranslate"><span class="pre">0</span></code> dan <code class="docutils literal notranslate"><span class="pre">1</span></code> tetap seimbang pada data training dan testing.</p>
+<p>Kode ini membagi data menjadi data training dan testing.</p>
+<ul class="simple">
+<li><p>70% data digunakan untuk training</p></li>
+<li><p>30% data digunakan untuk testing</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code> digunakan agar hasil pembagian data tetap sama setiap kali kode dijalankan.<br />
+<code class="docutils literal notranslate"><span class="pre">stratify=y</span></code> digunakan agar proporsi kelas <code class="docutils literal notranslate"><span class="pre">0</span></code> dan <code class="docutils literal notranslate"><span class="pre">1</span></code> tetap seimbang pada data training dan testing.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Bagian ini membuat model Gaussian Naive Bayes dan melatihnya menggunakan data training. Pada proses ini model mempelajari pola dari fitur pelanggan terhadap target <code class="docutils literal notranslate"><span class="pre">Churn</span></code>.</p>
+<p>Bagian ini membuat model Gaussian Naive Bayes dan melatih model menggunakan data training. Pada proses ini, model mempelajari pola dari fitur pelanggan terhadap target <code class="docutils literal notranslate"><span class="pre">Churn</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -617,7 +709,7 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">probability</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Kode ini digunakan untuk menghasilkan probabilitas setiap kelas. Output probabilitas ini menunjukkan seberapa besar peluang data masuk ke kelas <code class="docutils literal notranslate"><span class="pre">0</span></code> atau kelas <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>Kode ini digunakan untuk menghasilkan probabilitas setiap kelas. Probabilitas ini menunjukkan tingkat keyakinan model terhadap hasil prediksi.</p>
 <p>Contoh:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -638,34 +730,49 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </tbody>
 </table>
 </div>
-<p>Jika <code class="docutils literal notranslate"><span class="pre">Prob_1</span></code> lebih besar daripada <code class="docutils literal notranslate"><span class="pre">Prob_0</span></code>, maka model memprediksi kelas <code class="docutils literal notranslate"><span class="pre">1</span></code>. Sebaliknya, jika <code class="docutils literal notranslate"><span class="pre">Prob_0</span></code> lebih besar, maka model memprediksi kelas <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Jika <code class="docutils literal notranslate"><span class="pre">Prob_1</span></code> lebih besar dari <code class="docutils literal notranslate"><span class="pre">Prob_0</span></code>, maka model memprediksi kelas <code class="docutils literal notranslate"><span class="pre">1</span></code>. Jika <code class="docutils literal notranslate"><span class="pre">Prob_0</span></code> lebih besar, maka model memprediksi kelas <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="p">,</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="s2">&quot;Prob_0&quot;</span><span class="p">:</span> <span class="n">probability</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="s2">&quot;Prob_1&quot;</span><span class="p">:</span> <span class="n">probability</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Bagian ini membuat tabel hasil yang akan dikirim kembali ke KNIME. Kolom <code class="docutils literal notranslate"><span class="pre">Actual</span></code> berisi nilai asli dari dataset, kolom <code class="docutils literal notranslate"><span class="pre">Prediction</span></code> berisi hasil prediksi model, kolom <code class="docutils literal notranslate"><span class="pre">Prob_0</span></code> berisi probabilitas kelas 0, dan kolom <code class="docutils literal notranslate"><span class="pre">Prob_1</span></code> berisi probabilitas kelas 1.</p>
+<p>Bagian ini membuat tabel hasil yang akan dikirim kembali ke KNIME.</p>
+<p>Kolom output:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Actual</span></code> = nilai asli dari target <code class="docutils literal notranslate"><span class="pre">Churn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prediction</span></code> = hasil prediksi model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prob_0</span></code> = peluang data termasuk kelas 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prob_1</span></code> = peluang data termasuk kelas 1</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Actual</span></code> dan <code class="docutils literal notranslate"><span class="pre">Prediction</span></code> diubah menjadi string agar node Scorer membaca keduanya sebagai label kategori.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Kode terakhir ini digunakan untuk mengirim hasil dari Python kembali ke KNIME agar bisa diteruskan ke node <strong>Scorer</strong>.</p>
+<p>Kode terakhir ini mengirim hasil dari Python kembali ke KNIME agar bisa diteruskan ke node Scorer.</p>
 <p><strong>Hasil / Output :</strong></p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/K2y7WTgUzOswgegyow_6RvpHWIUpnHwSKGW4-Lt3kJg.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/2Vgo-bbd1AG2LaZYBMEsT5KtVBGeuJCFLdyrVrueGDE.original.fullsize.png" /></p>
 </section>
 </section>
 <section id="g-scorer">
 <h3>g. Scorer<a class="headerlink" href="#g-scorer" title="Link to this heading">#</a></h3>
-<p>Digunakan untuk mengevaluasi hasil prediksi.</p>
+<p>Node <strong>Scorer</strong> digunakan untuk mengevaluasi hasil prediksi model. Node ini membandingkan nilai asli dengan hasil prediksi.</p>
 <p>Setting:</p>
 <ul class="simple">
-<li><p>First column = Actual</p></li>
-<li><p>Second column = Prediction</p></li>
+<li><p>First column = <code class="docutils literal notranslate"><span class="pre">Actual</span></code></p></li>
+<li><p>Second column = <code class="docutils literal notranslate"><span class="pre">Prediction</span></code></p></li>
+</ul>
+<p>Dari node ini dapat dilihat hasil:</p>
+<ul class="simple">
+<li><p>Confusion Matrix</p></li>
+<li><p>Accuracy</p></li>
+<li><p>Precision</p></li>
+<li><p>Recall</p></li>
 </ul>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/QC1nY1_xPoD1DO92slYUnULXD49_o6M62AJqaxc8vG8.original.fullsize.png" /></p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/8w_d_xEazi-NJqFLNtejUEjJaNbsHV0C4O8grTuYagI.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/M84uqfD4PHZAuR3MfIPwNCtkOYdx0Cs6qd7S3YMaxCk.original.fullsize.png" /></p>
 </section>
 </section>
 <section id="hasil-model">
@@ -680,15 +787,15 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-even"><td><p>0</p></td>
 <td><p>1</p></td>
-<td><p>0.138</p></td>
-<td><p>0.862</p></td>
+<td><p>0.212</p></td>
+<td><p>0.788</p></td>
 </tr>
-<tr class="row-odd"><td><p>0</p></td>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>0</p></td>
-<td><p>0.905</p></td>
-<td><p>0.095</p></td>
+<td><p>0.739</p></td>
+<td><p>0.261</p></td>
 </tr>
 </tbody>
 </table>
@@ -706,12 +813,12 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0</p></td>
-<td><p>8108</p></td>
-<td><p>2057</p></td>
+<td><p>8386</p></td>
+<td><p>1779</p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
-<td><p>1342</p></td>
-<td><p>7806</p></td>
+<td><p>1384</p></td>
+<td><p>7764</p></td>
 </tr>
 </tbody>
 </table>
@@ -721,17 +828,16 @@ X' = \frac{X - X_{min}}{X_{max} - X_{min}}
 <h2>10. Perhitungan Evaluasi<a class="headerlink" href="#perhitungan-evaluasi" title="Link to this heading">#</a></h2>
 <p>Setelah model selesai melakukan prediksi, langkah berikutnya adalah mengevaluasi seberapa baik performa model tersebut. Evaluasi ini penting karena kita ingin mengetahui apakah model benar-benar bisa memprediksi churn dengan baik, bukan sekadar menghasilkan angka saja.</p>
 <p>Untuk itu digunakan beberapa metrik evaluasi, yaitu <strong>Accuracy, Precision, dan Recall</strong>. Masing-masing memiliki fungsi yang berbeda dan tidak bisa hanya melihat satu saja.</p>
-<hr class="docutils" />
 <section id="accuracy">
 <h3>10.1 Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(
 Accuracy = \frac{TP + TN}{Total}
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-= \frac{7806 + 8108}{19313}
-= 0.824
+= \frac{8386 + 7764}{19313}
+= 0.836
 \)</span></p>
-<p>≈ 82.4%</p>
+<p>≈ 83.6%</p>
 <p><strong>Penjelasan:</strong></p>
 <p>Accuracy digunakan untuk mengukur seberapa banyak prediksi yang benar dibandingkan dengan seluruh data yang diuji. Dengan kata lain, accuracy menunjukkan tingkat ketepatan model secara keseluruhan.</p>
 <p>Pada hasil di atas, nilai accuracy sebesar 82.4% berarti dari seluruh data testing, sekitar 82% berhasil diprediksi dengan benar oleh model.</p>
@@ -750,13 +856,13 @@ Accuracy = \frac{TP + TN}{Total}
 Precision = \frac{TP}{TP + FP}
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-= \frac{7806}{7806 + 2057}
-= 0.791
+= \frac{8386}{8386 + 1779}
+= 0.824
 \)</span></p>
 <p><strong>Penjelasan:</strong></p>
 <p>Precision digunakan untuk mengukur seberapa tepat prediksi model ketika mengatakan suatu pelanggan akan churn.</p>
 <p>Artinya, dari semua data yang diprediksi sebagai churn, berapa banyak yang benar-benar churn.</p>
-<p>Nilai precision sebesar 0.791 berarti sekitar 79.1% dari pelanggan yang diprediksi churn memang benar-benar churn.</p>
+<p>Nilai precision sebesar 0.824 berarti sekitar 82.4% dari pelanggan yang diprediksi churn memang benar-benar churn.</p>
 <p><strong>Kegunaan:</strong></p>
 <ul class="simple">
 <li><p>Penting ketika kesalahan prediksi churn (false positive) harus diminimalkan</p></li>
@@ -772,13 +878,13 @@ Kalau precision rendah, banyak pelanggan yang sebenarnya tidak churn malah diber
 Recall = \frac{TP}{TP + FN}
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-= \frac{7806}{7806 + 1342}
-= 0.853
+= \frac{8386}{8386 + 1384}
+= 0.858
 \)</span></p>
 <p><strong>Penjelasan:</strong></p>
 <p>Recall digunakan untuk mengukur kemampuan model dalam menemukan semua pelanggan yang benar-benar churn.</p>
 <p>Artinya, dari seluruh pelanggan yang memang churn, berapa banyak yang berhasil terdeteksi oleh model.</p>
-<p>Nilai recall sebesar 0.853 berarti sekitar 85.3% pelanggan yang churn berhasil dikenali oleh model.</p>
+<p>Nilai recall sebesar 0.858 berarti sekitar 85.8% pelanggan yang churn berhasil dikenali oleh model.</p>
 <p><strong>Kegunaan:</strong></p>
 <ul class="simple">
 <li><p>Penting ketika ingin menangkap sebanyak mungkin kasus churn</p></li>
@@ -875,18 +981,20 @@ Kalau recall rendah, banyak pelanggan yang sebenarnya churn tetapi tidak terdete
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">4. Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">5. Preprocessing Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">5.1 Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi">5.2 Normalisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">5.2 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-to-many-encoding">5.3 One to Many (Encoding)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi">5.4 Normalisasi</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">6. Workflow KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node">7. Penjelasan Node</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-csv-reader">a. CSV Reader</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-missing-value">b. Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-color-manager">c. Color Manager</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-number-to-string">d. Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-number-to-string">c. Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-one-to-many">d. One to Many</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-normalizer">e. Normalizer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-python-script">f. Python Script</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode">Penjelasan Kode</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode"><strong>Penjelasan Kode</strong></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-scorer">g. Scorer</a></li>
