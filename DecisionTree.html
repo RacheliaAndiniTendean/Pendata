@@ -408,20 +408,16 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Dataset yang Digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ss-1-screenshot-workflow-knime-wajib">[SS-1] Screenshot Workflow KNIME WAJIB</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Workflow pada KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-knime">Penjelasan Node pada KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">Table Partitioner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-manager">Color Manager</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender">Color Appender</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">Scorer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">Model Writer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-manager">3. Color Manager</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender">4. Color Appender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">5. Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">6. Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">7. Scorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">8. Model Writer</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-decision-tree">Hasil Decision Tree</a></li>
@@ -748,9 +744,6 @@ Tidak_Dibatalkan
 </section>
 <section id="workflow-pada-knime">
 <h2>Workflow pada KNIME<a class="headerlink" href="#workflow-pada-knime" title="Link to this heading">#</a></h2>
-<section id="ss-1-screenshot-workflow-knime-wajib">
-<h3>[SS-1] Screenshot Workflow KNIME WAJIB<a class="headerlink" href="#ss-1-screenshot-workflow-knime-wajib" title="Link to this heading">#</a></h3>
-<p>Masukkan screenshot workflow KNIME lengkap di bagian ini.</p>
 <p>Node yang digunakan:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV Reader
 Table Partitioner
@@ -762,22 +755,6 @@ Scorer
 Model Writer
 </pre></div>
 </div>
-<p>Screenshot ini diperlukan untuk menunjukkan alur kerja analisis data dari proses membaca dataset sampai evaluasi model.</p>
-</section>
-</section>
-<section id="id6">
-<h2>Workflow pada KNIME<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>Node yang digunakan:</p>
-<ul class="simple">
-<li><p>CSV Reader</p></li>
-<li><p>Table Partitioner</p></li>
-<li><p>Color Manager</p></li>
-<li><p>Color Appender</p></li>
-<li><p>Decision Tree Learner</p></li>
-<li><p>Decision Tree Predictor</p></li>
-<li><p>Scorer</p></li>
-<li><p>Model Writer</p></li>
-</ul>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/Q67decuZZT8VGIED7RQhNj5BvYG6uSNvgNtkTTOdljE.original.fullsize.png" /></p>
 </section>
 <section id="penjelasan-node-pada-knime">
@@ -794,7 +771,7 @@ Model Writer
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/qPjU6-tPSGaXWHObq-orDudn4jCubvUS_DpIk1VCXrg.original.fullsize.png" /></p>
 </section>
 <section id="table-partitioner">
-<h3>Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
+<h3>2. Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
 <p>Node Table Partitioner digunakan untuk membagi data menjadi:</p>
 <ul class="simple">
 <li><p>data training,</p></li>
@@ -816,7 +793,7 @@ Model Writer
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/-HQdicVxWg6m82dEF9p0dadgThc4NMFAnTFWVqkZ9b8.original.fullsize.png" /></p>
 </section>
 <section id="color-manager">
-<h3>Color Manager<a class="headerlink" href="#color-manager" title="Link to this heading">#</a></h3>
+<h3>3. Color Manager<a class="headerlink" href="#color-manager" title="Link to this heading">#</a></h3>
 <p>Node Color Manager digunakan untuk memberikan warna pada class target.</p>
 <p>Contoh:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Dibatalkan = merah
@@ -828,12 +805,12 @@ Tidak_Dibatalkan = hijau
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/zdHrXUfEnTtHDzvve1rsuE6kWa5VDmLvEGRFjm-O_ow.original.fullsize.png" /></p>
 </section>
 <section id="color-appender">
-<h3>Color Appender<a class="headerlink" href="#color-appender" title="Link to this heading">#</a></h3>
+<h3>4. Color Appender<a class="headerlink" href="#color-appender" title="Link to this heading">#</a></h3>
 <p>Node Color Appender digunakan untuk menerapkan warna pada data sehingga visualisasi Decision Tree menjadi lebih jelas.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/URtRxYc888KywglLwo4m4hqZyy6Ni60KpykbPMATfes.original.fullsize.png" /></p>
 </section>
 <section id="decision-tree-learner">
-<h3>Decision Tree Learner<a class="headerlink" href="#decision-tree-learner" title="Link to this heading">#</a></h3>
+<h3>5. Decision Tree Learner<a class="headerlink" href="#decision-tree-learner" title="Link to this heading">#</a></h3>
 <p>Node Decision Tree Learner digunakan untuk membangun model Decision Tree.</p>
 <p>Konfigurasi yang digunakan:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Quality Measure = Gain Ratio
@@ -859,7 +836,7 @@ Minimum number of records per node = 10
 </section>
 <hr class="docutils" />
 <section id="decision-tree-predictor">
-<h3>Decision Tree Predictor<a class="headerlink" href="#decision-tree-predictor" title="Link to this heading">#</a></h3>
+<h3>6. Decision Tree Predictor<a class="headerlink" href="#decision-tree-predictor" title="Link to this heading">#</a></h3>
 <p>Node Decision Tree Learner digunakan untuk membangun model Decision Tree.</p>
 <p>Konfigurasi yang digunakan:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Quality Measure = Gain Ratio
@@ -882,7 +859,7 @@ Minimum number of records per node = 10
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/3Qk2WhrgTfC0dv-UPmViPMscyz7G9kQHFbgMPTAgVEk.original.fullsize.png" /></p>
 </section>
 <section id="scorer">
-<h3>Scorer<a class="headerlink" href="#scorer" title="Link to this heading">#</a></h3>
+<h3>7. Scorer<a class="headerlink" href="#scorer" title="Link to this heading">#</a></h3>
 <p>Node Scorer digunakan untuk mengevaluasi hasil prediksi model.</p>
 <p>Output:</p>
 <ul class="simple">
@@ -893,7 +870,7 @@ Minimum number of records per node = 10
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/h-ipfIZ6kqQfsKIWOmgPw0pup059I1V4F9ydH6i-P1A.original.fullsize.png" /></p>
 </section>
 <section id="model-writer">
-<h3>Model Writer<a class="headerlink" href="#model-writer" title="Link to this heading">#</a></h3>
+<h3>8. Model Writer<a class="headerlink" href="#model-writer" title="Link to this heading">#</a></h3>
 <p>Node Model Writer digunakan untuk menyimpan model Decision Tree agar dapat digunakan kembali tanpa training ulang.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/QnqNBxb8i6srWy62OKG8IfsBCwcLpPJqKtNkz4j0L-A.original.fullsize.png" /></p>
 </section>
@@ -1093,20 +1070,16 @@ Accuracy \approx 74\%
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Dataset yang Digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ss-1-screenshot-workflow-knime-wajib">[SS-1] Screenshot Workflow KNIME WAJIB</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Workflow pada KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-knime">Penjelasan Node pada KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">Table Partitioner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-manager">Color Manager</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender">Color Appender</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">Decision Tree Learner</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">Decision Tree Predictor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">Scorer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">Model Writer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">2. Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-manager">3. Color Manager</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-appender">4. Color Appender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-learner">5. Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-predictor">6. Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer">7. Scorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-writer">8. Model Writer</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-decision-tree">Hasil Decision Tree</a></li>
