@@ -375,8 +375,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-decision-tree">Konsep Dasar Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-decision-tree">Struktur Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Struktur Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-decision-tree">Struktur Decision Tree</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#root-node">Root Node</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-node">Internal Node</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-atau-cabang">Branch atau Cabang</a></li>
@@ -396,18 +395,18 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Dataset yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Dataset yang Digunakan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-knime">Penjelasan Node pada KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
@@ -465,9 +464,6 @@
 </section>
 <section id="struktur-decision-tree">
 <h2>Struktur Decision Tree<a class="headerlink" href="#struktur-decision-tree" title="Link to this heading">#</a></h2>
-</section>
-<section id="id1">
-<h2>Struktur Decision Tree<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <section id="root-node">
 <h3>Root Node<a class="headerlink" href="#root-node" title="Link to this heading">#</a></h3>
 <p>Root node adalah node pertama atau akar pohon keputusan.</p>
@@ -645,8 +641,8 @@ Gain(S,A)=Entropy(S)-\sum_{v \in Values(A)} \frac{|S_v|}{|S|}Entropy(S_v)
 <li><p><span class="math notranslate nohighlight">\(|S|\)</span> adalah jumlah seluruh data.</p></li>
 <li><p><span class="math notranslate nohighlight">\(Entropy(S_v)\)</span> adalah entropy pada subset data setelah dibagi berdasarkan nilai atribut.</p></li>
 </ul>
-<section id="id2">
-<h3>Penjelasan<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>Penjelasan<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Information Gain menghitung seberapa besar atribut dapat mengurangi ketidakpastian data.</p>
 <p>Jika suatu atribut mampu membagi data menjadi kelompok yang lebih murni, maka nilai Information Gain akan tinggi.</p>
 <p>Contoh:</p>
@@ -670,8 +666,8 @@ SplitInfo(A)= - \sum_{i=1}^{n} \frac{|S_i|}{|S|}\log_2\left(\frac{|S_i|}{|S|}\ri
 <li><p><span class="math notranslate nohighlight">\(|S|\)</span> adalah jumlah seluruh data.</p></li>
 <li><p><span class="math notranslate nohighlight">\(n\)</span> adalah jumlah cabang atau jumlah nilai pada atribut tersebut.</p></li>
 </ul>
-<section id="id3">
-<h3>Penjelasan<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Penjelasan<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Split Information digunakan untuk menghitung penyebaran data pada setiap cabang.</p>
 <p>Jika suatu atribut membagi data ke dalam banyak cabang kecil, maka nilai Split Information akan memengaruhi hasil Gain Ratio.</p>
 <p>Tujuannya adalah agar atribut dengan kategori terlalu banyak tidak langsung dianggap paling baik hanya karena menghasilkan banyak pembagian.</p>
@@ -692,16 +688,16 @@ GainRatio(A)=\frac{Gain(S,A)}{SplitInfo(A)}
 <li><p><span class="math notranslate nohighlight">\(SplitInfo(A)\)</span> adalah nilai Split Information dari atribut <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(GainRatio(A)\)</span> adalah nilai akhir yang digunakan untuk menentukan atribut terbaik.</p></li>
 </ul>
-<section id="id4">
-<h3>Penjelasan<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Penjelasan<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>Atribut dengan nilai Gain Ratio terbesar akan dipilih sebagai node pada Decision Tree.</p>
 <p>Gain Ratio dianggap lebih baik dibandingkan Information Gain karena tidak hanya memperhatikan hasil pembagian data, tetapi juga mempertimbangkan penyebaran data pada setiap cabang yang terbentuk.</p>
 <p>Pada penelitian ini, metode Gain Ratio digunakan karena sesuai untuk membangun model Decision Tree pada data kategorikal.</p>
 <p>Pada node Decision Tree Learner di KNIME, proses perhitungan Entropy, Information Gain, Split Information, dan Gain Ratio dilakukan secara otomatis oleh sistem untuk menentukan atribut terbaik dalam pembentukan pohon keputusan.</p>
 </section>
 </section>
-<section id="id5">
-<h2>Dataset yang Digunakan<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2>Dataset yang Digunakan<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>Dataset yang digunakan adalah dataset reservasi hotel. Dataset ini berisi data pelanggan yang melakukan pemesanan hotel.</p>
 <p>Beberapa atribut yang digunakan pada penelitian ini adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -1037,8 +1033,7 @@ Accuracy \approx 74\%
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-decision-tree">Konsep Dasar Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-decision-tree">Struktur Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Struktur Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-decision-tree">Struktur Decision Tree</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#root-node">Root Node</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-node">Internal Node</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-atau-cabang">Branch atau Cabang</a></li>
@@ -1058,18 +1053,18 @@ Accuracy \approx 74\%
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information Gain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">Split Information</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">Gain Ratio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Dataset yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Dataset yang Digunakan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-pada-knime">Workflow pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-knime">Penjelasan Node pada KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">1. CSV Reader</a></li>
