@@ -833,25 +833,11 @@ Minimum number of records per node = 10
 <hr class="docutils" />
 <section id="decision-tree-predictor">
 <h3>6. Decision Tree Predictor<a class="headerlink" href="#decision-tree-predictor" title="Link to this heading">#</a></h3>
-<p>Node Decision Tree Learner digunakan untuk membangun model Decision Tree.</p>
-<p>Konfigurasi yang digunakan:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Quality Measure = Gain Ratio
-Minimum number of records per node = 10
+<p>Node Decision Tree Predictor digunakan untuk melakukan prediksi pada data testing menggunakan model yang sudah dibuat.</p>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prediction(status_booking)
 </pre></div>
 </div>
-<p>Penjelasan:</p>
-<ul class="simple">
-<li><p>Gain Ratio digunakan untuk memilih atribut terbaik.</p></li>
-<li><p>Minimum records per node digunakan agar pohon tidak terlalu besar.</p></li>
-</ul>
-<p>Jika nilai minimum terlalu kecil:</p>
-<ul class="simple">
-<li><p>pohon menjadi kompleks.</p></li>
-</ul>
-<p>Jika terlalu besar:</p>
-<ul class="simple">
-<li><p>pohon menjadi terlalu sederhana.</p></li>
-</ul>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/3Qk2WhrgTfC0dv-UPmViPMscyz7G9kQHFbgMPTAgVEk.original.fullsize.png" /></p>
 </section>
 <section id="scorer">
