@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Pendahuluan &#8212; Penambangan Data</title>
+    <title>Analisa Data Menggunakan Random Forest untuk Prediksi Revenue pada Dataset Online Shoppers &#8212; Penambangan Data</title>
   
   
   
@@ -181,15 +181,7 @@
 <li class="toctree-l1"><a class="reference internal" href="UTS_analisis_knn.html">UTS-Analisa Data Kesuburan Tanah</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NaiveBayes.html">Analisis Data Menggunakan Naive Bayes (KNIME + Python)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DecisionTree.html">Analisa Data Menggunakan Pohon Keputusan (Decision Tree)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Pendahuluan</a></li>
-
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisa Data Menggunakan Random Forest untuk Prediksi Revenue pada Dataset Online Shoppers</a></li>
 </ul>
 
     </div>
@@ -372,7 +364,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. Pendahuluan</h1>
+    <h1>Analisa Data Menggunakan Random Forest untuk Prediksi Revenue pada Dataset Online Shoppers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,107 +374,108 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Pendahuluan</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -493,8 +486,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pendahuluan">
-<h1>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisa-data-menggunakan-random-forest-untuk-prediksi-revenue-pada-dataset-online-shoppers">
+<h1>Analisa Data Menggunakan Random Forest untuk Prediksi Revenue pada Dataset Online Shoppers<a class="headerlink" href="#analisa-data-menggunakan-random-forest-untuk-prediksi-revenue-pada-dataset-online-shoppers" title="Link to this heading">#</a></h1>
+<section id="pendahuluan">
+<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
 <p>Pada tugas ini dilakukan analisis perbandingan antara algoritma klasifikasi <strong>Decision Tree</strong> dan <strong>Random Forest</strong> menggunakan aplikasi KNIME serta Python Script Legacy.</p>
 <p>Dataset yang digunakan adalah <strong>Online Shoppers Purchasing Intention Dataset</strong>. Dataset ini berisi data aktivitas pengunjung pada website e-commerce, seperti jumlah halaman yang dibuka, lama kunjungan, browser yang digunakan, jenis visitor, traffic website, hingga informasi apakah pengunjung melakukan transaksi pembelian atau tidak.</p>
 <p>Target klasifikasi yang digunakan adalah:</p>
@@ -514,11 +509,11 @@ FALSE = pengunjung tidak melakukan pembelian
 <li><p>Mengevaluasi hasil prediksi menggunakan confusion matrix</p></li>
 </ol>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="deskripsi-dataset">
-<h1>2. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h1>
+<section id="deskripsi-dataset">
+<h2>2. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h2>
 <p>Dataset terdiri dari atribut numerik dan atribut kategorikal.</p>
 <section id="atribut-numerik">
-<h2>2.1 Atribut Numerik<a class="headerlink" href="#atribut-numerik" title="Link to this heading">#</a></h2>
+<h3>2.1 Atribut Numerik<a class="headerlink" href="#atribut-numerik" title="Link to this heading">#</a></h3>
 <p>Atribut numerik yang digunakan antara lain:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Administrative
 Administrative_Duration
@@ -533,27 +528,27 @@ SpecialDay
 </pre></div>
 </div>
 <section id="a-administrative">
-<h3>a. Administrative<a class="headerlink" href="#a-administrative" title="Link to this heading">#</a></h3>
+<h4>a. Administrative<a class="headerlink" href="#a-administrative" title="Link to this heading">#</a></h4>
 <p>Jumlah halaman administratif yang dibuka pengunjung.</p>
 </section>
 <section id="b-administrative-duration">
-<h3>b. Administrative_Duration<a class="headerlink" href="#b-administrative-duration" title="Link to this heading">#</a></h3>
+<h4>b. Administrative_Duration<a class="headerlink" href="#b-administrative-duration" title="Link to this heading">#</a></h4>
 <p>Total waktu yang dihabiskan pada halaman administratif.</p>
 </section>
 <section id="c-informational">
-<h3>c. Informational<a class="headerlink" href="#c-informational" title="Link to this heading">#</a></h3>
+<h4>c. Informational<a class="headerlink" href="#c-informational" title="Link to this heading">#</a></h4>
 <p>Jumlah halaman informasi yang dibuka.</p>
 </section>
 <section id="d-informational-duration">
-<h3>d. Informational_Duration<a class="headerlink" href="#d-informational-duration" title="Link to this heading">#</a></h3>
+<h4>d. Informational_Duration<a class="headerlink" href="#d-informational-duration" title="Link to this heading">#</a></h4>
 <p>Total waktu pada halaman informasi.</p>
 </section>
 <section id="e-productrelated">
-<h3>e. ProductRelated<a class="headerlink" href="#e-productrelated" title="Link to this heading">#</a></h3>
+<h4>e. ProductRelated<a class="headerlink" href="#e-productrelated" title="Link to this heading">#</a></h4>
 <p>Jumlah halaman produk yang dibuka pengunjung.</p>
 </section>
 <section id="f-productrelated-duration">
-<h3>f. ProductRelated_Duration<a class="headerlink" href="#f-productrelated-duration" title="Link to this heading">#</a></h3>
+<h4>f. ProductRelated_Duration<a class="headerlink" href="#f-productrelated-duration" title="Link to this heading">#</a></h4>
 <p>Durasi waktu yang dihabiskan pada halaman produk.</p>
 <p>Contoh:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ProductRelated = 10
@@ -563,19 +558,19 @@ ProductRelated_Duration = 627.5
 <p>Artinya pengunjung membuka 10 halaman produk dan menghabiskan waktu sekitar 627.5 detik.</p>
 </section>
 <section id="g-bouncerates">
-<h3>g. BounceRates<a class="headerlink" href="#g-bouncerates" title="Link to this heading">#</a></h3>
+<h4>g. BounceRates<a class="headerlink" href="#g-bouncerates" title="Link to this heading">#</a></h4>
 <p>Persentase pengunjung yang langsung keluar dari situs tanpa melakukan interaksi lain.</p>
 </section>
 <section id="h-exitrates">
-<h3>h. ExitRates<a class="headerlink" href="#h-exitrates" title="Link to this heading">#</a></h3>
+<h4>h. ExitRates<a class="headerlink" href="#h-exitrates" title="Link to this heading">#</a></h4>
 <p>Persentase halaman yang menjadi halaman terakhir sebelum pengunjung keluar.</p>
 </section>
 <section id="i-pagevalues">
-<h3>i. PageValues<a class="headerlink" href="#i-pagevalues" title="Link to this heading">#</a></h3>
+<h4>i. PageValues<a class="headerlink" href="#i-pagevalues" title="Link to this heading">#</a></h4>
 <p>Nilai rata-rata halaman sebelum terjadi transaksi pembelian.</p>
 </section>
 <section id="j-specialday">
-<h3>j. SpecialDay<a class="headerlink" href="#j-specialday" title="Link to this heading">#</a></h3>
+<h4>j. SpecialDay<a class="headerlink" href="#j-specialday" title="Link to this heading">#</a></h4>
 <p>Menunjukkan kedekatan kunjungan dengan hari spesial tertentu seperti:</p>
 <ul class="simple">
 <li><p>Valentine</p></li>
@@ -585,7 +580,7 @@ ProductRelated_Duration = 627.5
 </section>
 </section>
 <section id="atribut-kategorikal">
-<h2>2.2 Atribut Kategorikal<a class="headerlink" href="#atribut-kategorikal" title="Link to this heading">#</a></h2>
+<h3>2.2 Atribut Kategorikal<a class="headerlink" href="#atribut-kategorikal" title="Link to this heading">#</a></h3>
 <p>Atribut kategorikal yang digunakan:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Month
 OperatingSystems
@@ -597,27 +592,27 @@ Weekend
 </pre></div>
 </div>
 <section id="a-month">
-<h3>a. Month<a class="headerlink" href="#a-month" title="Link to this heading">#</a></h3>
+<h4>a. Month<a class="headerlink" href="#a-month" title="Link to this heading">#</a></h4>
 <p>Bulan kunjungan pengguna.</p>
 </section>
 <section id="b-operatingsystems">
-<h3>b. OperatingSystems<a class="headerlink" href="#b-operatingsystems" title="Link to this heading">#</a></h3>
+<h4>b. OperatingSystems<a class="headerlink" href="#b-operatingsystems" title="Link to this heading">#</a></h4>
 <p>Sistem operasi yang digunakan pengguna.</p>
 </section>
 <section id="c-browser">
-<h3>c. Browser<a class="headerlink" href="#c-browser" title="Link to this heading">#</a></h3>
+<h4>c. Browser<a class="headerlink" href="#c-browser" title="Link to this heading">#</a></h4>
 <p>Browser yang digunakan pengguna saat mengakses situs.</p>
 </section>
 <section id="d-region">
-<h3>d. Region<a class="headerlink" href="#d-region" title="Link to this heading">#</a></h3>
+<h4>d. Region<a class="headerlink" href="#d-region" title="Link to this heading">#</a></h4>
 <p>Wilayah asal pengguna.</p>
 </section>
 <section id="e-traffictype">
-<h3>e. TrafficType<a class="headerlink" href="#e-traffictype" title="Link to this heading">#</a></h3>
+<h4>e. TrafficType<a class="headerlink" href="#e-traffictype" title="Link to this heading">#</a></h4>
 <p>Jenis sumber traffic pengunjung.</p>
 </section>
 <section id="f-visitortype">
-<h3>f. VisitorType<a class="headerlink" href="#f-visitortype" title="Link to this heading">#</a></h3>
+<h4>f. VisitorType<a class="headerlink" href="#f-visitortype" title="Link to this heading">#</a></h4>
 <p>Jenis pengunjung yang mengakses situs.</p>
 <p>Kategori visitor terdiri dari:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Returning Visitor
@@ -626,13 +621,13 @@ New Visitor
 </div>
 </section>
 <section id="g-weekend">
-<h3>g. Weekend<a class="headerlink" href="#g-weekend" title="Link to this heading">#</a></h3>
+<h4>g. Weekend<a class="headerlink" href="#g-weekend" title="Link to this heading">#</a></h4>
 <p>Menunjukkan apakah kunjungan dilakukan saat akhir pekan atau tidak.</p>
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="workflow-knime">
-<h1>3. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h1>
+<section id="workflow-knime">
+<h2>3. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
 <p>Pada workflow ini digunakan beberapa node utama untuk membangun model klasifikasi menggunakan algoritma <strong>Decision Tree</strong> dan <strong>Random Forest</strong>. Setiap node memiliki fungsi yang berbeda, mulai dari membaca dataset, membagi data, melakukan training model, melakukan testing, sampai mengevaluasi hasil prediksi.</p>
 <p>Workflow yang digunakan secara umum adalah:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV Reader
@@ -646,11 +641,11 @@ Table Partitioner
 </div>
 <p><img alt="" src="https://cdn.corenexis.com/files/c/4199188720.png" /></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-node-pada-workflow-knime">
-<h1>4. Penjelasan Node pada Workflow KNIME<a class="headerlink" href="#penjelasan-node-pada-workflow-knime" title="Link to this heading">#</a></h1>
+<section id="penjelasan-node-pada-workflow-knime">
+<h2>4. Penjelasan Node pada Workflow KNIME<a class="headerlink" href="#penjelasan-node-pada-workflow-knime" title="Link to this heading">#</a></h2>
 <p>Pada workflow ini digunakan beberapa node utama untuk membangun model klasifikasi menggunakan algoritma Decision Tree dan Random Forest. Setiap node memiliki fungsi yang berbeda dalam proses preprocessing, training, testing, hingga evaluasi model.</p>
 <section id="csv-reader">
-<h2>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h2>
+<h3>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h3>
 <p>Node <strong>CSV Reader</strong> digunakan untuk membaca dataset <strong>Online Shoppers Purchasing Intention</strong> yang berbentuk file <code class="docutils literal notranslate"><span class="pre">.csv</span></code>.</p>
 <p>Pada tahap ini, seluruh data dimasukkan ke dalam workflow KNIME agar bisa diproses pada tahap berikutnya.</p>
 <p>Beberapa hal yang perlu diperhatikan pada node ini adalah:</p>
@@ -666,7 +661,7 @@ Table Partitioner
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/aYKg0BzOplYM-xULq-6VpFbyW3pzYINYVKUC0SHEQ7o.original.fullsize.png" /></p>
 </section>
 <section id="table-partitioner">
-<h2>4.2 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h2>
+<h3>4.2 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
 <p>Node <strong>Table Partitioner</strong> digunakan untuk membagi dataset menjadi data training dan data testing.</p>
 <p>Pada workflow ini, data dibagi menjadi:</p>
 <div class="math notranslate nohighlight">
@@ -689,7 +684,7 @@ Second Partition = data testing
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/1zSXS1pO-3irI7ooLI-E3aJmy48gd9oD6ssOzvJBjiw.original.fullsize.png" /></p>
 </section>
 <section id="node-decision-tree">
-<h2>4.3 Node Decision Tree<a class="headerlink" href="#node-decision-tree" title="Link to this heading">#</a></h2>
+<h3>4.3 Node Decision Tree<a class="headerlink" href="#node-decision-tree" title="Link to this heading">#</a></h3>
 <p>Bagian Decision Tree digunakan untuk membangun model klasifikasi dengan algoritma Decision Tree.</p>
 <p>Pada bagian ini terdapat tiga node utama:</p>
 <ol class="arabic simple">
@@ -699,7 +694,7 @@ Second Partition = data testing
 </ol>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/myvzC6eY9epguMHLXi4uuaKLDYZHbBP01tPKDwCfdpk.original.fullsize.png" /></p>
 <section id="python-script-training-decision-tree">
-<h3>4.3.1 Python Script Training Decision Tree<a class="headerlink" href="#python-script-training-decision-tree" title="Link to this heading">#</a></h3>
+<h4>4.3.1 Python Script Training Decision Tree<a class="headerlink" href="#python-script-training-decision-tree" title="Link to this heading">#</a></h4>
 <p>Node <strong>Python Script Training Decision Tree</strong> digunakan untuk melatih model Decision Tree menggunakan data training dari Table Partitioner.</p>
 <p>Pada node ini, data training dari KNIME diambil ke Python, kemudian dilakukan preprocessing, pembuatan model, training, dan penyimpanan model menggunakan <code class="docutils literal notranslate"><span class="pre">pickle</span></code>.</p>
 <p>Kode lengkap yang digunakan:</p>
@@ -825,7 +820,7 @@ Second Partition = data testing
 </pre></div>
 </div>
 <section id="penjelasan-kode-python-training-decision-tree">
-<h4>Penjelasan Kode Python Training Decision Tree<a class="headerlink" href="#penjelasan-kode-python-training-decision-tree" title="Link to this heading">#</a></h4>
+<h5>Penjelasan Kode Python Training Decision Tree<a class="headerlink" href="#penjelasan-kode-python-training-decision-tree" title="Link to this heading">#</a></h5>
 <p>Bagian pertama digunakan untuk memanggil library yang dibutuhkan.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -1015,7 +1010,7 @@ Gini = 1 - \sum (p_i)^2
 </section>
 </section>
 <section id="python-script-testing-decision-tree">
-<h3>4.3.2 Python Script Testing Decision Tree<a class="headerlink" href="#python-script-testing-decision-tree" title="Link to this heading">#</a></h3>
+<h4>4.3.2 Python Script Testing Decision Tree<a class="headerlink" href="#python-script-testing-decision-tree" title="Link to this heading">#</a></h4>
 <p>Node <strong>Python Script Testing Decision Tree</strong> digunakan untuk memanggil model Decision Tree yang sudah disimpan, lalu melakukan prediksi pada data testing.</p>
 <p>Kode lengkap yang digunakan:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1092,7 +1087,7 @@ Gini = 1 - \sum (p_i)^2
 </pre></div>
 </div>
 <section id="penjelasan-kode-python-testing-decision-tree">
-<h4>Penjelasan Kode Python Testing Decision Tree<a class="headerlink" href="#penjelasan-kode-python-testing-decision-tree" title="Link to this heading">#</a></h4>
+<h5>Penjelasan Kode Python Testing Decision Tree<a class="headerlink" href="#penjelasan-kode-python-testing-decision-tree" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1191,7 +1186,7 @@ Prediction = hasil prediksi model
 </section>
 </section>
 <section id="scorer-decision-tree">
-<h3>4.3.3 Scorer Decision Tree<a class="headerlink" href="#scorer-decision-tree" title="Link to this heading">#</a></h3>
+<h4>4.3.3 Scorer Decision Tree<a class="headerlink" href="#scorer-decision-tree" title="Link to this heading">#</a></h4>
 <p>Node <strong>Scorer Decision Tree</strong> digunakan untuk mengevaluasi hasil prediksi model Decision Tree.</p>
 <p>Pada node ini, kolom yang dibandingkan adalah:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
@@ -1210,7 +1205,7 @@ Predicted column  = Prediction
 </section>
 </section>
 <section id="node-random-forest">
-<h2>4.4 Node Random Forest<a class="headerlink" href="#node-random-forest" title="Link to this heading">#</a></h2>
+<h3>4.4 Node Random Forest<a class="headerlink" href="#node-random-forest" title="Link to this heading">#</a></h3>
 <p>Bagian Random Forest digunakan untuk membangun model klasifikasi menggunakan algoritma Random Forest.</p>
 <p>Random Forest yang digunakan pada workflow ini terdiri dari:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>50 decision trees
@@ -1223,9 +1218,8 @@ Predicted column  = Prediction
 <li><p>Scorer Random Forest</p></li>
 </ol>
 <p><img alt="" src="https://cdn.corenexis.com/files/c/2717285720.png" /></p>
-</section>
 <section id="python-script-training-random-forest">
-<h2>4.4.1 Python Script Training Random Forest<a class="headerlink" href="#python-script-training-random-forest" title="Link to this heading">#</a></h2>
+<h4>4.4.1 Python Script Training Random Forest<a class="headerlink" href="#python-script-training-random-forest" title="Link to this heading">#</a></h4>
 <p>Node <strong>Python Script Training Random Forest</strong> digunakan untuk melatih model Random Forest menggunakan data training dari Table Partitioner.</p>
 <p>Kode lengkap yang digunakan:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1353,7 +1347,7 @@ Predicted column  = Prediction
 </pre></div>
 </div>
 <section id="penjelasan-kode-python-training-random-forest">
-<h3>Penjelasan Kode Python Training Random Forest<a class="headerlink" href="#penjelasan-kode-python-training-random-forest" title="Link to this heading">#</a></h3>
+<h5>Penjelasan Kode Python Training Random Forest<a class="headerlink" href="#penjelasan-kode-python-training-random-forest" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
@@ -1595,8 +1589,9 @@ y_train = target output
 </ul>
 <p><img alt="" src="https://cdn.corenexis.com/files/c/7677629720.png" /></p>
 </section>
+</section>
 <section id="python-script-testing-random-forest">
-<h3>4.4.2 Python Script Testing Random Forest<a class="headerlink" href="#python-script-testing-random-forest" title="Link to this heading">#</a></h3>
+<h4>4.4.2 Python Script Testing Random Forest<a class="headerlink" href="#python-script-testing-random-forest" title="Link to this heading">#</a></h4>
 <p>Node <strong>Python Script Testing Random Forest</strong> digunakan untuk memanggil model Random Forest yang sudah disimpan, lalu melakukan prediksi pada data testing.</p>
 <p>Kode lengkap yang digunakan:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1673,7 +1668,7 @@ y_train = target output
 </pre></div>
 </div>
 <section id="penjelasan-kode-python-testing-random-forest">
-<h4>Penjelasan Kode Python Testing Random Forest<a class="headerlink" href="#penjelasan-kode-python-testing-random-forest" title="Link to this heading">#</a></h4>
+<h5>Penjelasan Kode Python Testing Random Forest<a class="headerlink" href="#penjelasan-kode-python-testing-random-forest" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
@@ -1814,7 +1809,7 @@ Prediction
 </section>
 </section>
 <section id="scorer-random-forest">
-<h3>4.4.3 Scorer Random Forest<a class="headerlink" href="#scorer-random-forest" title="Link to this heading">#</a></h3>
+<h4>4.4.3 Scorer Random Forest<a class="headerlink" href="#scorer-random-forest" title="Link to this heading">#</a></h4>
 <p>Node <strong>Scorer Random Forest</strong> digunakan untuk mengevaluasi hasil prediksi model Random Forest.</p>
 <p>Pada node ini, kolom yang dibandingkan adalah:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
@@ -1834,8 +1829,8 @@ Predicted column  = Prediction
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-model">
-<h1>5. Hasil Evaluasi Model<a class="headerlink" href="#hasil-evaluasi-model" title="Link to this heading">#</a></h1>
+<section id="hasil-evaluasi-model">
+<h2>5. Hasil Evaluasi Model<a class="headerlink" href="#hasil-evaluasi-model" title="Link to this heading">#</a></h2>
 <p>Setelah model Decision Tree dan Random Forest berhasil dibuat, tahap berikutnya adalah melakukan evaluasi menggunakan node <strong>Scorer</strong>.</p>
 <p>Evaluasi dilakukan dengan membandingkan kolom:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
@@ -1852,7 +1847,7 @@ Prediction
 <li><p>F1-score</p></li>
 </ul>
 <section id="confusion-matrix">
-<h2>5.1 Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h2>
+<h3>5.1 Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
 <p>Confusion matrix digunakan untuk melihat jumlah prediksi benar dan salah pada masing-masing kelas.</p>
 <p>Pada dataset ini target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code> memiliki dua kelas:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FALSE = tidak melakukan pembelian
@@ -1874,28 +1869,28 @@ TP = True Positive
 </pre></div>
 </div>
 <section id="a-true-negative">
-<h3>a. True Negative<a class="headerlink" href="#a-true-negative" title="Link to this heading">#</a></h3>
+<h4>a. True Negative<a class="headerlink" href="#a-true-negative" title="Link to this heading">#</a></h4>
 <p>True Negative adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> dan diprediksi <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
 <p>Artinya model berhasil memprediksi bahwa pengunjung tidak melakukan pembelian.</p>
 </section>
 <section id="b-false-positive">
-<h3>b. False Positive<a class="headerlink" href="#b-false-positive" title="Link to this heading">#</a></h3>
+<h4>b. False Positive<a class="headerlink" href="#b-false-positive" title="Link to this heading">#</a></h4>
 <p>False Positive adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, tetapi diprediksi <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
 <p>Artinya model salah memprediksi bahwa pengunjung melakukan pembelian.</p>
 </section>
 <section id="c-false-negative">
-<h3>c. False Negative<a class="headerlink" href="#c-false-negative" title="Link to this heading">#</a></h3>
+<h4>c. False Negative<a class="headerlink" href="#c-false-negative" title="Link to this heading">#</a></h4>
 <p>False Negative adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, tetapi diprediksi <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
 <p>Artinya model gagal mendeteksi pengunjung yang sebenarnya melakukan pembelian.</p>
 </section>
 <section id="d-true-positive">
-<h3>d. True Positive<a class="headerlink" href="#d-true-positive" title="Link to this heading">#</a></h3>
+<h4>d. True Positive<a class="headerlink" href="#d-true-positive" title="Link to this heading">#</a></h4>
 <p>True Positive adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> dan diprediksi <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
 <p>Artinya model berhasil memprediksi bahwa pengunjung melakukan pembelian.</p>
 </section>
 </section>
 <section id="accuracy">
-<h2>5.2 Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h2>
+<h3>5.2 Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h3>
 <p>Accuracy digunakan untuk menghitung seberapa banyak prediksi model yang benar dibandingkan seluruh data testing.</p>
 <p>Rumus accuracy:</p>
 <div class="math notranslate nohighlight">
@@ -1905,7 +1900,7 @@ Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
 <p>Semakin tinggi nilai accuracy maka semakin baik performa model secara keseluruhan.</p>
 </section>
 <section id="precision">
-<h2>5.3 Precision<a class="headerlink" href="#precision" title="Link to this heading">#</a></h2>
+<h3>5.3 Precision<a class="headerlink" href="#precision" title="Link to this heading">#</a></h3>
 <p>Precision digunakan untuk melihat ketepatan model saat memprediksi kelas positif.</p>
 <p>Rumus precision:</p>
 <div class="math notranslate nohighlight">
@@ -1915,7 +1910,7 @@ Precision = \frac{TP}{TP + FP}
 <p>Precision tinggi menunjukkan bahwa hasil prediksi positif model cukup akurat.</p>
 </section>
 <section id="recall">
-<h2>5.4 Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h2>
+<h3>5.4 Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h3>
 <p>Recall digunakan untuk melihat kemampuan model dalam menemukan data positif.</p>
 <p>Rumus recall:</p>
 <div class="math notranslate nohighlight">
@@ -1925,7 +1920,7 @@ Recall = \frac{TP}{TP + FN}
 <p>Semakin tinggi recall maka model semakin baik dalam mendeteksi data positif.</p>
 </section>
 <section id="f1-score">
-<h2>5.5 F1-Score<a class="headerlink" href="#f1-score" title="Link to this heading">#</a></h2>
+<h3>5.5 F1-Score<a class="headerlink" href="#f1-score" title="Link to this heading">#</a></h3>
 <p>F1-Score digunakan untuk melihat keseimbangan antara precision dan recall.</p>
 <p>Rumus F1-Score:</p>
 <div class="math notranslate nohighlight">
@@ -1935,8 +1930,8 @@ F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
 <p>Nilai F1-Score biasanya digunakan ketika ingin melihat performa model secara lebih seimbang.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-decision-tree">
-<h1>6. Hasil Evaluasi Decision Tree<a class="headerlink" href="#hasil-evaluasi-decision-tree" title="Link to this heading">#</a></h1>
+<section id="hasil-evaluasi-decision-tree">
+<h2>6. Hasil Evaluasi Decision Tree<a class="headerlink" href="#hasil-evaluasi-decision-tree" title="Link to this heading">#</a></h2>
 <p>Hasil evaluasi Decision Tree diperoleh dari node <strong>Scorer Decision Tree</strong>.</p>
 <p>Pada node ini, hasil prediksi dari Python Script Testing Decision Tree dibandingkan dengan nilai asli target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
 <p>Kolom yang digunakan:</p>
@@ -1947,7 +1942,7 @@ Prediction
 <p><img alt="" src="https://cdn.corenexis.com/files/c/2538876720.png" /></p>
 <p><img alt="" src="https://cdn.corenexis.com/files/c/3337441720.png" /></p>
 <section id="confusion-matrix-decision-tree">
-<h2>6.1 Confusion Matrix Decision Tree<a class="headerlink" href="#confusion-matrix-decision-tree" title="Link to this heading">#</a></h2>
+<h3>6.1 Confusion Matrix Decision Tree<a class="headerlink" href="#confusion-matrix-decision-tree" title="Link to this heading">#</a></h3>
 <p>Berdasarkan hasil Scorer, confusion matrix Decision Tree adalah sebagai berikut:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual FALSE =&gt; Predicted FALSE = 1943
 Actual FALSE =&gt; Predicted TRUE  = 141
@@ -1956,48 +1951,42 @@ Actual TRUE  =&gt; Predicted TRUE  = 226
 </pre></div>
 </div>
 <section id="a-actual-false-predicted-false">
-<h3>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#a-actual-false-predicted-false" title="Link to this heading">#</a></h3>
+<h4>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#a-actual-false-predicted-false" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian dan berhasil diprediksi tidak melakukan pembelian oleh model.</p>
 </section>
 <section id="b-actual-false-predicted-true">
-<h3>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#b-actual-false-predicted-true" title="Link to this heading">#</a></h3>
+<h4>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#b-actual-false-predicted-true" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian tetapi diprediksi melakukan pembelian.</p>
 </section>
 <section id="c-actual-true-predicted-false">
-<h3>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#c-actual-true-predicted-false" title="Link to this heading">#</a></h3>
+<h4>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#c-actual-true-predicted-false" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian tetapi diprediksi tidak melakukan pembelian.</p>
 </section>
 <section id="d-actual-true-predicted-true">
-<h3>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#d-actual-true-predicted-true" title="Link to this heading">#</a></h3>
+<h4>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#d-actual-true-predicted-true" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian dan berhasil diprediksi melakukan pembelian oleh model.</p>
 </section>
 </section>
 <section id="accuracy-decision-tree">
-<h2>6.2 Accuracy Decision Tree<a class="headerlink" href="#accuracy-decision-tree" title="Link to this heading">#</a></h2>
+<h3>6.2 Accuracy Decision Tree<a class="headerlink" href="#accuracy-decision-tree" title="Link to this heading">#</a></h3>
 <p>Accuracy Decision Tree dihitung menggunakan rumus:</p>
-<div class="math notranslate nohighlight">
-\[
-Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
-\]</div>
+<p>:contentReference[oaicite:0]{index=0}</p>
 <p>Dengan memasukkan nilai confusion matrix:</p>
-<div class="math notranslate nohighlight">
-\[
-Accuracy_{DecisionTree} = \frac{226 + 1943}{226 + 1943 + 141 + 156}
-\]</div>
+<p>:contentReference[oaicite:1]{index=1}</p>
 <p>Hasil accuracy Decision Tree:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Accuracy Decision Tree = 87.95 %
 </pre></div>
 </div>
 </section>
 <section id="analisis-hasil-decision-tree">
-<h2>6.3 Analisis Hasil Decision Tree<a class="headerlink" href="#analisis-hasil-decision-tree" title="Link to this heading">#</a></h2>
+<h3>6.3 Analisis Hasil Decision Tree<a class="headerlink" href="#analisis-hasil-decision-tree" title="Link to this heading">#</a></h3>
 <p>Berdasarkan hasil evaluasi, model Decision Tree sudah mampu melakukan klasifikasi terhadap target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
 <p>Decision Tree menggunakan satu pohon keputusan sehingga proses klasifikasi lebih mudah dipahami.</p>
 <p>Namun karena hanya menggunakan satu tree, model ini masih dapat mengalami overfitting dan performanya dapat menurun ketika pola data cukup kompleks.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-random-forest">
-<h1>7. Hasil Evaluasi Random Forest<a class="headerlink" href="#hasil-evaluasi-random-forest" title="Link to this heading">#</a></h1>
+<section id="hasil-evaluasi-random-forest">
+<h2>7. Hasil Evaluasi Random Forest<a class="headerlink" href="#hasil-evaluasi-random-forest" title="Link to this heading">#</a></h2>
 <p>Hasil evaluasi Random Forest diperoleh dari node <strong>Scorer Random Forest</strong>.</p>
 <p>Pada node ini, hasil prediksi dari Python Script Testing Random Forest dibandingkan dengan nilai asli target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
 <p>Kolom yang digunakan:</p>
@@ -2008,7 +1997,7 @@ Prediction
 <p><img alt="" src="https://cdn.corenexis.com/files/c/8418348720.png" /></p>
 <p><img alt="" src="https://cdn.corenexis.com/files/c/6438744720.png" /></p>
 <section id="confusion-matrix-random-forest">
-<h2>7.1 Confusion Matrix Random Forest<a class="headerlink" href="#confusion-matrix-random-forest" title="Link to this heading">#</a></h2>
+<h3>7.1 Confusion Matrix Random Forest<a class="headerlink" href="#confusion-matrix-random-forest" title="Link to this heading">#</a></h3>
 <p>Berdasarkan hasil Scorer, confusion matrix Random Forest adalah sebagai berikut:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual FALSE → Predicted FALSE = 2015
 Actual FALSE → Predicted TRUE  = 69
@@ -2017,41 +2006,35 @@ Actual TRUE  → Predicted TRUE  = 178
 </pre></div>
 </div>
 <section id="id1">
-<h3>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h4>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian dan berhasil diprediksi tidak melakukan pembelian.</p>
 </section>
 <section id="id2">
-<h3>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h4>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian tetapi diprediksi melakukan pembelian.</p>
 </section>
 <section id="id3">
-<h3>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h4>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian tetapi diprediksi tidak melakukan pembelian.</p>
 </section>
 <section id="id4">
-<h3>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h4>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian dan berhasil diprediksi melakukan pembelian oleh model.</p>
 </section>
 </section>
 <section id="accuracy-random-forest">
-<h2>7.2 Accuracy Random Forest<a class="headerlink" href="#accuracy-random-forest" title="Link to this heading">#</a></h2>
+<h3>7.2 Accuracy Random Forest<a class="headerlink" href="#accuracy-random-forest" title="Link to this heading">#</a></h3>
 <p>Accuracy Random Forest dihitung menggunakan rumus:</p>
-<div class="math notranslate nohighlight">
-\[
-Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
-\]</div>
+<p>:contentReference[oaicite:0]{index=0}</p>
 <p>Dengan memasukkan nilai confusion matrix:</p>
-<div class="math notranslate nohighlight">
-\[
-Accuracy_{RandomForest} = \frac{178 + 2015}{2015 + 69 + 204 + 178}
-\]</div>
+<p>:contentReference[oaicite:1]{index=1}</p>
 <p>Hasil accuracy Random Forest:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Accuracy Random Forest = 88.92 %
 </pre></div>
 </div>
 </section>
 <section id="analisis-hasil-random-forest">
-<h2>7.3 Analisis Hasil Random Forest<a class="headerlink" href="#analisis-hasil-random-forest" title="Link to this heading">#</a></h2>
+<h3>7.3 Analisis Hasil Random Forest<a class="headerlink" href="#analisis-hasil-random-forest" title="Link to this heading">#</a></h3>
 <p>Berdasarkan hasil evaluasi, Random Forest mampu menghasilkan klasifikasi yang lebih stabil dibandingkan Decision Tree.</p>
 <p>Random Forest menggunakan banyak pohon keputusan dengan parameter:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">50</span>
@@ -2059,10 +2042,7 @@ Accuracy_{RandomForest} = \frac{178 + 2015}{2015 + 69 + 204 + 178}
 </div>
 <p>Setiap tree melakukan prediksi terhadap data, lalu hasil akhirnya ditentukan menggunakan voting.</p>
 <p>Konsep voting pada Random Forest:</p>
-<div class="math notranslate nohighlight">
-\[
-H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
-\]</div>
+<p>:contentReference[oaicite:2]{index=2}</p>
 <p>Keterangan:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(H(x)\)</span> = hasil akhir prediksi Random Forest</p></li>
@@ -2071,8 +2051,8 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
 <p>Karena menggunakan banyak tree, Random Forest biasanya memiliki performa lebih stabil dibandingkan Decision Tree tunggal.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="perbandingan-decision-tree-dan-random-forest">
-<h1>8. Perbandingan Decision Tree dan Random Forest<a class="headerlink" href="#perbandingan-decision-tree-dan-random-forest" title="Link to this heading">#</a></h1>
+<section id="perbandingan-decision-tree-dan-random-forest">
+<h2>8. Perbandingan Decision Tree dan Random Forest<a class="headerlink" href="#perbandingan-decision-tree-dan-random-forest" title="Link to this heading">#</a></h2>
 <p>Setelah seluruh proses evaluasi selesai, hasil Decision Tree dan Random Forest dibandingkan berdasarkan nilai accuracy dan confusion matrix.</p>
 <p>Tabel perbandingan:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -2099,7 +2079,7 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
 \]</div>
 <p>Walaupun selisihnya tidak terlalu besar, Random Forest tetap memberikan performa yang lebih baik pada dataset Online Shoppers Purchasing Intention.</p>
 <section id="analisis-perbandingan">
-<h2>8.1 Analisis Perbandingan<a class="headerlink" href="#analisis-perbandingan" title="Link to this heading">#</a></h2>
+<h3>8.1 Analisis Perbandingan<a class="headerlink" href="#analisis-perbandingan" title="Link to this heading">#</a></h3>
 <p>Decision Tree memiliki struktur yang lebih sederhana dan lebih mudah dipahami karena proses klasifikasi hanya menggunakan satu pohon keputusan.</p>
 <p>Model ini cocok digunakan ketika interpretasi model menjadi hal penting.</p>
 <p>Namun karena hanya menggunakan satu decision tree, model lebih mudah mengalami overfitting terhadap data training.</p>
@@ -2122,7 +2102,7 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
 <p>Hasil tersebut menunjukkan bahwa penggunaan banyak tree mampu meningkatkan performa klasifikasi dibandingkan Decision Tree tunggal.</p>
 </section>
 <section id="alasan-random-forest-lebih-stabil">
-<h2>8.2 Alasan Random Forest Lebih Stabil<a class="headerlink" href="#alasan-random-forest-lebih-stabil" title="Link to this heading">#</a></h2>
+<h3>8.2 Alasan Random Forest Lebih Stabil<a class="headerlink" href="#alasan-random-forest-lebih-stabil" title="Link to this heading">#</a></h3>
 <p>Random Forest mampu memberikan performa lebih baik karena:</p>
 <ol class="arabic simple">
 <li><p>Menggunakan banyak decision tree</p></li>
@@ -2145,8 +2125,8 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
 </ul>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
-<h1>9. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<section id="kesimpulan">
+<h2>9. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
 <p>Berdasarkan proses yang telah dilakukan, model Decision Tree dan Random Forest berhasil dibuat menggunakan Python Script Legacy pada KNIME.</p>
 <p>Dataset yang digunakan adalah:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Online Shoppers Purchasing Intention Dataset
@@ -2179,6 +2159,7 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
 \]</div>
 <p>Berdasarkan hasil evaluasi, Random Forest memiliki performa yang lebih baik dibandingkan Decision Tree.</p>
 <p>Hal ini menunjukkan bahwa penggunaan banyak decision tree mampu membantu model menghasilkan prediksi yang lebih stabil dan lebih akurat dalam memprediksi apakah pengunjung melakukan pembelian atau tidak.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2238,107 +2219,108 @@ H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Pendahuluan</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
   </nav></div>
 
 </div></div>
