@@ -1,0 +1,2395 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Pendahuluan &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'RandomForest';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Analisa Data Menggunakan Pohon Keputusan (Decision Tree)" href="DecisionTree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <img src="_static/foto.jpeg" class="logo__image only-dark pst-js-only" alt="Penambangan Data - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance%20Data%20Campuran.html">Mengukur Jarak Antar Data Campuran</a></li>
+<li class="toctree-l1"><a class="reference internal" href="missing_dan_normalisasi.html">Proyek Missing Values Inputation + Materi Normalisasi data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_analisis_knn.html">UTS-Analisa Data Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NaiveBayes.html">Analisis Data Menggunakan Naive Bayes (KNIME + Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTree.html">Analisa Data Menggunakan Pohon Keputusan (Decision Tree)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Pendahuluan</a></li>
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FRandomForest.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/RandomForest.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Pendahuluan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Pendahuluan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pendahuluan">
+<h1>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h1>
+<p>Pada tugas ini dilakukan analisis perbandingan antara algoritma klasifikasi <strong>Decision Tree</strong> dan <strong>Random Forest</strong> menggunakan aplikasi KNIME serta Python Script Legacy.</p>
+<p>Dataset yang digunakan adalah <strong>Online Shoppers Purchasing Intention Dataset</strong>. Dataset ini berisi data aktivitas pengunjung pada website e-commerce, seperti jumlah halaman yang dibuka, lama kunjungan, browser yang digunakan, jenis visitor, traffic website, hingga informasi apakah pengunjung melakukan transaksi pembelian atau tidak.</p>
+<p>Target klasifikasi yang digunakan adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Revenue
+</pre></div>
+</div>
+<p>Keterangan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TRUE  = pengunjung melakukan pembelian
+FALSE = pengunjung tidak melakukan pembelian
+</pre></div>
+</div>
+<p>Tujuan penelitian ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Membuat model klasifikasi menggunakan Decision Tree</p></li>
+<li><p>Membuat model klasifikasi menggunakan Random Forest</p></li>
+<li><p>Membandingkan performa kedua algoritma</p></li>
+<li><p>Mengevaluasi hasil prediksi menggunakan confusion matrix</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deskripsi-dataset">
+<h1>2. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h1>
+<p>Dataset terdiri dari atribut numerik dan atribut kategorikal.</p>
+<section id="atribut-numerik">
+<h2>2.1 Atribut Numerik<a class="headerlink" href="#atribut-numerik" title="Link to this heading">#</a></h2>
+<p>Atribut numerik yang digunakan antara lain:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Administrative
+Administrative_Duration
+Informational
+Informational_Duration
+ProductRelated
+ProductRelated_Duration
+BounceRates
+ExitRates
+PageValues
+SpecialDay
+</pre></div>
+</div>
+<section id="a-administrative">
+<h3>a. Administrative<a class="headerlink" href="#a-administrative" title="Link to this heading">#</a></h3>
+<p>Jumlah halaman administratif yang dibuka pengunjung.</p>
+</section>
+<section id="b-administrative-duration">
+<h3>b. Administrative_Duration<a class="headerlink" href="#b-administrative-duration" title="Link to this heading">#</a></h3>
+<p>Total waktu yang dihabiskan pada halaman administratif.</p>
+</section>
+<section id="c-informational">
+<h3>c. Informational<a class="headerlink" href="#c-informational" title="Link to this heading">#</a></h3>
+<p>Jumlah halaman informasi yang dibuka.</p>
+</section>
+<section id="d-informational-duration">
+<h3>d. Informational_Duration<a class="headerlink" href="#d-informational-duration" title="Link to this heading">#</a></h3>
+<p>Total waktu pada halaman informasi.</p>
+</section>
+<section id="e-productrelated">
+<h3>e. ProductRelated<a class="headerlink" href="#e-productrelated" title="Link to this heading">#</a></h3>
+<p>Jumlah halaman produk yang dibuka pengunjung.</p>
+</section>
+<section id="f-productrelated-duration">
+<h3>f. ProductRelated_Duration<a class="headerlink" href="#f-productrelated-duration" title="Link to this heading">#</a></h3>
+<p>Durasi waktu yang dihabiskan pada halaman produk.</p>
+<p>Contoh:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ProductRelated = 10
+ProductRelated_Duration = 627.5
+</pre></div>
+</div>
+<p>Artinya pengunjung membuka 10 halaman produk dan menghabiskan waktu sekitar 627.5 detik.</p>
+</section>
+<section id="g-bouncerates">
+<h3>g. BounceRates<a class="headerlink" href="#g-bouncerates" title="Link to this heading">#</a></h3>
+<p>Persentase pengunjung yang langsung keluar dari situs tanpa melakukan interaksi lain.</p>
+</section>
+<section id="h-exitrates">
+<h3>h. ExitRates<a class="headerlink" href="#h-exitrates" title="Link to this heading">#</a></h3>
+<p>Persentase halaman yang menjadi halaman terakhir sebelum pengunjung keluar.</p>
+</section>
+<section id="i-pagevalues">
+<h3>i. PageValues<a class="headerlink" href="#i-pagevalues" title="Link to this heading">#</a></h3>
+<p>Nilai rata-rata halaman sebelum terjadi transaksi pembelian.</p>
+</section>
+<section id="j-specialday">
+<h3>j. SpecialDay<a class="headerlink" href="#j-specialday" title="Link to this heading">#</a></h3>
+<p>Menunjukkan kedekatan kunjungan dengan hari spesial tertentu seperti:</p>
+<ul class="simple">
+<li><p>Valentine</p></li>
+<li><p>Hari Ibu</p></li>
+<li><p>Hari Raya</p></li>
+</ul>
+</section>
+</section>
+<section id="atribut-kategorikal">
+<h2>2.2 Atribut Kategorikal<a class="headerlink" href="#atribut-kategorikal" title="Link to this heading">#</a></h2>
+<p>Atribut kategorikal yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Month
+OperatingSystems
+Browser
+Region
+TrafficType
+VisitorType
+Weekend
+</pre></div>
+</div>
+<section id="a-month">
+<h3>a. Month<a class="headerlink" href="#a-month" title="Link to this heading">#</a></h3>
+<p>Bulan kunjungan pengguna.</p>
+</section>
+<section id="b-operatingsystems">
+<h3>b. OperatingSystems<a class="headerlink" href="#b-operatingsystems" title="Link to this heading">#</a></h3>
+<p>Sistem operasi yang digunakan pengguna.</p>
+</section>
+<section id="c-browser">
+<h3>c. Browser<a class="headerlink" href="#c-browser" title="Link to this heading">#</a></h3>
+<p>Browser yang digunakan pengguna saat mengakses situs.</p>
+</section>
+<section id="d-region">
+<h3>d. Region<a class="headerlink" href="#d-region" title="Link to this heading">#</a></h3>
+<p>Wilayah asal pengguna.</p>
+</section>
+<section id="e-traffictype">
+<h3>e. TrafficType<a class="headerlink" href="#e-traffictype" title="Link to this heading">#</a></h3>
+<p>Jenis sumber traffic pengunjung.</p>
+</section>
+<section id="f-visitortype">
+<h3>f. VisitorType<a class="headerlink" href="#f-visitortype" title="Link to this heading">#</a></h3>
+<p>Jenis pengunjung yang mengakses situs.</p>
+<p>Kategori visitor terdiri dari:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Returning Visitor
+New Visitor
+</pre></div>
+</div>
+</section>
+<section id="g-weekend">
+<h3>g. Weekend<a class="headerlink" href="#g-weekend" title="Link to this heading">#</a></h3>
+<p>Menunjukkan apakah kunjungan dilakukan saat akhir pekan atau tidak.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="workflow-knime">
+<h1>3. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h1>
+<p>Pada workflow ini digunakan beberapa node utama untuk membangun model klasifikasi menggunakan algoritma <strong>Decision Tree</strong> dan <strong>Random Forest</strong>. Setiap node memiliki fungsi yang berbeda, mulai dari membaca dataset, membagi data, melakukan training model, melakukan testing, sampai mengevaluasi hasil prediksi.</p>
+<p>Workflow yang digunakan secara umum adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV Reader
+↓
+Table Partitioner
+├── Python Script Training Decision Tree
+├── Python Script Testing Decision Tree =&gt; Scorer Decision Tree
+├── Python Script Training Random Forest
+└── Python Script Testing Random Forest =&gt; Scorer Random Forest
+</pre></div>
+</div>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/4199188720.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-node-pada-workflow-knime">
+<h1>4. Penjelasan Node pada Workflow KNIME<a class="headerlink" href="#penjelasan-node-pada-workflow-knime" title="Link to this heading">#</a></h1>
+<p>Pada workflow ini digunakan beberapa node utama untuk membangun model klasifikasi menggunakan algoritma Decision Tree dan Random Forest. Setiap node memiliki fungsi yang berbeda dalam proses preprocessing, training, testing, hingga evaluasi model.</p>
+<section id="csv-reader">
+<h2>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h2>
+<p>Node <strong>CSV Reader</strong> digunakan untuk membaca dataset <strong>Online Shoppers Purchasing Intention</strong> yang berbentuk file <code class="docutils literal notranslate"><span class="pre">.csv</span></code>.</p>
+<p>Pada tahap ini, seluruh data dimasukkan ke dalam workflow KNIME agar bisa diproses pada tahap berikutnya.</p>
+<p>Beberapa hal yang perlu diperhatikan pada node ini adalah:</p>
+<ul class="simple">
+<li><p>separator data</p></li>
+<li><p>tipe data kolom</p></li>
+<li><p>header dataset</p></li>
+<li><p>encoding file</p></li>
+<li><p>apakah kolom numerik dan kategorikal sudah terbaca dengan benar</p></li>
+</ul>
+<p>Dataset yang berhasil dibaca akan menghasilkan tabel berisi atribut numerik dan kategorikal.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/y1J7gUi8FCADoSJw5334-u9LILVSCN6FPSsBQ2wqDto.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/aYKg0BzOplYM-xULq-6VpFbyW3pzYINYVKUC0SHEQ7o.original.fullsize.png" /></p>
+</section>
+<section id="table-partitioner">
+<h2>4.2 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h2>
+<p>Node <strong>Table Partitioner</strong> digunakan untuk membagi dataset menjadi data training dan data testing.</p>
+<p>Pada workflow ini, data dibagi menjadi:</p>
+<div class="math notranslate nohighlight">
+\[
+80\% = data\ training
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+20\% = data\ testing
+\]</div>
+<p>Data training digunakan untuk melatih model, sedangkan data testing digunakan untuk menguji hasil prediksi model.</p>
+<p>Output dari node ini terdiri dari dua bagian:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>First Partition  = data training
+Second Partition = data testing
+</pre></div>
+</div>
+<p>Data training akan masuk ke node Python Script untuk proses training model. Data testing akan masuk ke node Python Script untuk proses prediksi.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/sJFi7xUhCXxGRpNlXrXKGLeAciXHK4bQEIulHBvAjZM.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/hfqwP6qvvVCP-X7o5eq3ENChmKj1nsYZDOx_p4EBe7s.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/1zSXS1pO-3irI7ooLI-E3aJmy48gd9oD6ssOzvJBjiw.original.fullsize.png" /></p>
+</section>
+<section id="node-decision-tree">
+<h2>4.3 Node Decision Tree<a class="headerlink" href="#node-decision-tree" title="Link to this heading">#</a></h2>
+<p>Bagian Decision Tree digunakan untuk membangun model klasifikasi dengan algoritma Decision Tree.</p>
+<p>Pada bagian ini terdapat tiga node utama:</p>
+<ol class="arabic simple">
+<li><p>Python Script Training Decision Tree</p></li>
+<li><p>Python Script Testing Decision Tree</p></li>
+<li><p>Scorer Decision Tree</p></li>
+</ol>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/myvzC6eY9epguMHLXi4uuaKLDYZHbBP01tPKDwCfdpk.original.fullsize.png" /></p>
+<section id="python-script-training-decision-tree">
+<h3>4.3.1 Python Script Training Decision Tree<a class="headerlink" href="#python-script-training-decision-tree" title="Link to this heading">#</a></h3>
+<p>Node <strong>Python Script Training Decision Tree</strong> digunakan untuk melatih model Decision Tree menggunakan data training dari Table Partitioner.</p>
+<p>Pada node ini, data training dari KNIME diambil ke Python, kemudian dilakukan preprocessing, pembuatan model, training, dan penyimpanan model menggunakan <code class="docutils literal notranslate"><span class="pre">pickle</span></code>.</p>
+<p>Kode lengkap yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="c1"># Ambil data training</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Target</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+
+<span class="c1"># Bersihkan data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Kolom numerik</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+
+<span class="c1"># Kolom kategorikal</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+
+<span class="c1"># Pisahkan fitur dan target</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Fitur numerik dan kategorikal</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;encoder&quot;</span><span class="p">,</span> <span class="n">encoder</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_cols</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Model Decision Tree</span>
+<span class="n">decision_tree</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span>
+    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">model_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;decision_tree&quot;</span><span class="p">,</span> <span class="n">decision_tree</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Training</span>
+<span class="n">model_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Simpan model</span>
+<span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;decision_tree_revenue_model.pkl&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_pipeline</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Decision Tree berhasil dibuat dan disimpan&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Model Path&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">model_path</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Data Training&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)],</span>
+    <span class="s2">&quot;Target&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">target_col</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Fitur&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<section id="penjelasan-kode-python-training-decision-tree">
+<h4>Penjelasan Kode Python Training Decision Tree<a class="headerlink" href="#penjelasan-kode-python-training-decision-tree" title="Link to this heading">#</a></h4>
+<p>Bagian pertama digunakan untuk memanggil library yang dibutuhkan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk mengolah data dalam bentuk tabel.<br />
+<code class="docutils literal notranslate"><span class="pre">os</span></code> digunakan untuk membuat folder penyimpanan model.<br />
+<code class="docutils literal notranslate"><span class="pre">pickle</span></code> digunakan untuk menyimpan model ke dalam file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>.<br />
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code> digunakan untuk membantu menangani nilai kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memanggil algoritma Decision Tree dari library scikit-learn.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> digunakan untuk menggabungkan proses preprocessing dan model ke dalam satu alur.<br />
+<code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> digunakan agar kolom numerik dan kategorikal bisa diproses dengan cara yang berbeda.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> digunakan untuk mengubah data kategorikal menjadi bentuk numerik.<br />
+<code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> digunakan untuk menangani missing value pada data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengambil data dari input KNIME. Data yang masuk ke node Python Script dibaca sebagai <code class="docutils literal notranslate"><span class="pre">input_table_1</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+</pre></div>
+</div>
+<p>Kode ini menentukan kolom target yang akan diprediksi, yaitu <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengganti simbol <code class="docutils literal notranslate"><span class="pre">?</span></code> menjadi nilai kosong agar bisa diproses sebagai missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini membersihkan kolom bertipe teks dengan menghapus spasi di awal dan akhir data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan kolom yang dianggap sebagai atribut numerik.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini memastikan kolom numerik benar-benar terbaca sebagai angka. Jika ada data yang tidak bisa diubah menjadi angka, maka nilainya akan menjadi missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan kolom yang dianggap sebagai atribut kategorikal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini mengubah kolom kategorikal menjadi string agar bisa diproses oleh encoder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini menghapus baris yang targetnya kosong. Target tidak boleh kosong karena digunakan sebagai label klasifikasi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini memisahkan fitur dan target.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X_train = data fitur/input
+y_train = target/output
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Kode ini memastikan hanya kolom yang benar-benar ada di dataset yang digunakan dalam preprocessing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bagian ini membuat encoder untuk data kategorikal.<br />
+<code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> digunakan agar model tidak error jika saat testing ada kategori baru yang tidak muncul pada data training.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">))</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Bagian ini membuat preprocessing untuk kolom numerik. Jika ada missing value, nilainya diisi menggunakan median.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;encoder&quot;</span><span class="p">,</span> <span class="n">encoder</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Bagian ini membuat preprocessing untuk kolom kategorikal. Missing value diisi menggunakan nilai yang paling sering muncul, lalu data kategorikal diubah menjadi angka.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_cols</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini menggabungkan preprocessing numerik dan kategorikal dalam satu proses.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">decision_tree</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span>
+    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Bagian ini membuat model Decision Tree.</p>
+<p>Parameter yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>criterion=&quot;gini&quot;     = menggunakan Gini Index
+min_samples_leaf=2   = minimal data pada leaf node adalah 2
+random_state=42      = membuat hasil training lebih konsisten
+</pre></div>
+</div>
+<p>Rumus Gini Index:</p>
+<div class="math notranslate nohighlight">
+\[
+Gini = 1 - \sum (p_i)^2
+\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;decision_tree&quot;</span><span class="p">,</span> <span class="n">decision_tree</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini menggabungkan preprocessing dan model Decision Tree ke dalam satu pipeline.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk melatih model Decision Tree menggunakan data training.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini membuat folder penyimpanan model dengan nama <code class="docutils literal notranslate"><span class="pre">knime_model</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;decision_tree_revenue_model.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini menentukan nama file model Decision Tree yang akan disimpan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_pipeline</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini menyimpan model Decision Tree ke file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Decision Tree berhasil dibuat dan disimpan&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Model Path&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">model_path</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Data Training&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)],</span>
+    <span class="s2">&quot;Target&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">target_col</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Fitur&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Kode ini membuat output ke KNIME. Output berisi status model, lokasi model, jumlah data training, target, dan jumlah fitur.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/hOWS1bNxOfgyzK_t_qNKkXH-ZndGjpvkxQZFlypI92g.original.fullsize.png" /></p>
+</section>
+</section>
+<section id="python-script-testing-decision-tree">
+<h3>4.3.2 Python Script Testing Decision Tree<a class="headerlink" href="#python-script-testing-decision-tree" title="Link to this heading">#</a></h3>
+<p>Node <strong>Python Script Testing Decision Tree</strong> digunakan untuk memanggil model Decision Tree yang sudah disimpan, lalu melakukan prediksi pada data testing.</p>
+<p>Kode lengkap yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Ambil data testing</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Target</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+
+<span class="c1"># Bersihkan data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Kolom numerik</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+
+<span class="c1"># Kolom kategorikal</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+
+<span class="c1"># Pisahkan fitur dan target</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Load model</span>
+<span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;decision_tree_revenue_model.pkl&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Prediksi</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<section id="penjelasan-kode-python-testing-decision-tree">
+<h4>Penjelasan Kode Python Testing Decision Tree<a class="headerlink" href="#penjelasan-kode-python-testing-decision-tree" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini mengambil data testing dari KNIME.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+</pre></div>
+</div>
+<p>Kode ini menentukan target yang digunakan, yaitu <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini mengganti simbol <code class="docutils literal notranslate"><span class="pre">?</span></code> menjadi nilai kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini membersihkan spasi pada kolom bertipe teks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini menentukan kolom numerik pada data testing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini memastikan kolom numerik terbaca sebagai angka.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini menentukan kolom kategorikal pada data testing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini mengubah kolom kategorikal menjadi string.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini menghapus baris yang targetnya kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini memisahkan fitur testing dan target asli.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X_test = data fitur testing
+y_test = nilai asli Revenue
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;decision_tree_revenue_model.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini menentukan lokasi model Decision Tree yang sudah disimpan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini memanggil model Decision Tree dari file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini melakukan prediksi pada data testing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Kode ini membuat output ke KNIME berupa nilai asli dan hasil prediksi.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual     = nilai Revenue asli
+Prediction = hasil prediksi model
+</pre></div>
+</div>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/8PPHhaAODTM0Jy1zFFlfkKR3kdBA-ckCamL0aU78qY4.original.fullsize.png" /></p>
+</section>
+</section>
+<section id="scorer-decision-tree">
+<h3>4.3.3 Scorer Decision Tree<a class="headerlink" href="#scorer-decision-tree" title="Link to this heading">#</a></h3>
+<p>Node <strong>Scorer Decision Tree</strong> digunakan untuk mengevaluasi hasil prediksi model Decision Tree.</p>
+<p>Pada node ini, kolom yang dibandingkan adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p>Setting yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual column     = Actual
+Predicted column  = Prediction
+</pre></div>
+</div>
+<p>Output node Scorer berupa confusion matrix dan statistik evaluasi.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/TBeHpOuF336g6VaKfCDL8ti5Un0_NI2HTaRPCY25_sU.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/2538876720.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/3337441720.png" /></p>
+</section>
+</section>
+<section id="node-random-forest">
+<h2>4.4 Node Random Forest<a class="headerlink" href="#node-random-forest" title="Link to this heading">#</a></h2>
+<p>Bagian Random Forest digunakan untuk membangun model klasifikasi menggunakan algoritma Random Forest.</p>
+<p>Random Forest yang digunakan pada workflow ini terdiri dari:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>50 decision trees
+</pre></div>
+</div>
+<p>Pada bagian ini terdapat tiga node utama:</p>
+<ol class="arabic simple">
+<li><p>Python Script Training Random Forest</p></li>
+<li><p>Python Script Testing Random Forest</p></li>
+<li><p>Scorer Random Forest</p></li>
+</ol>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/2717285720.png" /></p>
+</section>
+<section id="python-script-training-random-forest">
+<h2>4.4.1 Python Script Training Random Forest<a class="headerlink" href="#python-script-training-random-forest" title="Link to this heading">#</a></h2>
+<p>Node <strong>Python Script Training Random Forest</strong> digunakan untuk melatih model Random Forest menggunakan data training dari Table Partitioner.</p>
+<p>Kode lengkap yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="c1"># Ambil data training</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Target</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+
+<span class="c1"># Bersihkan data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Kolom numerik</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+
+<span class="c1"># Kolom kategorikal</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+
+<span class="c1"># Pisahkan fitur dan target</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Fitur numerik dan kategorikal</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;encoder&quot;</span><span class="p">,</span> <span class="n">encoder</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_cols</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Model Random Forest</span>
+<span class="n">random_forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">model_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;random_forest&quot;</span><span class="p">,</span> <span class="n">random_forest</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Training</span>
+<span class="n">model_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Simpan model</span>
+<span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;random_forest_revenue_model.pkl&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_pipeline</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Random Forest berhasil dibuat dan disimpan&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Model Path&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">model_path</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Data Training&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)],</span>
+    <span class="s2">&quot;Target&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">target_col</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Fitur&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="s2">&quot;Jumlah Tree&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<section id="penjelasan-kode-python-training-random-forest">
+<h3>Penjelasan Kode Python Training Random Forest<a class="headerlink" href="#penjelasan-kode-python-training-random-forest" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk memanggil library yang dibutuhkan selama proses training model.</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk mengolah data tabel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">os</span></code> digunakan untuk membuat folder penyimpanan model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickle</span></code> digunakan untuk menyimpan model <code class="docutils literal notranslate"><span class="pre">.pkl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> digunakan untuk menangani data numerik dan missing value</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memanggil algoritma Random Forest dari library scikit-learn.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat pipeline preprocessing dan machine learning dalam satu alur.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memproses kolom numerik dan kategorikal dengan metode yang berbeda.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengubah data kategorikal menjadi numerik.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menangani missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengambil data training dari KNIME.</p>
+<p>Data yang masuk ke Python Script otomatis dibaca sebagai:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>input_table_1
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan target klasifikasi yang diprediksi, yaitu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Revenue
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengganti simbol <code class="docutils literal notranslate"><span class="pre">?</span></code> menjadi missing value agar dapat diproses oleh preprocessing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membersihkan data string dari spasi yang tidak diperlukan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan atribut numerik.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memastikan data numerik benar-benar terbaca sebagai angka.</p>
+<p>Jika ada data yang tidak bisa diubah menjadi angka, maka otomatis menjadi missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan atribut kategorikal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memastikan data kategorikal bertipe string.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menghapus data yang target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>-nya kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memisahkan:</p>
+<ul class="simple">
+<li><p>fitur training</p></li>
+<li><p>target training</p></li>
+</ul>
+<p>Keterangan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X_train = fitur input
+y_train = target output
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memastikan hanya kolom yang benar-benar ada di dataset yang digunakan saat preprocessing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat OneHotEncoder.</p>
+<p>Parameter:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>handle_unknown=&quot;ignore&quot;
+</pre></div>
+</div>
+<p>digunakan agar model tidak error jika saat testing muncul kategori baru yang tidak ada saat training.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">))</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk preprocessing data numerik.</p>
+<p>Missing value pada kolom numerik akan diisi menggunakan median.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;encoder&quot;</span><span class="p">,</span> <span class="n">encoder</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk preprocessing data kategorikal.</p>
+<p>Tahapan:</p>
+<ol class="arabic simple">
+<li><p>missing value diisi menggunakan nilai yang paling sering muncul</p></li>
+<li><p>data kategorikal diubah menjadi numerik menggunakan OneHotEncoder</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_cols</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_cols</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menggabungkan preprocessing numerik dan kategorikal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">random_forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat model Random Forest.</p>
+<p>Parameter yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n_estimators=50
+</pre></div>
+</div>
+<p>Jumlah decision tree yang digunakan pada Random Forest.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>min_samples_leaf=1
+</pre></div>
+</div>
+<p>Jumlah minimal data pada leaf node.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>max_depth=None
+</pre></div>
+</div>
+<p>Kedalaman tree tidak dibatasi.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>random_state=42
+</pre></div>
+</div>
+<p>Digunakan agar hasil training tetap konsisten.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n_jobs=-1
+</pre></div>
+</div>
+<p>Menggunakan seluruh core processor agar training lebih cepat.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;random_forest&quot;</span><span class="p">,</span> <span class="n">random_forest</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menggabungkan preprocessing dan model Random Forest ke dalam satu pipeline.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk melakukan training model Random Forest menggunakan data training.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan folder penyimpanan model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat folder penyimpanan model jika folder belum tersedia.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;random_forest_revenue_model.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan nama file model Random Forest.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_pipeline</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menyimpan model Random Forest ke file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Random Forest berhasil dibuat dan disimpan&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Model Path&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">model_path</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Data Training&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)],</span>
+    <span class="s2">&quot;Target&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">target_col</span><span class="p">],</span>
+    <span class="s2">&quot;Jumlah Fitur&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="s2">&quot;Jumlah Tree&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat output ke KNIME berupa:</p>
+<ul class="simple">
+<li><p>status model</p></li>
+<li><p>lokasi model</p></li>
+<li><p>jumlah data training</p></li>
+<li><p>target klasifikasi</p></li>
+<li><p>jumlah fitur</p></li>
+<li><p>jumlah tree Random Forest</p></li>
+</ul>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/7677629720.png" /></p>
+</section>
+<section id="python-script-testing-random-forest">
+<h3>4.4.2 Python Script Testing Random Forest<a class="headerlink" href="#python-script-testing-random-forest" title="Link to this heading">#</a></h3>
+<p>Node <strong>Python Script Testing Random Forest</strong> digunakan untuk memanggil model Random Forest yang sudah disimpan, lalu melakukan prediksi pada data testing.</p>
+<p>Kode lengkap yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Ambil data testing</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Target</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+
+<span class="c1"># Bersihkan data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Kolom numerik</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+
+<span class="c1"># Kolom kategorikal</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+
+<span class="c1"># Pisahkan fitur dan target</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Load model</span>
+<span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;random_forest_revenue_model.pkl&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Prediksi</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<section id="penjelasan-kode-python-testing-random-forest">
+<h4>Penjelasan Kode Python Testing Random Forest<a class="headerlink" href="#penjelasan-kode-python-testing-random-forest" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk memanggil library yang dibutuhkan selama proses testing model.</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk mengolah data tabel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">os</span></code> digunakan untuk membaca lokasi model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickle</span></code> digunakan untuk memanggil model <code class="docutils literal notranslate"><span class="pre">.pkl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> digunakan untuk menangani missing value</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">input_table_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengambil data testing dari KNIME.</p>
+<p>Data yang masuk ke node Python Script otomatis dibaca sebagai:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>input_table_1
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;Revenue&quot;</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan target klasifikasi yang diprediksi, yaitu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Revenue
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk mengganti simbol <code class="docutils literal notranslate"><span class="pre">?</span></code> menjadi missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membersihkan data string dari spasi yang tidak diperlukan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Administrative&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Administrative_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Informational_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProductRelated_Duration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BounceRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExitRates&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PageValues&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SpecialDay&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan atribut numerik.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memastikan data numerik benar-benar terbaca sebagai angka.</p>
+<p>Jika ada data yang tidak bisa diubah menjadi angka maka otomatis menjadi missing value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatingSystems&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Browser&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Region&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TrafficType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VisitorType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weekend&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Bagian ini digunakan untuk menentukan atribut kategorikal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memastikan data kategorikal bertipe string.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menghapus data yang target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>-nya kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk memisahkan:</p>
+<ul class="simple">
+<li><p>fitur testing</p></li>
+<li><p>target asli</p></li>
+</ul>
+<p>Keterangan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X_test = fitur testing
+y_test = target asli
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;knime_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan folder penyimpanan model Random Forest.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_folder</span><span class="p">,</span> <span class="s2">&quot;random_forest_revenue_model.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk menentukan lokasi file model Random Forest.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membaca model Random Forest yang sebelumnya sudah disimpan dalam file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk melakukan prediksi terhadap data testing menggunakan model Random Forest.</p>
+<p>Hasil prediksi berupa:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TRUE
+FALSE
+</pre></div>
+</div>
+<p>sesuai hasil klasifikasi model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_table_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Kode ini digunakan untuk membuat output ke KNIME berupa:</p>
+<ul class="simple">
+<li><p>nilai asli target</p></li>
+<li><p>hasil prediksi model</p></li>
+</ul>
+<p>Kolom output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p>Kolom tersebut kemudian digunakan pada node Scorer untuk menghitung confusion matrix dan accuracy model.</p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/4743749720.png" /></p>
+</section>
+</section>
+<section id="scorer-random-forest">
+<h3>4.4.3 Scorer Random Forest<a class="headerlink" href="#scorer-random-forest" title="Link to this heading">#</a></h3>
+<p>Node <strong>Scorer Random Forest</strong> digunakan untuk mengevaluasi hasil prediksi model Random Forest.</p>
+<p>Pada node ini, kolom yang dibandingkan adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p>Setting yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual column     = Actual
+Predicted column  = Prediction
+</pre></div>
+</div>
+<p>Output node Scorer berupa confusion matrix dan statistik evaluasi.</p>
+<p>Hasil Scorer Random Forest kemudian dibandingkan dengan hasil Scorer Decision Tree.</p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/6227949720.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/8418348720.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/6438744720.png" /></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-model">
+<h1>5. Hasil Evaluasi Model<a class="headerlink" href="#hasil-evaluasi-model" title="Link to this heading">#</a></h1>
+<p>Setelah model Decision Tree dan Random Forest berhasil dibuat, tahap berikutnya adalah melakukan evaluasi menggunakan node <strong>Scorer</strong>.</p>
+<p>Evaluasi dilakukan dengan membandingkan kolom:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">Actual</span></code> berisi nilai asli dari target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>, sedangkan kolom <code class="docutils literal notranslate"><span class="pre">Prediction</span></code> berisi hasil prediksi model.</p>
+<p>Output dari node Scorer berupa:</p>
+<ul class="simple">
+<li><p>confusion matrix</p></li>
+<li><p>accuracy</p></li>
+<li><p>precision</p></li>
+<li><p>recall</p></li>
+<li><p>F1-score</p></li>
+</ul>
+<section id="confusion-matrix">
+<h2>5.1 Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h2>
+<p>Confusion matrix digunakan untuk melihat jumlah prediksi benar dan salah pada masing-masing kelas.</p>
+<p>Pada dataset ini target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code> memiliki dua kelas:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FALSE = tidak melakukan pembelian
+TRUE  = melakukan pembelian
+</pre></div>
+</div>
+<p>Bentuk umum confusion matrix:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual FALSE =&gt; Predicted FALSE = TN
+Actual FALSE =&gt; Predicted TRUE  = FP
+Actual TRUE  =&gt; Predicted FALSE = FN
+Actual TRUE  =&gt; Predicted TRUE  = TP
+</pre></div>
+</div>
+<p>Keterangan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TN = True Negative
+FP = False Positive
+FN = False Negative
+TP = True Positive
+</pre></div>
+</div>
+<section id="a-true-negative">
+<h3>a. True Negative<a class="headerlink" href="#a-true-negative" title="Link to this heading">#</a></h3>
+<p>True Negative adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> dan diprediksi <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<p>Artinya model berhasil memprediksi bahwa pengunjung tidak melakukan pembelian.</p>
+</section>
+<section id="b-false-positive">
+<h3>b. False Positive<a class="headerlink" href="#b-false-positive" title="Link to this heading">#</a></h3>
+<p>False Positive adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, tetapi diprediksi <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<p>Artinya model salah memprediksi bahwa pengunjung melakukan pembelian.</p>
+</section>
+<section id="c-false-negative">
+<h3>c. False Negative<a class="headerlink" href="#c-false-negative" title="Link to this heading">#</a></h3>
+<p>False Negative adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, tetapi diprediksi <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<p>Artinya model gagal mendeteksi pengunjung yang sebenarnya melakukan pembelian.</p>
+</section>
+<section id="d-true-positive">
+<h3>d. True Positive<a class="headerlink" href="#d-true-positive" title="Link to this heading">#</a></h3>
+<p>True Positive adalah data dengan nilai asli <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> dan diprediksi <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<p>Artinya model berhasil memprediksi bahwa pengunjung melakukan pembelian.</p>
+</section>
+</section>
+<section id="accuracy">
+<h2>5.2 Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h2>
+<p>Accuracy digunakan untuk menghitung seberapa banyak prediksi model yang benar dibandingkan seluruh data testing.</p>
+<p>Rumus accuracy:</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+\]</div>
+<p>Semakin tinggi nilai accuracy maka semakin baik performa model secara keseluruhan.</p>
+</section>
+<section id="precision">
+<h2>5.3 Precision<a class="headerlink" href="#precision" title="Link to this heading">#</a></h2>
+<p>Precision digunakan untuk melihat ketepatan model saat memprediksi kelas positif.</p>
+<p>Rumus precision:</p>
+<div class="math notranslate nohighlight">
+\[
+Precision = \frac{TP}{TP + FP}
+\]</div>
+<p>Precision tinggi menunjukkan bahwa hasil prediksi positif model cukup akurat.</p>
+</section>
+<section id="recall">
+<h2>5.4 Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h2>
+<p>Recall digunakan untuk melihat kemampuan model dalam menemukan data positif.</p>
+<p>Rumus recall:</p>
+<div class="math notranslate nohighlight">
+\[
+Recall = \frac{TP}{TP + FN}
+\]</div>
+<p>Semakin tinggi recall maka model semakin baik dalam mendeteksi data positif.</p>
+</section>
+<section id="f1-score">
+<h2>5.5 F1-Score<a class="headerlink" href="#f1-score" title="Link to this heading">#</a></h2>
+<p>F1-Score digunakan untuk melihat keseimbangan antara precision dan recall.</p>
+<p>Rumus F1-Score:</p>
+<div class="math notranslate nohighlight">
+\[
+F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+\]</div>
+<p>Nilai F1-Score biasanya digunakan ketika ingin melihat performa model secara lebih seimbang.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-decision-tree">
+<h1>6. Hasil Evaluasi Decision Tree<a class="headerlink" href="#hasil-evaluasi-decision-tree" title="Link to this heading">#</a></h1>
+<p>Hasil evaluasi Decision Tree diperoleh dari node <strong>Scorer Decision Tree</strong>.</p>
+<p>Pada node ini, hasil prediksi dari Python Script Testing Decision Tree dibandingkan dengan nilai asli target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
+<p>Kolom yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/2538876720.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/3337441720.png" /></p>
+<section id="confusion-matrix-decision-tree">
+<h2>6.1 Confusion Matrix Decision Tree<a class="headerlink" href="#confusion-matrix-decision-tree" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil Scorer, confusion matrix Decision Tree adalah sebagai berikut:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual FALSE =&gt; Predicted FALSE = 1943
+Actual FALSE =&gt; Predicted TRUE  = 141
+Actual TRUE  =&gt; Predicted FALSE = 156
+Actual TRUE  =&gt; Predicted TRUE  = 226
+</pre></div>
+</div>
+<section id="a-actual-false-predicted-false">
+<h3>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#a-actual-false-predicted-false" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian dan berhasil diprediksi tidak melakukan pembelian oleh model.</p>
+</section>
+<section id="b-actual-false-predicted-true">
+<h3>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#b-actual-false-predicted-true" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian tetapi diprediksi melakukan pembelian.</p>
+</section>
+<section id="c-actual-true-predicted-false">
+<h3>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#c-actual-true-predicted-false" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian tetapi diprediksi tidak melakukan pembelian.</p>
+</section>
+<section id="d-actual-true-predicted-true">
+<h3>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#d-actual-true-predicted-true" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian dan berhasil diprediksi melakukan pembelian oleh model.</p>
+</section>
+</section>
+<section id="accuracy-decision-tree">
+<h2>6.2 Accuracy Decision Tree<a class="headerlink" href="#accuracy-decision-tree" title="Link to this heading">#</a></h2>
+<p>Accuracy Decision Tree dihitung menggunakan rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+\]</div>
+<p>Dengan memasukkan nilai confusion matrix:</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy_{DecisionTree} = \frac{226 + 1943}{226 + 1943 + 141 + 156}
+\]</div>
+<p>Hasil accuracy Decision Tree:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Accuracy Decision Tree = 87.95 %
+</pre></div>
+</div>
+</section>
+<section id="analisis-hasil-decision-tree">
+<h2>6.3 Analisis Hasil Decision Tree<a class="headerlink" href="#analisis-hasil-decision-tree" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil evaluasi, model Decision Tree sudah mampu melakukan klasifikasi terhadap target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
+<p>Decision Tree menggunakan satu pohon keputusan sehingga proses klasifikasi lebih mudah dipahami.</p>
+<p>Namun karena hanya menggunakan satu tree, model ini masih dapat mengalami overfitting dan performanya dapat menurun ketika pola data cukup kompleks.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hasil-evaluasi-random-forest">
+<h1>7. Hasil Evaluasi Random Forest<a class="headerlink" href="#hasil-evaluasi-random-forest" title="Link to this heading">#</a></h1>
+<p>Hasil evaluasi Random Forest diperoleh dari node <strong>Scorer Random Forest</strong>.</p>
+<p>Pada node ini, hasil prediksi dari Python Script Testing Random Forest dibandingkan dengan nilai asli target <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p>
+<p>Kolom yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual
+Prediction
+</pre></div>
+</div>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/8418348720.png" /></p>
+<p><img alt="" src="https://cdn.corenexis.com/files/c/6438744720.png" /></p>
+<section id="confusion-matrix-random-forest">
+<h2>7.1 Confusion Matrix Random Forest<a class="headerlink" href="#confusion-matrix-random-forest" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil Scorer, confusion matrix Random Forest adalah sebagai berikut:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actual FALSE → Predicted FALSE = 2015
+Actual FALSE → Predicted TRUE  = 69
+Actual TRUE  → Predicted FALSE = 204
+Actual TRUE  → Predicted TRUE  = 178
+</pre></div>
+</div>
+<section id="id1">
+<h3>a. Actual FALSE =&gt; Predicted FALSE<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian dan berhasil diprediksi tidak melakukan pembelian.</p>
+</section>
+<section id="id2">
+<h3>b. Actual FALSE =&gt; Predicted TRUE<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya tidak melakukan pembelian tetapi diprediksi melakukan pembelian.</p>
+</section>
+<section id="id3">
+<h3>c. Actual TRUE =&gt; Predicted FALSE<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian tetapi diprediksi tidak melakukan pembelian.</p>
+</section>
+<section id="id4">
+<h3>d. Actual TRUE =&gt; Predicted TRUE<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Bagian ini menunjukkan jumlah pengunjung yang sebenarnya melakukan pembelian dan berhasil diprediksi melakukan pembelian oleh model.</p>
+</section>
+</section>
+<section id="accuracy-random-forest">
+<h2>7.2 Accuracy Random Forest<a class="headerlink" href="#accuracy-random-forest" title="Link to this heading">#</a></h2>
+<p>Accuracy Random Forest dihitung menggunakan rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+\]</div>
+<p>Dengan memasukkan nilai confusion matrix:</p>
+<div class="math notranslate nohighlight">
+\[
+Accuracy_{RandomForest} = \frac{178 + 2015}{2015 + 69 + 204 + 178}
+\]</div>
+<p>Hasil accuracy Random Forest:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Accuracy Random Forest = 88.92 %
+</pre></div>
+</div>
+</section>
+<section id="analisis-hasil-random-forest">
+<h2>7.3 Analisis Hasil Random Forest<a class="headerlink" href="#analisis-hasil-random-forest" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil evaluasi, Random Forest mampu menghasilkan klasifikasi yang lebih stabil dibandingkan Decision Tree.</p>
+<p>Random Forest menggunakan banyak pohon keputusan dengan parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<p>Setiap tree melakukan prediksi terhadap data, lalu hasil akhirnya ditentukan menggunakan voting.</p>
+<p>Konsep voting pada Random Forest:</p>
+<div class="math notranslate nohighlight">
+\[
+H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H(x)\)</span> = hasil akhir prediksi Random Forest</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_n(x)\)</span> = hasil prediksi tree ke-n</p></li>
+</ul>
+<p>Karena menggunakan banyak tree, Random Forest biasanya memiliki performa lebih stabil dibandingkan Decision Tree tunggal.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="perbandingan-decision-tree-dan-random-forest">
+<h1>8. Perbandingan Decision Tree dan Random Forest<a class="headerlink" href="#perbandingan-decision-tree-dan-random-forest" title="Link to this heading">#</a></h1>
+<p>Setelah seluruh proses evaluasi selesai, hasil Decision Tree dan Random Forest dibandingkan berdasarkan nilai accuracy dan confusion matrix.</p>
+<p>Tabel perbandingan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head text-right"><p>Accuracy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Decision Tree</p></td>
+<td class="text-right"><p>87.95 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random Forest</p></td>
+<td class="text-right"><p>88.92 %</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Berdasarkan hasil tersebut, Random Forest memiliki accuracy yang sedikit lebih tinggi dibandingkan Decision Tree.</p>
+<p>Selisih accuracy kedua model sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+88.92\% - 87.95\% = 0.97\%
+\]</div>
+<p>Walaupun selisihnya tidak terlalu besar, Random Forest tetap memberikan performa yang lebih baik pada dataset Online Shoppers Purchasing Intention.</p>
+<section id="analisis-perbandingan">
+<h2>8.1 Analisis Perbandingan<a class="headerlink" href="#analisis-perbandingan" title="Link to this heading">#</a></h2>
+<p>Decision Tree memiliki struktur yang lebih sederhana dan lebih mudah dipahami karena proses klasifikasi hanya menggunakan satu pohon keputusan.</p>
+<p>Model ini cocok digunakan ketika interpretasi model menjadi hal penting.</p>
+<p>Namun karena hanya menggunakan satu decision tree, model lebih mudah mengalami overfitting terhadap data training.</p>
+<p>Pada penelitian ini, Decision Tree menghasilkan accuracy sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+87.95\%
+\]</div>
+<p>Sedangkan Random Forest menggunakan banyak pohon keputusan sehingga proses prediksi menjadi lebih stabil.</p>
+<p>Pada penelitian ini digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>50 decision trees
+</pre></div>
+</div>
+<p>Setiap tree melakukan prediksi terhadap data testing, kemudian hasil akhir ditentukan menggunakan voting.</p>
+<p>Random Forest menghasilkan accuracy sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+88.92\%
+\]</div>
+<p>Hasil tersebut menunjukkan bahwa penggunaan banyak tree mampu meningkatkan performa klasifikasi dibandingkan Decision Tree tunggal.</p>
+</section>
+<section id="alasan-random-forest-lebih-stabil">
+<h2>8.2 Alasan Random Forest Lebih Stabil<a class="headerlink" href="#alasan-random-forest-lebih-stabil" title="Link to this heading">#</a></h2>
+<p>Random Forest mampu memberikan performa lebih baik karena:</p>
+<ol class="arabic simple">
+<li><p>Menggunakan banyak decision tree</p></li>
+<li><p>Mengurangi risiko overfitting</p></li>
+<li><p>Menggunakan voting dari seluruh tree</p></li>
+<li><p>Lebih stabil terhadap perubahan data</p></li>
+<li><p>Cocok untuk dataset dengan banyak fitur</p></li>
+</ol>
+<p>Secara konsep, Random Forest tidak hanya mengambil keputusan dari satu pohon, tetapi dari gabungan banyak pohon keputusan.</p>
+<p>Konsep voting pada Random Forest dapat dituliskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+H(x) = \text{majority vote}(h_1(x), h_2(x), ..., h_n(x))
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H(x)\)</span> = hasil akhir prediksi Random Forest</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_n(x)\)</span> = hasil prediksi dari tree ke-n</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah decision tree</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
+<h1>9. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<p>Berdasarkan proses yang telah dilakukan, model Decision Tree dan Random Forest berhasil dibuat menggunakan Python Script Legacy pada KNIME.</p>
+<p>Dataset yang digunakan adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Online Shoppers Purchasing Intention Dataset
+</pre></div>
+</div>
+<p>Target klasifikasi yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Revenue
+</pre></div>
+</div>
+<p>Data dibagi menjadi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>80% data training
+20% data testing
+</pre></div>
+</div>
+<p>Decision Tree bekerja menggunakan satu pohon keputusan sehingga model lebih sederhana dan mudah dipahami.</p>
+<p>Pada penelitian ini, Decision Tree menghasilkan accuracy sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+87.95\%
+\]</div>
+<p>Random Forest bekerja menggunakan banyak pohon keputusan. Pada penelitian ini digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>50 decision trees
+</pre></div>
+</div>
+<p>Hasil akhir Random Forest diperoleh melalui voting seluruh tree.</p>
+<p>Pada penelitian ini, Random Forest menghasilkan accuracy sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+88.92\%
+\]</div>
+<p>Berdasarkan hasil evaluasi, Random Forest memiliki performa yang lebih baik dibandingkan Decision Tree.</p>
+<p>Hal ini menunjukkan bahwa penggunaan banyak decision tree mampu membantu model menghasilkan prediksi yang lebih stabil dan lebih akurat dalam memprediksi apakah pengunjung melakukan pembelian atau tidak.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DecisionTree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analisa Data Menggunakan Pohon Keputusan (Decision Tree)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Pendahuluan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">2. Deskripsi Dataset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik">2.1 Atribut Numerik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-administrative">a. Administrative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-administrative-duration">b. Administrative_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-informational">c. Informational</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-informational-duration">d. Informational_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-productrelated">e. ProductRelated</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-productrelated-duration">f. ProductRelated_Duration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-bouncerates">g. BounceRates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-exitrates">h. ExitRates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-pagevalues">i. PageValues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#j-specialday">j. SpecialDay</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kategorikal">2.2 Atribut Kategorikal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-month">a. Month</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operatingsystems">b. OperatingSystems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-browser">c. Browser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-region">d. Region</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-traffictype">e. TrafficType</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-visitortype">f. VisitorType</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-weekend">g. Weekend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">3. Workflow KNIME</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-node-pada-workflow-knime">4. Penjelasan Node pada Workflow KNIME</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.2 Table Partitioner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree">4.3 Node Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-decision-tree">4.3.1 Python Script Training Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-decision-tree">Penjelasan Kode Python Training Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-decision-tree">4.3.2 Python Script Testing Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-decision-tree">Penjelasan Kode Python Testing Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-decision-tree">4.3.3 Scorer Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-random-forest">4.4 Node Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-training-random-forest">4.4.1 Python Script Training Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-training-random-forest">Penjelasan Kode Python Training Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script-testing-random-forest">4.4.2 Python Script Testing Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-python-testing-random-forest">Penjelasan Kode Python Testing Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-random-forest">4.4.3 Scorer Random Forest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-model">5. Hasil Evaluasi Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.1 Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-true-negative">a. True Negative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-false-positive">b. False Positive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-false-negative">c. False Negative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-true-positive">d. True Positive</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">5.2 Accuracy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">5.3 Precision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">5.4 Recall</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5.5 F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-decision-tree">6. Hasil Evaluasi Decision Tree</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-decision-tree">6.1 Confusion Matrix Decision Tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-actual-false-predicted-false">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-actual-false-predicted-true">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-actual-true-predicted-false">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-actual-true-predicted-true">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-decision-tree">6.2 Accuracy Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-decision-tree">6.3 Analisis Hasil Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-evaluasi-random-forest">7. Hasil Evaluasi Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-random-forest">7.1 Confusion Matrix Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a. Actual FALSE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b. Actual FALSE =&gt; Predicted TRUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c. Actual TRUE =&gt; Predicted FALSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d. Actual TRUE =&gt; Predicted TRUE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-random-forest">7.2 Accuracy Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-random-forest">7.3 Analisis Hasil Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-decision-tree-dan-random-forest">8. Perbandingan Decision Tree dan Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan">8.1 Analisis Perbandingan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-random-forest-lebih-stabil">8.2 Alasan Random Forest Lebih Stabil</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rachelia Andini Tendean
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
