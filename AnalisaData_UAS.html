@@ -381,17 +381,18 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-random-forest">5. Hasil Analisis Menggunakan Random Forest</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-k-nearest-neighbor-knn">6. Hasil Analisis Menggunakan K-Nearest Neighbor (KNN)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-analisis">7. Perbandingan Hasil Analisis</a></li>
@@ -444,15 +445,12 @@
 <p>Workflow pada KNIME dibuat untuk menjalankan seluruh proses analisis secara berurutan, mulai dari membaca dataset, melakukan preprocessing, membangun model klasifikasi, hingga mengevaluasi hasil prediksi. Workflow yang digunakan dapat dilihat pada gambar berikut.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/vzkkNsCvcwz6bjzQqcFX8FipLmv6QHZG02AlMypYT6g.original.fullsize.png" /></p>
 <p>Workflow tersebut terdiri dari beberapa node yang saling terhubung. Setiap node memiliki fungsi yang berbeda sehingga seluruh proses analisis dapat berjalan secara otomatis dari awal hingga menghasilkan nilai accuracy masing-masing algoritma.</p>
-</section>
 <section id="csv-reader">
-<h2>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h2>
+<h3>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h3>
 <p>Node pertama yang digunakan pada workflow adalah <strong>CSV Reader</strong>. Node ini berfungsi untuk membaca dataset yang masih berupa file CSV agar dapat diproses oleh KNIME.</p>
 <p>Pada tahap ini seluruh data mahasiswa dimasukkan ke dalam KNIME beserta atribut yang terdapat pada dataset. Setelah proses pembacaan selesai, data akan ditampilkan dalam bentuk tabel sehingga dapat dilanjutkan ke tahap preprocessing.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/t0jms_oSF0z5upNErE3wwEGt_AX3Gu1tfBKMwstaqEc.original.fullsize.png" /></p>
-</section>
-<section id="column-filter">
-<h2>4.2 Column Filter<a class="headerlink" href="#column-filter" title="Link to this heading">#</a></h2>
+<p>#3# 4.2 Column Filter</p>
 <p>Setelah dataset berhasil dibaca, langkah berikutnya adalah menghapus atribut yang tidak diperlukan menggunakan node <strong>Column Filter</strong>.</p>
 <p>Pada analisis ini, kolom yang dihapus adalah:</p>
 <ul class="simple">
@@ -463,7 +461,7 @@
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/9esLsNcW_4QqB78sWQGiYji0XwbwAs8AWJ5zIhlecss.original.fullsize.png" /></p>
 </section>
 <section id="missing-value">
-<h2>4.3 Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h2>
+<h3>4.3 Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h3>
 <p>Tahap berikutnya adalah menangani data yang memiliki nilai kosong menggunakan node <strong>Missing Value</strong>.</p>
 <p>Data yang memiliki nilai kosong dapat menyebabkan proses pelatihan model menjadi kurang optimal. Oleh karena itu, nilai yang kosong perlu diganti agar seluruh data dapat digunakan.</p>
 <p>Pada atribut yang bertipe <strong>Integer</strong>, metode yang digunakan adalah <strong>Mean</strong>.</p>
@@ -490,7 +488,7 @@ n = \text{banyaknya data}
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/aXH03S4oyP_kb76hDbrGUhgA0w8XsV01vZkuum9zqf0.original.fullsize.png" /></p>
 </section>
 <section id="number-to-string">
-<h2>4.4 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h2>
+<h3>4.4 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h3>
 <p>Node <strong>Number to String</strong> digunakan untuk mengubah tipe data numerik menjadi tipe string atau kategorikal.</p>
 <p>Pada analisis ini terdapat dua atribut yang diubah, yaitu:</p>
 <ul class="simple">
@@ -503,7 +501,7 @@ n = \text{banyaknya data}
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/hjlKca112lmjCrgDNUWbRFaJNppvVMWOdtZ0q80TyXM.original.fullsize.png" /></p>
 </section>
 <section id="table-partitioner">
-<h2>4.5 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h2>
+<h3>4.5 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
 <p>Setelah proses preprocessing selesai, dataset dibagi menjadi data training dan data testing menggunakan node <strong>Table Partitioner</strong>.</p>
 <p>Konfigurasi yang digunakan adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -530,7 +528,7 @@ n = \text{banyaknya data}
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/VkF9rmwZOBWOEscy4x5VKGn3R2GoNSGpWJYmxEZHddg.original.fullsize.png" /></p>
 </section>
 <section id="random-forest-learner">
-<h2>4.6 Random Forest Learner<a class="headerlink" href="#random-forest-learner" title="Link to this heading">#</a></h2>
+<h3>4.6 Random Forest Learner<a class="headerlink" href="#random-forest-learner" title="Link to this heading">#</a></h3>
 <p>Node <strong>Random Forest Learner</strong> digunakan untuk membangun model klasifikasi menggunakan algoritma Random Forest.</p>
 <p>Random Forest bekerja dengan membuat banyak pohon keputusan (decision tree). Setiap pohon akan melakukan proses klasifikasi secara independen, kemudian seluruh hasil prediksi digabungkan untuk menentukan kelas akhir.</p>
 <p>Pada analisis ini digunakan konfigurasi sebagai berikut.</p>
@@ -568,14 +566,14 @@ n = \text{banyaknya data}
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/a5C0ayGQKWMhlv3ouknukn6ETBfJTSFGMPxbJj04QHc.original.fullsize.png" /></p>
 </section>
 <section id="random-forest-predictor">
-<h2>4.7 Random Forest Predictor<a class="headerlink" href="#random-forest-predictor" title="Link to this heading">#</a></h2>
+<h3>4.7 Random Forest Predictor<a class="headerlink" href="#random-forest-predictor" title="Link to this heading">#</a></h3>
 <p>Setelah model selesai dilatih, node <strong>Random Forest Predictor</strong> digunakan untuk melakukan prediksi terhadap data testing.</p>
 <p>Node ini menerima dua masukan, yaitu model hasil pelatihan dan data testing. Selanjutnya model akan memprediksi kelas Grade untuk setiap data uji berdasarkan pola yang telah dipelajari sebelumnya.</p>
 <p>Output dari node ini berupa data asli beserta hasil prediksi yang nantinya akan digunakan pada proses evaluasi.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/aABfEWEzpoB8Rnm7zRQ0059IPoWT59lywUnKlf_fbz8.original.fullsize.png" /></p>
 </section>
 <section id="normalizer">
-<h2>4.8 Normalizer<a class="headerlink" href="#normalizer" title="Link to this heading">#</a></h2>
+<h3>4.8 Normalizer<a class="headerlink" href="#normalizer" title="Link to this heading">#</a></h3>
 <p>Pada algoritma K-Nearest Neighbor, seluruh atribut numerik perlu dinormalisasi terlebih dahulu menggunakan node <strong>Normalizer</strong>.</p>
 <p>Metode normalisasi yang digunakan adalah <strong>Min-Max Normalization</strong>.</p>
 <p>Rumus Min-Max adalah:</p>
@@ -588,14 +586,14 @@ x'=\frac{x-x_{min}}{x_{max}-x_{min}}
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/0uKXIQSgGoj8IRKwIXr_aT5UNpQ2XBsXAKhqy77ArX0.original.fullsize.png" /></p>
 </section>
 <section id="normalizer-apply">
-<h2>4.9 Normalizer (Apply)<a class="headerlink" href="#normalizer-apply" title="Link to this heading">#</a></h2>
+<h3>4.9 Normalizer (Apply)<a class="headerlink" href="#normalizer-apply" title="Link to this heading">#</a></h3>
 <p>Node <strong>Normalizer (Apply)</strong> digunakan untuk menerapkan hasil normalisasi dari data training ke data testing.</p>
 <p>Hal ini dilakukan agar data testing menggunakan skala yang sama dengan data training sehingga proses prediksi menjadi lebih konsisten.</p>
 <p>Tanpa langkah ini, hasil perhitungan jarak pada algoritma KNN dapat menjadi kurang akurat.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/nHcvbtE9Az6nDz568HwQ7gJa0PYD-DYGgfRXInu3rwU.original.fullsize.png" /></p>
 </section>
 <section id="k-nearest-neighbor">
-<h2>4.10 K Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Link to this heading">#</a></h2>
+<h3>4.10 K Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Link to this heading">#</a></h3>
 <p>Node <strong>K Nearest Neighbor</strong> digunakan untuk membangun model klasifikasi menggunakan algoritma KNN.</p>
 <p>Pada analisis ini digunakan konfigurasi sebagai berikut.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -617,6 +615,7 @@ x'=\frac{x-x_{min}}{x_{max}-x_{min}}
 <p>Nilai <strong>K = 3</strong> berarti setiap data baru akan dibandingkan dengan tiga data yang memiliki jarak paling dekat. Selanjutnya kelas yang paling banyak muncul di antara ketiga tetangga tersebut akan menjadi hasil prediksi.</p>
 <p>Semakin kecil nilai K, model menjadi lebih sensitif terhadap perubahan data. Sebaliknya, jika nilai K terlalu besar, model dapat kehilangan detail pola yang ada pada data.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/4RQK4Kd_dyBkKs0Ze_zb4x8j7rE3VMIkjjfNHJiXIVY.original.fullsize.png" /></p>
+</section>
 </section>
 <section id="hasil-analisis-menggunakan-random-forest">
 <h2>5. Hasil Analisis Menggunakan Random Forest<a class="headerlink" href="#hasil-analisis-menggunakan-random-forest" title="Link to this heading">#</a></h2>
@@ -771,17 +770,18 @@ x'=\frac{x-x_{min}}{x_{max}-x_{min}}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-random-forest">5. Hasil Analisis Menggunakan Random Forest</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-k-nearest-neighbor-knn">6. Hasil Analisis Menggunakan K-Nearest Neighbor (KNN)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-analisis">7. Perbandingan Hasil Analisis</a></li>
