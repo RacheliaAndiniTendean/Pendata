@@ -379,10 +379,14 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
@@ -425,6 +429,43 @@
 <p>Dataset ini berisi data hasil evaluasi mahasiswa berdasarkan berbagai aspek yang berhubungan dengan proses pembelajaran. Beberapa atribut yang terdapat pada dataset antara lain identitas mahasiswa, kode mata kuliah, aktivitas belajar, tingkat kehadiran, hingga nilai akhir yang diperoleh mahasiswa.</p>
 <p>Pada proses klasifikasi, atribut <strong>Grade</strong> digunakan sebagai target atau kelas yang akan diprediksi oleh model. Sedangkan atribut lainnya digunakan sebagai variabel yang membantu proses pembelajaran model.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/1OWn4D6e7QFpBWgdkLICLme0UdbP7yhT_G5zG0AIDYg.original.fullsize.png" /></p>
+<section id="data-understanding">
+<h3>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h3>
+<p>Sebelum melakukan preprocessing, terlebih dahulu dilakukan <strong>data understanding</strong> untuk memahami karakteristik dataset yang digunakan. Tahap ini bertujuan untuk mengetahui jenis data setiap atribut, target yang akan diprediksi, serta menentukan teknik preprocessing yang sesuai.</p>
+<p>Berdasarkan dokumentasi pada website <strong>UCI Machine Learning Repository</strong>, dataset ini memiliki beberapa jenis atribut, yaitu:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Jenis Atribut</p></th>
+<th class="head"><p>Jenis Data</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Student ID</strong></p></td>
+<td><p>String</p></td>
+<td><p>Digunakan sebagai identitas unik setiap mahasiswa sehingga tidak digunakan dalam proses klasifikasi.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Course ID</strong></p></td>
+<td><p>Categorical (Nominal)</p></td>
+<td><p>Berupa kode mata kuliah yang tidak memiliki urutan.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Grade</strong></p></td>
+<td><p>Class / Target (Categorical)</p></td>
+<td><p>Digunakan sebagai target yang akan diprediksi pada proses klasifikasi.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Beberapa atribut seperti Sex, Scholarship, Additional Work, dan lain-lain</strong></p></td>
+<td><p>Categorical (Nominal)</p></td>
+<td><p>Nilainya berupa kategori tanpa memiliki tingkatan.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Beberapa atribut seperti Student Age, Parent Education, Weekly Study Hours, dan lain-lain</strong></p></td>
+<td><p>Categorical (Ordinal)</p></td>
+<td><p>Nilainya memiliki tingkatan atau urutan sehingga termasuk data ordinal.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Meskipun sebagian besar nilai pada file CSV tersimpan dalam bentuk <strong>Integer</strong>, angka tersebut hanya digunakan sebagai kode untuk mewakili kategori tertentu. Oleh karena itu, interpretasi data tetap mengacu pada dokumentasi resmi dataset dari UCI Machine Learning Repository.</p>
+</section>
 </section>
 <section id="tujuan-analisis">
 <h2>3. Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
@@ -450,7 +491,9 @@
 <p>Node pertama yang digunakan pada workflow adalah <strong>CSV Reader</strong>. Node ini berfungsi untuk membaca dataset yang masih berupa file CSV agar dapat diproses oleh KNIME.</p>
 <p>Pada tahap ini seluruh data mahasiswa dimasukkan ke dalam KNIME beserta atribut yang terdapat pada dataset. Setelah proses pembacaan selesai, data akan ditampilkan dalam bentuk tabel sehingga dapat dilanjutkan ke tahap preprocessing.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/t0jms_oSF0z5upNErE3wwEGt_AX3Gu1tfBKMwstaqEc.original.fullsize.png" /></p>
-<p>#3# 4.2 Column Filter</p>
+</section>
+<section id="column-filter">
+<h3>4.2 Column Filter<a class="headerlink" href="#column-filter" title="Link to this heading">#</a></h3>
 <p>Setelah dataset berhasil dibaca, langkah berikutnya adalah menghapus atribut yang tidak diperlukan menggunakan node <strong>Column Filter</strong>.</p>
 <p>Pada analisis ini, kolom yang dihapus adalah:</p>
 <ul class="simple">
@@ -768,10 +811,14 @@ x'=\frac{x-x_{min}}{x_{max}-x_{min}}
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
