@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analisis Data Menggunakan Algoritma Random Forest dan K-Nearest Neighbor (KNN) pada Dataset Higher Education Students Performance Evaluation &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'AnalisaData_UAS (4)';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <img src="_static/foto.jpeg" class="logo__image only-dark pst-js-only" alt="Penambangan Data - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bussines%20Understanding.html">Bussines Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance%20Data%20Campuran.html">Mengukur Jarak Antar Data Campuran</a></li>
+<li class="toctree-l1"><a class="reference internal" href="missing_dan_normalisasi.html">Proyek Missing Values Inputation + Materi Normalisasi data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_analisis_knn.html">UTS-Analisa Data Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NaiveBayes.html">Analisis Data Menggunakan Naive Bayes (KNIME + Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTree.html">Analisa Data Menggunakan Pohon Keputusan (Decision Tree)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomForest.html">Analisa Data Menggunakan Random Forest untuk Prediksi Revenue pada Dataset Online Shoppers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegresi.html">Analisis Data Menggunakan Regresi Linier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Crawling_Data_NO2.html">Peramalan Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di Daerah Manado Menggunakan KNN Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analisa_Data.html">Analisis Explainability pada Model Forecasting Kebutuhan Listrik</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnalisaData_UAS (4).html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/AnalisaData_UAS (4).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis Data Menggunakan Algoritma Random Forest dan K-Nearest Neighbor (KNN) pada Dataset Higher Education Students Performance Evaluation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2.1 Data Understanding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.3 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.4 Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-random-forest">5. Hasil Analisis Menggunakan Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-k-nearest-neighbor-knn">6. Hasil Analisis Menggunakan K-Nearest Neighbor (KNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-analisis">7. Perbandingan Hasil Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-data-menggunakan-algoritma-random-forest-dan-k-nearest-neighbor-knn-pada-dataset-higher-education-students-performance-evaluation">
+<h1>Analisis Data Menggunakan Algoritma Random Forest dan K-Nearest Neighbor (KNN) pada Dataset Higher Education Students Performance Evaluation<a class="headerlink" href="#analisis-data-menggunakan-algoritma-random-forest-dan-k-nearest-neighbor-knn-pada-dataset-higher-education-students-performance-evaluation" title="Link to this heading">#</a></h1>
+<section id="pendahuluan">
+<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+<p>Data mining merupakan salah satu teknik yang digunakan untuk menemukan pola atau informasi penting dari sekumpulan data. Salah satu penerapan data mining adalah klasifikasi, yaitu proses mengelompokkan suatu data ke dalam kelas tertentu berdasarkan data yang telah dipelajari sebelumnya.</p>
+<p>Pada analisis ini digunakan dataset <strong>Higher Education Students Performance Evaluation</strong> yang berasal dari UCI Machine Learning Repository. Dataset tersebut berisi data evaluasi mahasiswa yang mencakup beberapa faktor, seperti karakteristik mahasiswa, mata kuliah yang diambil, aktivitas belajar, hingga nilai akhir yang diperoleh.</p>
+<p>Analisis dilakukan menggunakan dua algoritma klasifikasi, yaitu <strong>Random Forest</strong> dan <strong>K-Nearest Neighbor (KNN)</strong>. Kedua algoritma tersebut dipilih karena cukup sering digunakan dalam proses klasifikasi dan memiliki cara kerja yang berbeda. Random Forest melakukan prediksi dengan membangun banyak pohon keputusan, sedangkan KNN melakukan klasifikasi berdasarkan kedekatan jarak antar data.</p>
+<p>Proses analisis dilakukan menggunakan aplikasi <strong>KNIME Analytics Platform</strong>, mulai dari tahap preprocessing data, pembagian data latih dan data uji, proses pelatihan model, hingga evaluasi hasil klasifikasi. Setelah kedua model selesai dijalankan, hasil accuracy dari masing-masing algoritma akan dibandingkan untuk mengetahui algoritma mana yang memberikan performa lebih baik pada dataset ini.</p>
+</section>
+<section id="dataset">
+<h2>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan berasal dari <strong>UCI Machine Learning Repository</strong> dengan nama <strong>Higher Education Students Performance Evaluation</strong>.</p>
+<p>Link dataset:</p>
+<p><a class="reference external" href="https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation">https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation</a></p>
+<p>Dataset ini berisi data hasil evaluasi mahasiswa berdasarkan berbagai aspek yang berhubungan dengan proses pembelajaran. Beberapa atribut yang terdapat pada dataset antara lain identitas mahasiswa, kode mata kuliah, aktivitas belajar, tingkat kehadiran, hingga nilai akhir yang diperoleh mahasiswa.</p>
+<p>Pada proses klasifikasi, atribut <strong>Grade</strong> digunakan sebagai target atau kelas yang akan diprediksi oleh model. Sedangkan atribut lainnya digunakan sebagai variabel yang membantu proses pembelajaran model.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/1OWn4D6e7QFpBWgdkLICLme0UdbP7yhT_G5zG0AIDYg.original.fullsize.png" /></p>
+<section id="data-understanding">
+<h3>2.1 Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h3>
+<p>Sebelum melakukan preprocessing, terlebih dahulu dilakukan <strong>data understanding</strong> untuk memahami karakteristik dataset yang digunakan. Tahap ini bertujuan untuk mengetahui jenis data setiap atribut, target yang akan diprediksi, serta menentukan teknik preprocessing yang sesuai.</p>
+<p>Berdasarkan dokumentasi pada website <strong>UCI Machine Learning Repository</strong>, dataset ini memiliki beberapa jenis atribut, yaitu:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Jenis Atribut</p></th>
+<th class="head"><p>Jenis Data</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Student ID</strong></p></td>
+<td><p>String</p></td>
+<td><p>Digunakan sebagai identitas unik setiap mahasiswa sehingga tidak digunakan dalam proses klasifikasi.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Course ID</strong></p></td>
+<td><p>Categorical (Nominal)</p></td>
+<td><p>Berupa kode mata kuliah yang tidak memiliki urutan.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Grade</strong></p></td>
+<td><p>Class / Target (Categorical)</p></td>
+<td><p>Digunakan sebagai target yang akan diprediksi pada proses klasifikasi.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Beberapa atribut seperti Sex, Scholarship, Additional Work, dan lain-lain</strong></p></td>
+<td><p>Categorical (Nominal)</p></td>
+<td><p>Nilainya berupa kategori tanpa memiliki tingkatan.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Beberapa atribut seperti Student Age, Parent Education, Weekly Study Hours, dan lain-lain</strong></p></td>
+<td><p>Categorical (Ordinal)</p></td>
+<td><p>Nilainya memiliki tingkatan atau urutan sehingga termasuk data ordinal.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Meskipun sebagian besar nilai pada file CSV tersimpan dalam bentuk <strong>Integer</strong>, angka tersebut hanya digunakan sebagai kode untuk mewakili kategori tertentu. Oleh karena itu, interpretasi data tetap mengacu pada dokumentasi resmi dataset dari UCI Machine Learning Repository.</p>
+</section>
+</section>
+<section id="tujuan-analisis">
+<h2>3. Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
+<p>Analisis ini dilakukan dengan beberapa tujuan sebagai berikut.</p>
+<ul class="simple">
+<li><p>Melakukan preprocessing terhadap dataset sebelum proses klasifikasi.</p></li>
+<li><p>Mengatasi data yang memiliki nilai kosong (missing value).</p></li>
+<li><p>Mengubah atribut tertentu agar sesuai dengan tipe data yang dibutuhkan.</p></li>
+<li><p>Membagi dataset menjadi data training dan data testing.</p></li>
+<li><p>Membangun model klasifikasi menggunakan algoritma Random Forest.</p></li>
+<li><p>Membangun model klasifikasi menggunakan algoritma K-Nearest Neighbor (KNN).</p></li>
+<li><p>Membandingkan hasil klasifikasi berdasarkan nilai accuracy yang diperoleh masing-masing algoritma.</p></li>
+<li><p>Menentukan algoritma yang memberikan performa terbaik pada dataset Higher Education Students Performance Evaluation.</p></li>
+</ul>
+</section>
+<section id="workflow-knime">
+<h2>4. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
+<p>Workflow pada KNIME dibuat untuk menjalankan seluruh proses analisis secara berurutan, mulai dari membaca dataset, melakukan preprocessing, membangun model klasifikasi, hingga mengevaluasi hasil prediksi. Workflow yang digunakan dapat dilihat pada gambar berikut.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/259-P8JLHlO6fXbbq2Oj4MS2ohZiaxCegutpVwgfj7c.original.fullsize.png" /></p>
+<p>Workflow tersebut terdiri dari beberapa node yang saling terhubung. Setiap node memiliki fungsi yang berbeda sehingga seluruh proses analisis dapat berjalan secara otomatis dari awal hingga menghasilkan nilai accuracy masing-masing algoritma.</p>
+<section id="csv-reader">
+<h3>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h3>
+<p>Node pertama yang digunakan pada workflow adalah <strong>CSV Reader</strong>. Node ini berfungsi untuk membaca dataset yang masih berupa file CSV agar dapat diproses oleh KNIME.</p>
+<p>Pada tahap ini seluruh data mahasiswa dimasukkan ke dalam KNIME beserta atribut yang terdapat pada dataset. Setelah proses pembacaan selesai, data akan ditampilkan dalam bentuk tabel sehingga dapat dilanjutkan ke tahap preprocessing.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/t0jms_oSF0z5upNErE3wwEGt_AX3Gu1tfBKMwstaqEc.original.fullsize.png" /></p>
+</section>
+<section id="column-filter">
+<h3>4.2 Column Filter<a class="headerlink" href="#column-filter" title="Link to this heading">#</a></h3>
+<p>Setelah dataset berhasil dibaca, langkah berikutnya adalah menghapus atribut yang tidak diperlukan menggunakan node <strong>Column Filter</strong>.</p>
+<p>Pada analisis ini, kolom yang dihapus adalah:</p>
+<ul class="simple">
+<li><p>Student ID</p></li>
+</ul>
+<p>Alasan kolom tersebut dihapus karena hanya berfungsi sebagai identitas unik setiap mahasiswa. Nilai Student ID tidak memiliki hubungan dengan nilai akhir mahasiswa sehingga tidak memberikan informasi yang berguna dalam proses klasifikasi.</p>
+<p>Dengan menghapus atribut yang tidak relevan, proses pelatihan model menjadi lebih fokus pada atribut yang benar-benar berpengaruh terhadap hasil prediksi.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/9esLsNcW_4QqB78sWQGiYji0XwbwAs8AWJ5zIhlecss.original.fullsize.png" /></p>
+</section>
+<section id="number-to-string">
+<h3>4.3 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h3>
+<p>Node <strong>Number to String</strong> digunakan untuk mengubah tipe data numerik menjadi tipe string atau kategorikal.</p>
+<p>Pada analisis ini terdapat dua atribut yang diubah, yaitu:</p>
+<ul class="simple">
+<li><p>Grade</p></li>
+<li><p>Course ID</p></li>
+</ul>
+<p>Atribut <strong>Grade</strong> diubah menjadi string karena merupakan kelas yang akan diprediksi oleh model klasifikasi, bukan nilai numerik yang akan dihitung.</p>
+<p>Sedangkan <strong>Course ID</strong> merupakan kode mata kuliah. Walaupun berbentuk angka, atribut tersebut hanya berfungsi sebagai identitas mata kuliah sehingga lebih tepat diperlakukan sebagai data kategorikal.</p>
+<p>Dengan perubahan tipe data ini, algoritma klasifikasi dapat mengenali kedua atribut tersebut sebagai kategori, bukan sebagai nilai yang memiliki hubungan matematis.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/hjlKca112lmjCrgDNUWbRFaJNppvVMWOdtZ0q80TyXM.original.fullsize.png" /></p>
+</section>
+<section id="missing-value">
+<h3>4.4 Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h3>
+<p>Tahap berikutnya adalah menangani data yang memiliki nilai kosong menggunakan node <strong>Missing Value</strong>.</p>
+<p>Data yang memiliki nilai kosong dapat memengaruhi proses pelatihan model sehingga perlu ditangani terlebih dahulu. Jika nilai kosong tidak diisi, beberapa algoritma machine learning dapat menghasilkan model yang kurang optimal atau bahkan tidak dapat memproses data.</p>
+<p>Pada analisis ini, metode yang digunakan untuk mengisi nilai kosong adalah <strong>Most Frequent Value (Mode)</strong>. Metode ini akan mengganti nilai yang hilang dengan nilai yang paling sering muncul pada setiap atribut.</p>
+<p>Secara matematis, nilai modus dapat dituliskan sebagai berikut.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Mode} = \arg\max_{x}(f(x))
+\]</div>
+<p>Keterangan:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \text{frekuensi kemunculan setiap nilai}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\arg\max = \text{nilai dengan frekuensi terbesar}
+\]</div>
+<p>Metode <strong>Most Frequent</strong> dipilih karena sebagian besar atribut pada dataset merupakan data kategorikal yang direpresentasikan dalam bentuk kode angka (integer). Oleh karena itu, penggantian menggunakan nilai yang paling sering muncul lebih sesuai dibandingkan menggunakan rata-rata, sehingga nilai hasil imputasi tetap berada pada kategori yang valid.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/hw8r6lofdQ27VyypViQTsHxJCf4hKHFZYbEWnyvFW6g.original.fullsize.png" /></p>
+</section>
+<section id="table-partitioner">
+<h3>4.5 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
+<p>Setelah proses preprocessing selesai, dataset dibagi menjadi data training dan data testing menggunakan node <strong>Table Partitioner</strong>.</p>
+<p>Konfigurasi yang digunakan adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data Training</p></td>
+<td><p>80%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Testing</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling</p></td>
+<td><p>Stratified</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sebanyak <strong>80%</strong> data digunakan sebagai data training untuk melatih model, sedangkan <strong>20%</strong> sisanya digunakan sebagai data testing untuk menguji kemampuan model dalam melakukan prediksi.</p>
+<p>Metode <strong>Stratified Sampling</strong> digunakan agar proporsi setiap kelas pada data training dan data testing tetap seimbang. Dengan cara ini distribusi kelas tidak berubah sehingga proses evaluasi model menjadi lebih adil.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/VkF9rmwZOBWOEscy4x5VKGn3R2GoNSGpWJYmxEZHddg.original.fullsize.png" /></p>
+</section>
+<section id="random-forest-learner">
+<h3>4.6 Random Forest Learner<a class="headerlink" href="#random-forest-learner" title="Link to this heading">#</a></h3>
+<p>Node <strong>Random Forest Learner</strong> digunakan untuk membangun model klasifikasi menggunakan algoritma Random Forest.</p>
+<p>Random Forest bekerja dengan membuat banyak pohon keputusan (decision tree). Setiap pohon akan melakukan proses klasifikasi secara independen, kemudian seluruh hasil prediksi digabungkan untuk menentukan kelas akhir.</p>
+<p>Pada analisis ini digunakan konfigurasi sebagai berikut.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Split Criterion</p></td>
+<td><p>Gini</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum Tree Depth</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of Trees</p></td>
+<td><p>100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Penjelasan parameter:</p>
+<ul>
+<li><p><strong>Split Criterion = Gini</strong></p>
+<p>Digunakan untuk menentukan pemisahan data terbaik pada setiap node pohon keputusan. Semakin kecil nilai Gini, maka pembagian data dianggap semakin baik.</p>
+</li>
+<li><p><strong>Maximum Tree Depth = 10</strong></p>
+<p>Membatasi kedalaman setiap pohon hingga maksimal 10 level. Pembatasan ini dilakukan agar model tidak terlalu kompleks dan mengurangi kemungkinan overfitting.</p>
+</li>
+<li><p><strong>Number of Trees = 100</strong></p>
+<p>Model akan membangun sebanyak 100 pohon keputusan. Semakin banyak pohon yang digunakan, biasanya hasil prediksi menjadi lebih stabil karena keputusan diambil berdasarkan mayoritas hasil dari seluruh pohon.</p>
+</li>
+</ul>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/a5C0ayGQKWMhlv3ouknukn6ETBfJTSFGMPxbJj04QHc.original.fullsize.png" /></p>
+</section>
+<section id="random-forest-predictor">
+<h3>4.7 Random Forest Predictor<a class="headerlink" href="#random-forest-predictor" title="Link to this heading">#</a></h3>
+<p>Setelah model selesai dilatih, node <strong>Random Forest Predictor</strong> digunakan untuk melakukan prediksi terhadap data testing.</p>
+<p>Node ini menerima dua masukan, yaitu model hasil pelatihan dan data testing. Selanjutnya model akan memprediksi kelas Grade untuk setiap data uji berdasarkan pola yang telah dipelajari sebelumnya.</p>
+<p>Output dari node ini berupa data asli beserta hasil prediksi yang nantinya akan digunakan pada proses evaluasi.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/T-l-3uyZsJ-3JaiqQcwsxCJ6LYcFh93rUIhm3_eGNjE.original.fullsize.png" /></p>
+</section>
+<section id="normalizer">
+<h3>4.8 Normalizer<a class="headerlink" href="#normalizer" title="Link to this heading">#</a></h3>
+<p>Pada algoritma K-Nearest Neighbor, seluruh atribut numerik perlu dinormalisasi terlebih dahulu menggunakan node <strong>Normalizer</strong>.</p>
+<p>Metode normalisasi yang digunakan adalah <strong>Min-Max Normalization</strong>.</p>
+<p>Rumus Min-Max adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+x'=\frac{x-x_{min}}{x_{max}-x_{min}}
+\]</div>
+<p>Tujuan normalisasi adalah mengubah seluruh nilai atribut ke dalam rentang yang sama sehingga tidak ada atribut yang memiliki pengaruh lebih besar hanya karena memiliki nilai yang lebih tinggi.</p>
+<p>Normalisasi sangat penting pada algoritma KNN karena proses klasifikasinya menggunakan perhitungan jarak antar data.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/0uKXIQSgGoj8IRKwIXr_aT5UNpQ2XBsXAKhqy77ArX0.original.fullsize.png" /></p>
+</section>
+<section id="normalizer-apply">
+<h3>4.9 Normalizer (Apply)<a class="headerlink" href="#normalizer-apply" title="Link to this heading">#</a></h3>
+<p>Node <strong>Normalizer (Apply)</strong> digunakan untuk menerapkan hasil normalisasi dari data training ke data testing.</p>
+<p>Hal ini dilakukan agar data testing menggunakan skala yang sama dengan data training sehingga proses prediksi menjadi lebih konsisten.</p>
+<p>Tanpa langkah ini, hasil perhitungan jarak pada algoritma KNN dapat menjadi kurang akurat.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/nHcvbtE9Az6nDz568HwQ7gJa0PYD-DYGgfRXInu3rwU.original.fullsize.png" /></p>
+</section>
+<section id="k-nearest-neighbor">
+<h3>4.10 K Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Link to this heading">#</a></h3>
+<p>Node <strong>K Nearest Neighbor</strong> digunakan untuk membangun model klasifikasi menggunakan algoritma KNN.</p>
+<p>Pada analisis ini digunakan konfigurasi sebagai berikut.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number of Neighbors (K)</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Target Column</p></td>
+<td><p>Grade</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai <strong>K = 3</strong> berarti setiap data baru akan dibandingkan dengan tiga data yang memiliki jarak paling dekat. Selanjutnya kelas yang paling banyak muncul di antara ketiga tetangga tersebut akan menjadi hasil prediksi.</p>
+<p>Semakin kecil nilai K, model menjadi lebih sensitif terhadap perubahan data. Sebaliknya, jika nilai K terlalu besar, model dapat kehilangan detail pola yang ada pada data.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/4RQK4Kd_dyBkKs0Ze_zb4x8j7rE3VMIkjjfNHJiXIVY.original.fullsize.png" /></p>
+</section>
+</section>
+<section id="hasil-analisis-menggunakan-random-forest">
+<h2>5. Hasil Analisis Menggunakan Random Forest<a class="headerlink" href="#hasil-analisis-menggunakan-random-forest" title="Link to this heading">#</a></h2>
+<p>Setelah seluruh proses preprocessing selesai, data training digunakan untuk membangun model klasifikasi menggunakan algoritma <strong>Random Forest</strong>. Model yang telah dibuat kemudian digunakan untuk memprediksi data testing sehingga dapat diketahui kemampuan model dalam mengklasifikasikan data berdasarkan atribut yang tersedia.</p>
+<p>Pada analisis ini digunakan parameter sebagai berikut.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Split Criterion</p></td>
+<td><p>Gini</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum Tree Depth</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of Trees</p></td>
+<td><p>100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/HHSZNL1en0vT2ZJ6JngKY9TmvQfCJ_q7IjQUQ_sJZRM.original.fullsize.png" /></p>
+<p>Hasil evaluasi menggunakan node <strong>Scorer</strong> menunjukkan bahwa algoritma <strong>Random Forest</strong> memperoleh nilai <strong>accuracy sebesar 37,9%</strong>.</p>
+<p>Random Forest bekerja dengan membangun banyak pohon keputusan, kemudian setiap pohon akan memberikan hasil prediksi. Seluruh hasil tersebut selanjutnya digabungkan menggunakan metode voting untuk menentukan kelas akhir. Cara kerja ini membuat Random Forest lebih stabil dibandingkan hanya menggunakan satu pohon keputusan.</p>
+<p>Nilai accuracy sebesar <strong>37,9%</strong> menunjukkan bahwa model masih mengalami kesalahan dalam mengklasifikasikan beberapa data. Hal ini dapat disebabkan oleh karakteristik dataset yang memiliki banyak kelas pada atribut <strong>Grade</strong>, sehingga proses klasifikasi menjadi lebih menantang. Meskipun demikian, Random Forest masih mampu memberikan hasil yang lebih baik dibandingkan algoritma KNN pada dataset ini.</p>
+</section>
+<section id="hasil-analisis-menggunakan-k-nearest-neighbor-knn">
+<h2>6. Hasil Analisis Menggunakan K-Nearest Neighbor (KNN)<a class="headerlink" href="#hasil-analisis-menggunakan-k-nearest-neighbor-knn" title="Link to this heading">#</a></h2>
+<p>Sebelum algoritma KNN dijalankan, seluruh atribut numerik terlebih dahulu dinormalisasi menggunakan metode <strong>Min-Max Normalization</strong>. Proses normalisasi dilakukan agar seluruh atribut berada pada rentang nilai yang sama sehingga perhitungan jarak pada algoritma KNN menjadi lebih akurat.</p>
+<p>Parameter yang digunakan pada algoritma KNN adalah sebagai berikut.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah Tetangga (K)</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Target Column</p></td>
+<td><p>Grade</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/XyPer7cSg0peORkjsoWovY4DpWKo_bjjjk_SAEob7fs.original.fullsize.png" /></p>
+<p>Hasil evaluasi menggunakan node <strong>Scorer</strong> menunjukkan bahwa algoritma <strong>K-Nearest Neighbor (KNN)</strong> menghasilkan nilai <strong>accuracy sebesar 31%</strong>. Artinya, model mampu mengklasifikasikan sekitar <strong>31%</strong> data testing dengan benar.</p>
+<p>Pada analisis ini digunakan nilai <strong>K = 3</strong>, sehingga setiap data baru akan dibandingkan dengan tiga data yang memiliki jarak paling dekat. Selanjutnya kelas yang paling banyak muncul dari ketiga tetangga tersebut akan menjadi hasil prediksi.</p>
+<p>Hasil tersebut menunjukkan bahwa performa KNN masih berada di bawah Random Forest pada dataset yang digunakan. Hal ini dapat dipengaruhi oleh cara kerja KNN yang mengandalkan perhitungan jarak antar data. Meskipun data telah dinormalisasi menggunakan metode Min-Max, karakteristik dataset yang cukup beragam membuat proses pencarian tetangga terdekat belum mampu menghasilkan prediksi yang optimal.</p>
+</section>
+<section id="perbandingan-hasil-analisis">
+<h2>7. Perbandingan Hasil Analisis<a class="headerlink" href="#perbandingan-hasil-analisis" title="Link to this heading">#</a></h2>
+<p>Setelah kedua algoritma selesai dijalankan, dilakukan perbandingan berdasarkan nilai <strong>accuracy</strong> yang dihasilkan oleh masing-masing model.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Algoritma</p></th>
+<th class="head text-right"><p>Accuracy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Random Forest</p></td>
+<td class="text-right"><p><strong>37,9%</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>K-Nearest Neighbor (KNN)</p></td>
+<td class="text-right"><p><strong>31%</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Selisih nilai accuracy dapat dihitung sebagai berikut.</p>
+<div class="math notranslate nohighlight">
+\[
+37.9\% - 31\% = 6.9\%
+\]</div>
+<p>Berdasarkan hasil tersebut, algoritma <strong>Random Forest</strong> memperoleh nilai accuracy yang lebih tinggi dibandingkan algoritma <strong>K-Nearest Neighbor (KNN)</strong> dengan selisih sebesar <strong>6,9%</strong>.</p>
+<p>Perbedaan hasil tersebut menunjukkan bahwa Random Forest lebih mampu mengenali pola yang terdapat pada dataset. Hal ini karena Random Forest membangun banyak pohon keputusan dan menggabungkan hasil prediksi dari setiap pohon sehingga keputusan akhir menjadi lebih stabil.</p>
+<p>Sementara itu, KNN melakukan klasifikasi berdasarkan jarak antar data. Meskipun proses normalisasi telah dilakukan, performa KNN pada dataset ini masih lebih rendah dibandingkan Random Forest.</p>
+<p>Berdasarkan hasil analisis tersebut, algoritma <strong>Random Forest</strong> dapat dikatakan memberikan performa yang lebih baik pada dataset <strong>Higher Education Students Performance Evaluation</strong> karena menghasilkan nilai accuracy yang lebih tinggi dibandingkan algoritma <strong>K-Nearest Neighbor (KNN)</strong>.</p>
+</section>
+<section id="kesimpulan">
+<h2>8. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan seluruh tahapan analisis yang telah dilakukan menggunakan KNIME, mulai dari proses preprocessing data, pembentukan model, hingga evaluasi hasil klasifikasi, dapat disimpulkan bahwa kedua algoritma dapat digunakan untuk mengklasifikasikan data pada dataset <strong>Higher Education Students Performance Evaluation</strong>.</p>
+<p>Hasil analisis menunjukkan bahwa algoritma <strong>Random Forest</strong> memperoleh nilai <strong>accuracy sebesar 37,9%</strong>, sedangkan algoritma <strong>K-Nearest Neighbor (KNN)</strong> memperoleh nilai <strong>accuracy sebesar 31%</strong>.</p>
+<p>Berdasarkan perbandingan tersebut, Random Forest memberikan hasil yang lebih baik dengan selisih accuracy sebesar <strong>6,9%</strong>. Hal ini menunjukkan bahwa Random Forest lebih mampu mengenali pola pada dataset dibandingkan KNN yang menggunakan pendekatan berdasarkan jarak antar data.</p>
+<p>Selain pemilihan algoritma, proses preprocessing seperti menghapus atribut yang tidak diperlukan, menangani missing value menggunakan metode mean, mengubah tipe data, melakukan normalisasi, serta membagi data menjadi data training dan data testing juga berpengaruh terhadap hasil klasifikasi yang diperoleh.</p>
+<p>Secara keseluruhan, dapat disimpulkan bahwa algoritma <strong>Random Forest</strong> lebih sesuai digunakan pada dataset ini dibandingkan <strong>K-Nearest Neighbor (KNN)</strong>. Meskipun nilai accuracy yang diperoleh masih belum terlalu tinggi, Random Forest tetap memberikan hasil yang lebih baik dalam proses klasifikasi. Ke depannya, performa model masih dapat ditingkatkan dengan melakukan seleksi fitur, penyesuaian parameter, atau mencoba algoritma klasifikasi lainnya.</p>
+<p>Hasil analisis ini menunjukkan bahwa pemilihan algoritma sangat memengaruhi performa klasifikasi. Oleh karena itu, Random Forest dapat dijadikan salah satu metode yang lebih sesuai untuk digunakan pada dataset Higher Education Students Performance Evaluation.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2.1 Data Understanding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">3. Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.3 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.4 Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer">4.8 Normalizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizer-apply">4.9 Normalizer (Apply)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">4.10 K Nearest Neighbor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-random-forest">5. Hasil Analisis Menggunakan Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-analisis-menggunakan-k-nearest-neighbor-knn">6. Hasil Analisis Menggunakan K-Nearest Neighbor (KNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-analisis">7. Perbandingan Hasil Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rachelia Andini Tendean
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
