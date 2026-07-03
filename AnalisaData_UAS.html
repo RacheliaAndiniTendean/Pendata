@@ -387,8 +387,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.3 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.4 Missing Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
@@ -484,7 +484,7 @@
 <section id="workflow-knime">
 <h2>4. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
 <p>Workflow pada KNIME dibuat untuk menjalankan seluruh proses analisis secara berurutan, mulai dari membaca dataset, melakukan preprocessing, membangun model klasifikasi, hingga mengevaluasi hasil prediksi. Workflow yang digunakan dapat dilihat pada gambar berikut.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/vzkkNsCvcwz6bjzQqcFX8FipLmv6QHZG02AlMypYT6g.original.fullsize.png" /></p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/259-P8JLHlO6fXbbq2Oj4MS2ohZiaxCegutpVwgfj7c.original.fullsize.png" /></p>
 <p>Workflow tersebut terdiri dari beberapa node yang saling terhubung. Setiap node memiliki fungsi yang berbeda sehingga seluruh proses analisis dapat berjalan secara otomatis dari awal hingga menghasilkan nilai accuracy masing-masing algoritma.</p>
 <section id="csv-reader">
 <h3>4.1 CSV Reader<a class="headerlink" href="#csv-reader" title="Link to this heading">#</a></h3>
@@ -503,35 +503,8 @@
 <p>Dengan menghapus atribut yang tidak relevan, proses pelatihan model menjadi lebih fokus pada atribut yang benar-benar berpengaruh terhadap hasil prediksi.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/9esLsNcW_4QqB78sWQGiYji0XwbwAs8AWJ5zIhlecss.original.fullsize.png" /></p>
 </section>
-<section id="missing-value">
-<h3>4.3 Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h3>
-<p>Tahap berikutnya adalah menangani data yang memiliki nilai kosong menggunakan node <strong>Missing Value</strong>.</p>
-<p>Data yang memiliki nilai kosong dapat menyebabkan proses pelatihan model menjadi kurang optimal. Oleh karena itu, nilai yang kosong perlu diganti agar seluruh data dapat digunakan.</p>
-<p>Pada atribut yang bertipe <strong>Integer</strong>, metode yang digunakan adalah <strong>Mean</strong>.</p>
-<p>Metode Mean akan mengganti nilai yang kosong menggunakan rata-rata dari seluruh nilai pada kolom tersebut.</p>
-<p>Secara matematis, nilai rata-rata dihitung menggunakan rumus berikut.</p>
-<div class="math notranslate nohighlight">
-\[
-\bar{x}=\frac{\sum x}{n}
-\]</div>
-<p>Keterangan:</p>
-<div class="math notranslate nohighlight">
-\[
-\bar{x} = \text{rata-rata data}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\sum x = \text{jumlah seluruh data}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-n = \text{banyaknya data}
-\]</div>
-<p>Metode Mean dipilih karena cukup sederhana dan mampu mempertahankan jumlah data tanpa harus menghapus baris yang memiliki nilai kosong.</p>
-<p><img alt="" src="https://cdn.mathpix.com/snip/images/aXH03S4oyP_kb76hDbrGUhgA0w8XsV01vZkuum9zqf0.original.fullsize.png" /></p>
-</section>
 <section id="number-to-string">
-<h3>4.4 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h3>
+<h3>4.3 Number to String<a class="headerlink" href="#number-to-string" title="Link to this heading">#</a></h3>
 <p>Node <strong>Number to String</strong> digunakan untuk mengubah tipe data numerik menjadi tipe string atau kategorikal.</p>
 <p>Pada analisis ini terdapat dua atribut yang diubah, yaitu:</p>
 <ul class="simple">
@@ -542,6 +515,28 @@ n = \text{banyaknya data}
 <p>Sedangkan <strong>Course ID</strong> merupakan kode mata kuliah. Walaupun berbentuk angka, atribut tersebut hanya berfungsi sebagai identitas mata kuliah sehingga lebih tepat diperlakukan sebagai data kategorikal.</p>
 <p>Dengan perubahan tipe data ini, algoritma klasifikasi dapat mengenali kedua atribut tersebut sebagai kategori, bukan sebagai nilai yang memiliki hubungan matematis.</p>
 <p><img alt="" src="https://cdn.mathpix.com/snip/images/hjlKca112lmjCrgDNUWbRFaJNppvVMWOdtZ0q80TyXM.original.fullsize.png" /></p>
+</section>
+<section id="missing-value">
+<h3>4.4 Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h3>
+<p>Tahap berikutnya adalah menangani data yang memiliki nilai kosong menggunakan node <strong>Missing Value</strong>.</p>
+<p>Data yang memiliki nilai kosong dapat memengaruhi proses pelatihan model sehingga perlu ditangani terlebih dahulu. Jika nilai kosong tidak diisi, beberapa algoritma machine learning dapat menghasilkan model yang kurang optimal atau bahkan tidak dapat memproses data.</p>
+<p>Pada analisis ini, metode yang digunakan untuk mengisi nilai kosong adalah <strong>Most Frequent Value (Mode)</strong>. Metode ini akan mengganti nilai yang hilang dengan nilai yang paling sering muncul pada setiap atribut.</p>
+<p>Secara matematis, nilai modus dapat dituliskan sebagai berikut.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Mode} = \arg\max_{x}(f(x))
+\]</div>
+<p>Keterangan:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \text{frekuensi kemunculan setiap nilai}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\arg\max = \text{nilai dengan frekuensi terbesar}
+\]</div>
+<p>Metode <strong>Most Frequent</strong> dipilih karena sebagian besar atribut pada dataset merupakan data kategorikal yang direpresentasikan dalam bentuk kode angka (integer). Oleh karena itu, penggantian menggunakan nilai yang paling sering muncul lebih sesuai dibandingkan menggunakan rata-rata, sehingga nilai hasil imputasi tetap berada pada kategori yang valid.</p>
+<p><img alt="" src="https://cdn.mathpix.com/snip/images/hw8r6lofdQ27VyypViQTsHxJCf4hKHFZYbEWnyvFW6g.original.fullsize.png" /></p>
 </section>
 <section id="table-partitioner">
 <h3>4.5 Table Partitioner<a class="headerlink" href="#table-partitioner" title="Link to this heading">#</a></h3>
@@ -819,8 +814,8 @@ x'=\frac{x-x_{min}}{x_{max}-x_{min}}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-reader">4.1 CSV Reader</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-filter">4.2 Column Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.3 Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.4 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-to-string">4.3 Number to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">4.4 Missing Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-partitioner">4.5 Table Partitioner</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">4.6 Random Forest Learner</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">4.7 Random Forest Predictor</a></li>
